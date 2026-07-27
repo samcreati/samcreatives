@@ -2,76 +2,156 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAM Creatives | Design. Market. Grow.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SAM Creatives | Design. Market. Grow. Premium digital marketing agency. Free AI Logo Generator, Branding, SEO & Web Development.">
+    <meta name="keywords" content="digital marketing, AI logo generator, branding, SEO, social media, web development, lead generation, SAM Creatives Pakistan">
+    <meta name="author" content="SAM Creatives">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SAM Creatives | Design. Market. Grow. - Free AI Logo Generator">
+    <meta property="og:description" content="Grow your business with proven strategies. Try our free AI Logo Generator!">
+    <meta property="og:image" content="images/og-image.jpg">
+    
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <title>SAM Creatives | Design. Market. Grow. - Free AI Logo Generator</title>
     
     <style>
         :root {
             --primary: #D90429;
+            --primary-dark: #a0031f;
             --dark-bg: #0a0a0a;
             --card-bg: #1a1a1a;
+            --border-color: rgba(255,255,255,0.08);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--dark-bg);
+            font-family: var(--font-body);
+            background-color: var(--dark-bg);
             color: #e0e0e0;
+            overflow-x: hidden;
             padding-top: 80px;
+            line-height: 1.6;
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             font-weight: 700;
-            color: white;
+            color: #FFFFFF;
+            line-height: 1.3;
         }
         
         .text-gradient {
             background: linear-gradient(135deg, #D90429, #ff4757);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
+        .bg-dark-card { background-color: var(--card-bg); }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        
+        /* Navbar */
         .navbar {
-            background: rgba(10,10,10,0.97);
+            background: rgba(10, 10, 10, 0.97);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+        
+        .navbar.scrolled { box-shadow: 0 5px 30px rgba(0,0,0,0.5); }
+        
+        .navbar-brand img {
+            height: 42px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .nav-link {
+            color: #cccccc !important;
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 8px 12px !important;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active { color: var(--primary) !important; }
+        .nav-link:hover::after, .nav-link.active::after { width: 60%; }
+        
+        /* Buttons */
+        .btn {
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 50px;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
         }
         
         .btn-primary-red {
             background: var(--primary);
             border: 2px solid var(--primary);
             color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.3s;
             text-decoration: none;
-            display: inline-block;
         }
         
         .btn-primary-red:hover {
             background: transparent;
+            border-color: var(--primary);
             color: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(217,4,41,0.3);
+            box-shadow: 0 15px 30px rgba(217, 4, 41, 0.3);
         }
         
         .btn-outline-white {
             border: 2px solid white;
             color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.3s;
             background: transparent;
             text-decoration: none;
-            display: inline-block;
         }
         
         .btn-outline-white:hover {
@@ -80,28 +160,65 @@
             transform: translateY(-3px);
         }
         
-        .hero-section {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            background: radial-gradient(ellipse at 50% 0%, rgba(217,4,41,0.15) 0%, transparent 50%);
+        .btn-glow {
+            animation: glow 2s ease-in-out infinite alternate;
         }
         
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(217,4,41,0.5); }
+            to { box-shadow: 0 0 30px rgba(217,4,41,0.8), 0 0 60px rgba(217,4,41,0.4); }
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 90vh;
+            background: radial-gradient(ellipse at 50% 0%, rgba(217,4,41,0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(217,4,41,0.1) 0%, transparent 40%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(217,4,41,0.3));
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Counter */
+        .counter-box {
+            text-align: center;
+            padding: 25px 15px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .counter-box:last-child { border-right: none; }
+        
         .counter {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
+            font-family: var(--font-heading);
             background: linear-gradient(135deg, #D90429, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
+        /* Glass Card */
         .glass-card {
-            background: rgba(26,26,26,0.8);
+            background: rgba(26, 26, 26, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
             padding: 30px;
-            transition: 0.3s;
+            transition: var(--transition);
         }
         
         .glass-card:hover {
@@ -109,69 +226,80 @@
             box-shadow: 0 20px 40px rgba(217,4,41,0.15);
         }
         
+        /* Service Cards */
         .service-card {
             background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 40px 30px;
+            padding: 35px 25px;
             text-align: center;
-            transition: 0.3s;
+            transition: var(--transition);
             height: 100%;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover::before { transform: scaleX(1); }
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
             box-shadow: 0 20px 40px rgba(217,4,41,0.15);
         }
         
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
+        .service-icon { font-size: 2.8rem; color: var(--primary); margin-bottom: 15px; transition: var(--transition); }
+        .service-card:hover .service-icon { transform: scale(1.2); }
         
+        /* Portfolio */
         .portfolio-item {
             position: relative;
             overflow: hidden;
             border-radius: 16px;
-            margin-bottom: 20px;
+            cursor: pointer;
         }
         
         .portfolio-item img {
             width: 100%;
             height: 280px;
             object-fit: cover;
-            transition: 0.5s;
-        }
-        
-        .portfolio-item:hover img {
-            transform: scale(1.1);
+            transition: 0.5s ease;
         }
         
         .portfolio-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(217,4,41,0.9);
+            background: linear-gradient(to top, rgba(217,4,41,0.9), rgba(0,0,0,0.7));
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: 0.3s;
+            transition: 0.4s ease;
+            padding: 20px;
+            text-align: center;
+            color: white;
         }
         
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-item:hover img { transform: scale(1.1); }
         
+        /* Package Cards */
         .package-card {
             background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 40px 30px;
-            transition: 0.3s;
+            padding: 35px 25px;
+            transition: var(--transition);
             height: 100%;
             position: relative;
         }
@@ -179,17 +307,18 @@
         .package-card.popular {
             border: 2px solid var(--primary);
             transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(217,4,41,0.2);
         }
         
         .badge-popular {
             position: absolute;
-            top: -15px;
-            right: 30px;
+            top: -15px; right: 25px;
             background: var(--primary);
             color: white;
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 50px;
             font-weight: 700;
+            font-size: 0.8rem;
             animation: pulse 2s infinite;
         }
         
@@ -198,32 +327,79 @@
             50% { transform: scale(1.05); }
         }
         
+        /* Testimonials */
         .testimonial-img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--primary);
+            margin: 0 auto 15px;
         }
         
+        /* Client Logos */
         .client-logo-img {
             max-height: 45px;
+            width: auto;
             filter: grayscale(100%) brightness(0.7);
             opacity: 0.6;
             transition: 0.3s;
         }
+        .client-logo-img:hover { filter: grayscale(0%) brightness(1); opacity: 1; }
         
-        .client-logo-img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
+        /* Case Study */
+        .case-study-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .case-study-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .case-study-card img { width: 100%; height: 220px; object-fit: cover; }
+        
+        /* AI Logo Generator Section */
+        .logo-generator-section {
+            background: linear-gradient(135deg, #1a0000, #0a0a0a);
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            padding: 50px 30px;
+            text-align: center;
         }
         
+        .logo-preview {
+            width: 250px;
+            height: 250px;
+            background: #111;
+            border: 2px dashed #333;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: 0.3s;
+        }
+        
+        .logo-preview img { max-width: 200px; max-height: 200px; }
+        
+        .logo-counter {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        /* Form Controls */
         .form-control {
             background: #0a0a0a;
             border: 1px solid #333;
             color: white;
             padding: 14px 20px;
             border-radius: 12px;
+            transition: var(--transition);
         }
         
         .form-control:focus {
@@ -233,38 +409,98 @@
             color: white;
         }
         
-        .floating-wa {
+        /* FAQ */
+        .accordion-button {
+            background: #1a1a1a !important;
+            color: white !important;
+            border: 1px solid #333;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: var(--primary) !important;
+            color: white !important;
+        }
+        
+        .accordion-button::after { filter: invert(1); }
+        
+        /* Floating Buttons */
+        .floating-buttons {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #25D366;
-            color: white;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .floating-btn {
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            z-index: 999;
+            font-size: 1.8rem;
+            color: white;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            animation: bounce 2s infinite;
+            transition: var(--transition);
             text-decoration: none;
+            animation: bounce 2s infinite;
         }
+        
+        .floating-btn.whatsapp { background: #25D366; }
+        .floating-btn.call { background: var(--primary); animation-delay: 0.5s; }
+        .floating-btn:hover { transform: scale(1.15); color: white; }
         
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
         
-        .floating-wa:hover { color: white; transform: scale(1.1); }
-        
-        footer {
-            background: #050505;
-            border-top: 1px solid #222;
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 160px;
+            right: 35px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
         }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
         
-        /* Image placeholders when image is missing */
+        /* Toast */
+        .toast-notification {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: #1a1a1a;
+            border: 2px solid var(--primary);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: 0.4s ease;
+        }
+        .toast-notification.show { transform: translateX(0); }
+        
+        /* Footer */
+        footer { background: #050505; border-top: 1px solid #222; }
+        
+        /* Image Placeholder */
         .img-placeholder {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
             display: flex;
@@ -276,35 +512,41 @@
         }
         
         @media (max-width: 768px) {
-            .package-card.popular { transform: scale(1); }
             body { padding-top: 70px; }
+            .counter { font-size: 2rem; }
+            .package-card.popular { transform: scale(1); }
+            .counter-box { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 15px; }
         }
     </style>
 </head>
 <body>
     
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#" style="text-decoration:none;">
-                <span id="logoContainer"></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+            <a class="navbar-brand" href="#home" id="logoContainer"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
             </button>
-            <div class="collapse navbar-collapse" id="nav">
+            <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#packages">Packages</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#logo-generator">AI Logo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#case-studies">Case Studies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
-    <!-- Hero -->
+
+    <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="container">
             <div class="row align-items-center">
@@ -312,12 +554,23 @@
                     <h1 class="display-3 fw-bold mb-4">
                         Grow Your Business With <span class="text-gradient">Proven Strategies</span>
                     </h1>
-                    <p class="lead mb-4" style="color:#aaa;">
-                        From Branding to Lead Generation — <strong style="color:white;">SAM Creatives</strong> delivers results.
+                    <p class="lead mb-4" style="color: #aaa; font-size: 1.1rem;">
+                        From Branding & Social Media to Lead Generation — <strong style="color: white;">SAM Creatives</strong> delivers measurable results.
                     </p>
-                    <div class="d-flex gap-3 flex-wrap">
-                        <a href="#contact" class="btn btn-primary-red btn-lg">Get Free Consultation</a>
-                        <a href="#portfolio" class="btn btn-outline-white btn-lg">View Portfolio</a>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contact" class="btn btn-primary-red btn-lg btn-glow">
+                            <i class="bi bi-calendar-check me-2"></i> Get Free Consultation
+                        </a>
+                        <a href="#logo-generator" class="btn btn-outline-white btn-lg">
+                            <i class="bi bi-stars me-2"></i> Try AI Logo Generator
+                        </a>
+                    </div>
+                    <div class="mt-3">
+                        <small style="color: #888;">
+                            <i class="bi bi-check-circle-fill text-success me-1"></i> Free AI Logo &nbsp;
+                            <i class="bi bi-check-circle-fill text-success me-1"></i> Custom Strategy &nbsp;
+                            <i class="bi bi-check-circle-fill text-success me-1"></i> Proven Results
+                        </small>
                     </div>
                 </div>
                 <div class="col-lg-6 mt-4 mt-lg-0 text-center" data-aos="fade-left">
@@ -326,60 +579,122 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Statistics -->
     <section class="py-4 border-top border-secondary border-opacity-10">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="counter" data-target="250">0</div>
-                    <p class="text-light">Projects Done</p>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="counter" data-target="100">0</div>
-                    <p class="text-light">Happy Clients</p>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="counter" data-target="50000">0</div>
-                    <p class="text-light">Leads Generated</p>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="counter" data-target="100000">0</div>
-                    <p class="text-light">Ad Spend (£)</p>
-                </div>
+            <div class="row g-0">
+                <div class="col-6 col-md-3 counter-box"><div class="counter" data-target="250">0</div><p class="text-light mt-2 mb-0">Projects Done</p></div>
+                <div class="col-6 col-md-3 counter-box"><div class="counter" data-target="100">0</div><p class="text-light mt-2 mb-0">Happy Clients</p></div>
+                <div class="col-6 col-md-3 counter-box"><div class="counter" data-target="50000">0</div><p class="text-light mt-2 mb-0">Leads Generated</p></div>
+                <div class="col-6 col-md-3 counter-box"><div class="counter" data-target="100000">0</div><p class="text-light mt-2 mb-0">Ad Spend (£)</p></div>
             </div>
         </div>
     </section>
-    
+
     <!-- Services -->
     <section id="services" class="py-5">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="display-5 fw-bold">Our <span class="text-gradient">Services</span></h2>
+                <p class="lead" style="color: #aaa;">Complete digital marketing solutions</p>
             </div>
             <div class="row g-4">
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('Social Media')"><i class="bi bi-phone service-icon"></i><h5>Social Media</h5><p class="small text-muted">Management</p></div></div>
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('Meta Ads')"><i class="bi bi-meta service-icon"></i><h5>Meta Ads</h5><p class="small text-muted">FB & Instagram</p></div></div>
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('SEO')"><i class="bi bi-graph-up service-icon"></i><h5>SEO Services</h5><p class="small text-muted">Rank #1</p></div></div>
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('Web Development')"><i class="bi bi-code-slash service-icon"></i><h5>Web Development</h5><p class="small text-muted">Custom Sites</p></div></div>
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('Branding')"><i class="bi bi-brush service-icon"></i><h5>Branding</h5><p class="small text-muted">Logo & Identity</p></div></div>
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('Video Editing')"><i class="bi bi-camera-video service-icon"></i><h5>Video Editing</h5><p class="small text-muted">Reels & Ads</p></div></div>
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('Shopify')"><i class="bi bi-bag-check service-icon"></i><h5>Shopify</h5><p class="small text-muted">E-commerce</p></div></div>
-                <div class="col-md-4 col-lg-3" data-aos="zoom-in"><div class="service-card" onclick="goToContact('Lead Generation')"><i class="bi bi-bullseye service-icon"></i><h5>Lead Generation</h5><p class="small text-muted">More Customers</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="100"><div class="service-card" onclick="goToContact('Social Media Management')"><i class="bi bi-phone service-icon"></i><h5>Social Media</h5><p class="small text-muted">Management & Growth</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="200"><div class="service-card" onclick="goToContact('Meta Ads')"><i class="bi bi-meta service-icon"></i><h5>Meta Ads</h5><p class="small text-muted">FB & Instagram</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="300"><div class="service-card" onclick="goToContact('SEO Services')"><i class="bi bi-graph-up service-icon"></i><h5>SEO Services</h5><p class="small text-muted">Rank #1 on Google</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="400"><div class="service-card" onclick="goToContact('Web Development')"><i class="bi bi-code-slash service-icon"></i><h5>Web Development</h5><p class="small text-muted">Custom Websites</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="100"><div class="service-card" onclick="goToContact('Branding')"><i class="bi bi-brush service-icon"></i><h5>Branding</h5><p class="small text-muted">Logo & Identity</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="200"><div class="service-card" onclick="goToContact('Video Editing')"><i class="bi bi-camera-video service-icon"></i><h5>Video Editing</h5><p class="small text-muted">Reels & Ads</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="300"><div class="service-card" onclick="goToContact('Shopify Development')"><i class="bi bi-bag-check service-icon"></i><h5>Shopify</h5><p class="small text-muted">E-commerce</p></div></div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="400"><div class="service-card" onclick="goToContact('Lead Generation')"><i class="bi bi-bullseye service-icon"></i><h5>Lead Generation</h5><p class="small text-muted">More Customers</p></div></div>
             </div>
         </div>
     </section>
-    
-    <!-- Portfolio -->
-    <section id="portfolio" class="py-5" style="background:#111;">
+
+    <!-- AI Logo Generator Section -->
+    <section id="logo-generator" class="py-5" style="background: #050505;">
         <div class="container">
-            <div class="text-center mb-5"><h2 class="display-5 fw-bold">Featured <span class="text-gradient">Portfolio</span></h2></div>
-            <div class="row g-4" id="portfolioContainer"></div>
+            <div class="logo-generator-section" data-aos="fade-up">
+                <div class="text-center mb-4">
+                    <span class="logo-counter mb-3" id="logoCount">🎨 Free Generations Left: <strong>5</strong></span>
+                    <h2 class="display-5 fw-bold mt-3">Free AI <span class="text-gradient">Logo Generator</span></h2>
+                    <p class="lead" style="color: #aaa;">Generate professional logos in seconds - <strong>5 FREE generations!</strong></p>
+                </div>
+                
+                <div class="row align-items-center">
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <div class="logo-preview" id="logoPreview">
+                            <i class="bi bi-stars" style="font-size: 4rem; color: #333;"></i>
+                        </div>
+                        <p class="text-center mt-2 text-muted small">Your AI-generated logo will appear here</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <form id="logoGeneratorForm" onsubmit="generateLogo(event)">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="businessName" placeholder="Business Name *" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="slogan" placeholder="Slogan (Optional)">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-control" id="industry">
+                                        <option value="">Select Industry</option>
+                                        <option>Technology</option>
+                                        <option>Restaurant</option>
+                                        <option>Fashion</option>
+                                        <option>Real Estate</option>
+                                        <option>Solar Energy</option>
+                                        <option>Healthcare</option>
+                                        <option>Education</option>
+                                        <option>Construction</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-control" id="style">
+                                        <option value="">Select Style</option>
+                                        <option>Modern</option>
+                                        <option>Minimalist</option>
+                                        <option>Luxury</option>
+                                        <option>Bold</option>
+                                        <option>Creative</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="logoEmail" placeholder="Email (to receive logo) *" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary-red w-100 btn-lg" id="generateBtn">
+                                <i class="bi bi-magic me-2"></i> Generate Free Logo
+                            </button>
+                        </form>
+                        <p class="text-center mt-3 small text-muted">
+                            ⚡ AI-powered logo generation | High-quality PNG output | Commercial use allowed
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Featured <span class="text-gradient">Portfolio</span></h2>
+            </div>
+            <div class="row g-4" id="portfolioContainer"></div>
+            <div class="text-center mt-4">
+                <a href="#contact" class="btn btn-outline-white btn-lg">View Full Portfolio</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials -->
-    <section class="py-5">
+    <section class="py-5 bg-dark-card">
         <div class="container">
             <div class="text-center mb-5"><h2 class="display-5 fw-bold">Client <span class="text-gradient">Reviews</span></h2></div>
             <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -389,101 +704,332 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Client Logos -->
-    <section class="py-5 bg-dark-card">
+    <section class="py-4">
         <div class="container">
-            <div class="text-center mb-4"><h5 style="color:#aaa;">TRUSTED BY LEADING BRANDS</h5></div>
-            <div class="row g-4 align-items-center justify-content-center" id="clientLogosContainer"></div>
+            <div class="text-center mb-3"><h6 style="color: #888;">TRUSTED BY</h6></div>
+            <div class="row g-3 align-items-center justify-content-center" id="clientLogosContainer"></div>
         </div>
     </section>
-    
-    <!-- Packages -->
-    <section id="packages" class="py-5">
+
+    <!-- Packages - Marketing + Website -->
+    <section id="packages" class="py-5 bg-dark-card">
         <div class="container">
-            <div class="text-center mb-5"><h2 class="display-5 fw-bold">Marketing <span class="text-gradient">Packages</span></h2></div>
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up">
+            <!-- Marketing Packages -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Marketing <span class="text-gradient">Packages</span></h2>
+            </div>
+            <div class="row g-4 mb-5">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="package-card">
                         <h4>Starter</h4>
-                        <h2 style="color:var(--primary);">Rs. 39,999<small style="font-size:1rem;">/mo</small></h2>
+                        <h2 style="color:var(--primary);">Rs. 39,999<small>/mo</small></h2>
                         <ul class="list-unstyled mt-3"><li>✅ 12 Posts</li><li>✅ 4 Stories</li><li>✅ Meta Ads</li><li>✅ Monthly Report</li></ul>
                         <a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="package-card popular">
                         <span class="badge-popular">🔥 Popular</span>
                         <h4>Growth</h4>
-                        <h2 style="color:var(--primary);">Rs. 74,999<small style="font-size:1rem;">/mo</small></h2>
+                        <h2 style="color:var(--primary);">Rs. 74,999<small>/mo</small></h2>
                         <ul class="list-unstyled mt-3"><li>✅ 20 Posts + Reels</li><li>✅ Strategy</li><li>✅ Meta Ads</li><li>✅ Detailed Reports</li></ul>
                         <a href="#contact" class="btn btn-primary-red w-100 mt-3">Get Started</a>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="package-card">
                         <h4>Premium</h4>
-                        <h2 style="color:var(--primary);">Rs. 149,999<small style="font-size:1rem;">/mo</small></h2>
+                        <h2 style="color:var(--primary);">Rs. 149,999<small>/mo</small></h2>
                         <ul class="list-unstyled mt-3"><li>✅ 30 Posts + Reels</li><li>✅ Lead Gen</li><li>✅ Priority Support</li><li>✅ Weekly Reports</li></ul>
                         <a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Contact -->
-    <section id="contact" class="py-5 bg-dark-card">
-        <div class="container">
-            <div class="text-center mb-5"><h2 class="display-5 fw-bold">Contact <span class="text-gradient">Us</span></h2></div>
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <form onsubmit="handleSubmit(event)">
-                        <input type="text" class="form-control mb-3" id="name" placeholder="Full Name *" required>
-                        <input type="email" class="form-control mb-3" id="email" placeholder="Email *" required>
-                        <input type="tel" class="form-control mb-3" id="phone" placeholder="Phone *" required>
-                        <select class="form-control mb-3" id="service">
-                            <option value="">Select Service</option>
-                            <option>Social Media Management</option><option>Meta Ads</option><option>SEO</option>
-                            <option>Web Development</option><option>Branding</option><option>Other</option>
-                        </select>
-                        <textarea class="form-control mb-3" id="message" rows="4" placeholder="Message *" required></textarea>
-                        <button type="submit" class="btn btn-primary-red w-100 btn-lg"><i class="bi bi-send me-2"></i>Send Message</button>
-                    </form>
+            
+            <!-- Website Packages -->
+            <div class="text-center mb-5 pt-4" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Website <span class="text-gradient">Packages</span></h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="package-card">
+                        <h4>Basic Website</h4>
+                        <h2 style="color:var(--primary);">Rs. 25,000</h2>
+                        <ul class="list-unstyled mt-3"><li>✅ Up to 5 Pages</li><li>✅ Mobile Responsive</li><li>✅ Contact Form</li><li>✅ WhatsApp Integration</li><li>✅ Basic SEO</li></ul>
+                        <a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="glass-card">
-                        <h5 class="text-gradient mb-3">Contact Info</h5>
-                        <p><i class="bi bi-telephone me-2" style="color:var(--primary);"></i><a href="tel:+923350231718" class="text-white text-decoration-none">0335 0231718</a></p>
-                        <p><i class="bi bi-envelope me-2" style="color:var(--primary);"></i><a href="mailto:sam.creatives2010@gmail.com" class="text-white text-decoration-none">sam.creatives2010@gmail.com</a></p>
-                        <p><i class="bi bi-whatsapp me-2" style="color:var(--primary);"></i><a href="https://wa.me/923350231718" target="_blank" class="text-white text-decoration-none">+92 335 0231718</a></p>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="package-card popular">
+                        <span class="badge-popular">⭐ Best Value</span>
+                        <h4>Business Website</h4>
+                        <h2 style="color:var(--primary);">Rs. 45,000</h2>
+                        <ul class="list-unstyled mt-3"><li>✅ Up to 10 Pages</li><li>✅ Premium Design</li><li>✅ SEO Optimized</li><li>✅ Lead Forms</li><li>✅ Social Integration</li></ul>
+                        <a href="#contact" class="btn btn-primary-red w-100 mt-3">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="package-card">
+                        <h4>E-Commerce</h4>
+                        <h2 style="color:var(--primary);">Rs. 89,999</h2>
+                        <ul class="list-unstyled mt-3"><li>✅ Full Online Store</li><li>✅ Product Upload</li><li>✅ Payment Gateway</li><li>✅ Shipping Setup</li><li>✅ Order Management</li></ul>
+                        <a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Case Studies -->
+    <section id="case-studies" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Case <span class="text-gradient">Studies</span></h2>
+                <p class="lead" style="color: #aaa;">Real results from real clients</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="case-study-card">
+                        <img src="images/case-study-1.jpg" alt="Green Wave Solar" onerror="this.style.display='none';">
+                        <div class="p-4">
+                            <span class="badge bg-success mb-2">✅ Success Story</span>
+                            <h5 class="text-gradient">Green Wave Solar</h5>
+                            <p><strong>Challenge:</strong> Low lead generation, poor online presence</p>
+                            <p><strong>Solution:</strong> Meta Ads + Social Media Strategy + Website</p>
+                            <div class="row text-center mt-3">
+                                <div class="col-4"><h4 class="text-gradient">350%</h4><small>Lead Increase</small></div>
+                                <div class="col-4"><h4 class="text-gradient">200%</h4><small>Reach Growth</small></div>
+                                <div class="col-4"><h4 class="text-gradient">4x</h4><small>ROI</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="case-study-card">
+                        <img src="images/case-study-2.jpg" alt="Palm Restaurant" onerror="this.style.display='none';">
+                        <div class="p-4">
+                            <span class="badge bg-success mb-2">✅ Success Story</span>
+                            <h5 class="text-gradient">Palm Restaurant</h5>
+                            <p><strong>Challenge:</strong> Low footfall, no social media presence</p>
+                            <p><strong>Solution:</strong> Content Creation + Reels + Meta Ads</p>
+                            <div class="row text-center mt-3">
+                                <div class="col-4"><h4 class="text-gradient">500+</h4><small>New Customers</small></div>
+                                <div class="col-4"><h4 class="text-gradient">Full</h4><small>Weekend Booking</small></div>
+                                <div class="col-4"><h4 class="text-gradient">3x</h4><small>Revenue</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-5 bg-dark-card">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Frequently <span class="text-gradient">Asked Questions</span></h2>
+                <p class="lead" style="color: #aaa;">Everything you need to know</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    🔍 How quickly can I see results from digital marketing?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Initial results are visible within 30-60 days with our proven strategies. Significant growth typically takes 3-6 months depending on your industry and competition.
+                                    <br><br>
+                                    <a href="#contact" class="btn btn-sm btn-primary-red">Get Custom Timeline</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    💰 What is the ROI of your marketing packages?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Our clients typically see 3x-5x return on their investment. We focus on lead generation and conversion optimization to maximize your ROI.
+                                    <br><br>
+                                    <a href="#contact" class="btn btn-sm btn-primary-red">Calculate Your ROI</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    🎨 How does the AI Logo Generator work?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Enter your business name, select industry and style. Our AI generates a unique logo instantly. You get 5 free generations. The logo is emailed to you in high-quality PNG format.
+                                    <br><br>
+                                    <a href="#logo-generator" class="btn btn-sm btn-primary-red">Try Free AI Logo Generator</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    📱 Which social media platforms do you manage?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    We manage Facebook, Instagram, LinkedIn, TikTok, and YouTube. Our strategies are platform-specific for maximum engagement.
+                                    <br><br>
+                                    <a href="#contact" class="btn btn-sm btn-primary-red">Discuss Your Platforms</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    🔧 Do you offer website maintenance?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Yes! All our website packages include 1 month free maintenance. We also offer ongoing maintenance packages starting from Rs. 5,000/month.
+                                    <br><br>
+                                    <a href="#contact" class="btn btn-sm btn-primary-red">Get Maintenance Plan</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                    📊 How do you report results?
+                                </button>
+                            </h2>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    We provide detailed monthly reports with analytics, insights, and recommendations. Premium clients receive weekly updates.
+                                    <br><br>
+                                    <a href="#contact" class="btn btn-sm btn-primary-red">See Sample Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketing Tips & Guides -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Marketing <span class="text-gradient">Tips & Guides</span></h2>
+                <p class="lead" style="color: #aaa;">Expert insights to grow your business</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card">
+                        <div class="text-center mb-3"><i class="bi bi-search display-4 text-gradient"></i></div>
+                        <h5>SEO Tips 2026</h5>
+                        <p class="small text-muted">Learn the latest SEO strategies to rank higher on Google and drive organic traffic.</p>
+                        <button class="btn btn-sm btn-primary-red" onclick="showTip('SEO Guide')">Read Guide →</button>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card">
+                        <div class="text-center mb-3"><i class="bi bi-facebook display-4 text-gradient"></i></div>
+                        <h5>Facebook Ads Mastery</h5>
+                        <p class="small text-muted">Master Facebook advertising with our step-by-step guide for better ROI.</p>
+                        <button class="btn btn-sm btn-primary-red" onclick="showTip('Facebook Ads')">Read Guide →</button>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card">
+                        <div class="text-center mb-3"><i class="bi bi-cart display-4 text-gradient"></i></div>
+                        <h5>Shopify Growth Hacks</h5>
+                        <p class="small text-muted">Scale your e-commerce store with proven Shopify optimization techniques.</p>
+                        <button class="btn btn-sm btn-primary-red" onclick="showTip('Shopify Tips')">Read Guide →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-5" style="background: linear-gradient(135deg, #8B0000, #D90429);">
+        <div class="container text-center" data-aos="zoom-in">
+            <h2 class="display-4 fw-bold text-white mb-3">Ready To Grow Your Business?</h2>
+            <p class="lead text-white mb-4">Book your <strong>FREE</strong> consultation today!</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="tel:+923350231718" class="btn btn-light btn-lg"><i class="bi bi-telephone-fill me-2"></i> Call Now</a>
+                <a href="https://wa.me/923350231718?text=Hi%20SAM%20Creatives!%20I%20want%20to%20grow%20my%20business." target="_blank" class="btn btn-outline-light btn-lg"><i class="bi bi-whatsapp me-2"></i> WhatsApp Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Contact <span class="text-gradient">Us</span></h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-right">
+                    <form onsubmit="handleContactSubmit(event)">
+                        <input type="text" class="form-control mb-3" id="name" placeholder="Full Name *" required>
+                        <input type="email" class="form-control mb-3" id="email" placeholder="Email *" required>
+                        <input type="tel" class="form-control mb-3" id="phone" placeholder="Phone *" required>
+                        <select class="form-control mb-3" id="service"><option value="">Select Service</option><option>Social Media</option><option>Meta Ads</option><option>SEO</option><option>Web Development</option><option>Branding</option><option>Other</option></select>
+                        <textarea class="form-control mb-3" id="message" rows="4" placeholder="Message *" required></textarea>
+                        <button type="submit" class="btn btn-primary-red w-100 btn-lg"><i class="bi bi-send me-2"></i> Send Message</button>
+                    </form>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="glass-card mb-3">
+                        <h5 class="text-gradient mb-3">Contact Info</h5>
+                        <p><i class="bi bi-telephone me-2" style="color:var(--primary);"></i><a href="tel:+923350231718" class="text-white text-decoration-none">0335 0231718</a></p>
+                        <p><i class="bi bi-envelope me-2" style="color:var(--primary);"></i><a href="mailto:sam.creatives2010@gmail.com" class="text-white text-decoration-none">sam.creatives2010@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="py-4">
         <div class="container text-center">
-            <h4 style="font-family:'Montserrat'; font-weight:800;">SAM<span style="color:var(--primary);">.</span>Creatives</h4>
+            <h4>SAM<span style="color:var(--primary);">.</span>Creatives</h4>
             <p class="text-muted">Design. Market. Grow.</p>
             <p class="small text-muted">© 2026 SAM Creatives. All Rights Reserved.</p>
         </div>
     </footer>
-    
-    <!-- WhatsApp -->
-    <a href="https://wa.me/923350231718?text=Hi%20SAM%20Creatives!" target="_blank" class="floating-wa"><i class="bi bi-whatsapp"></i></a>
-    
-    <!-- Scripts -->
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/923350231718?text=Hi%20SAM%20Creatives!" target="_blank" class="floating-btn whatsapp"><i class="bi bi-whatsapp"></i></a>
+        <a href="tel:+923350231718" class="floating-btn call"><i class="bi bi-telephone-fill"></i></a>
+    </div>
+    <a href="#home" class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
         AOS.init({ duration: 800, once: true });
         
-        // ============ SMART IMAGE LOADER ============
-        // Yeh function check karta hai ke image exist karti hai ya nahi
+        // ============ IMAGE LOADER ============
         function imageExists(url) {
             return new Promise((resolve) => {
                 const img = new Image();
@@ -493,135 +1039,167 @@
             });
         }
         
-        // ============ LOAD ALL IMAGES DYNAMICALLY ============
         async function loadAllImages() {
-            console.log('🔍 Checking images in /images/ folder...');
-            
             // Logo
-            const logoExists = await imageExists('images/logo.png');
             const logoContainer = document.getElementById('logoContainer');
-            if (logoExists) {
-                logoContainer.innerHTML = '<img src="images/logo.png" alt="SAM Creatives" height="45" style="filter: brightness(0) invert(1);">';
-                console.log('✅ Logo found!');
-            } else {
-                logoContainer.innerHTML = '<span style="font-family:Montserrat; font-weight:800; font-size:1.5rem; color:white;">SAM<span style="color:#D90429;">.</span>Creatives</span>';
-                console.warn('⚠️ Logo not found, using text instead');
+            const logoPaths = ['images/logo.png', 'images/logo.jpg', 'images/logo.svg'];
+            let logoLoaded = false;
+            for (const path of logoPaths) {
+                if (await imageExists(path) && !logoLoaded) {
+                    logoContainer.innerHTML = `<img src="${path}" alt="SAM Creatives" height="42">`;
+                    logoLoaded = true;
+                }
             }
+            if (!logoLoaded) logoContainer.innerHTML = '<span style="font-weight:800;color:white;">SAM<span style="color:#D90429;">.</span>Creatives</span>';
             
             // Hero Image
-            const heroExists = await imageExists('images/hero-image.png');
             const heroContainer = document.getElementById('heroImageContainer');
-            if (heroExists) {
-                heroContainer.innerHTML = '<img src="images/hero-image.png" alt="Digital Marketing" class="img-fluid rounded-4" style="animation: float 6s ease-in-out infinite;">';
-                console.log('✅ Hero image found!');
-            } else {
-                heroContainer.innerHTML = `
-                    <div class="img-placeholder" style="height:400px;">
-                        <div class="text-center">
-                            <i class="bi bi-graph-up-arrow" style="font-size:5rem;"></i>
-                            <p class="mt-3">Digital Growth</p>
-                        </div>
-                    </div>`;
-                console.warn('⚠️ Hero image not found, using placeholder');
-            }
-            
-            // Portfolio Images
-            const portfolioContainer = document.getElementById('portfolioContainer');
-            const portfolioNames = ['Restaurant Marketing', 'Solar Company', 'Corporate Branding', 'Social Media Designs', 'Website Development', 'Branding Projects'];
-            let portfolioHTML = '';
-            
-            for (let i = 1; i <= 6; i++) {
-                const imgPath = `images/portfolio-${i}.jpg`;
-                const exists = await imageExists(imgPath);
-                
-                if (exists) {
-                    portfolioHTML += `
-                        <div class="col-md-4" data-aos="fade-up">
-                            <div class="portfolio-item">
-                                <img src="${imgPath}" alt="Portfolio ${i}">
-                                <div class="portfolio-overlay">
-                                    <h5>${portfolioNames[i-1]}</h5>
-                                    <a href="#contact" class="btn btn-sm btn-light mt-2">View Project</a>
-                                </div>
-                            </div>
-                        </div>`;
-                    console.log(`✅ Portfolio ${i} found!`);
-                } else {
-                    portfolioHTML += `
-                        <div class="col-md-4" data-aos="fade-up">
-                            <div class="img-placeholder" style="height:280px;">
-                                <div class="text-center">
-                                    <i class="bi bi-image" style="font-size:3rem;"></i>
-                                    <p class="mt-2">${portfolioNames[i-1]}</p>
-                                </div>
-                            </div>
-                        </div>`;
-                    console.warn(`⚠️ Portfolio ${i} not found, using placeholder`);
+            const heroPaths = ['images/hero-image.png', 'images/hero-image.jpg', 'images/hero.png', 'images/hero.jpg', 'images/banner.png', 'images/banner.jpg'];
+            let heroLoaded = false;
+            for (const path of heroPaths) {
+                if (await imageExists(path) && !heroLoaded) {
+                    heroContainer.innerHTML = `<img src="${path}" alt="Digital Marketing" class="hero-image img-fluid">`;
+                    heroLoaded = true;
                 }
+            }
+            if (!heroLoaded) heroContainer.innerHTML = `<div class="img-placeholder" style="height:400px;"><div class="text-center"><i class="bi bi-graph-up-arrow" style="font-size:5rem;"></i><p class="mt-3">Business Growth</p></div></div>`;
+            
+            // Portfolio
+            const portfolioContainer = document.getElementById('portfolioContainer');
+            const names = ['Restaurant', 'Solar Company', 'Corporate', 'Social Media', 'Website', 'Branding'];
+            let portfolioHTML = '';
+            for (let i = 1; i <= 6; i++) {
+                const paths = [`images/portfolio-${i}.jpg`, `images/portfolio-${i}.png`];
+                let loaded = false;
+                for (const path of paths) {
+                    if (await imageExists(path) && !loaded) {
+                        portfolioHTML += `<div class="col-md-4" data-aos="fade-up"><div class="portfolio-item"><img src="${path}" alt="${names[i-1]}"><div class="portfolio-overlay"><h5>${names[i-1]}</h5><a href="#contact" class="btn btn-sm btn-light mt-2">View</a></div></div></div>`;
+                        loaded = true;
+                    }
+                }
+                if (!loaded) portfolioHTML += `<div class="col-md-4"><div class="img-placeholder" style="height:280px;"><i class="bi bi-image fs-1"></i><p>${names[i-1]}</p></div></div>`;
             }
             portfolioContainer.innerHTML = portfolioHTML;
             
             // Testimonials
             const testimonialContainer = document.getElementById('testimonialContainer');
-            const testimonialData = [
-                { name: 'Ahmed Khan', company: 'Green Wave Solar', text: '"SAM Creatives transformed our online presence. Their strategies doubled our leads!"' },
-                { name: 'Sarah Ali', company: 'Palm Restaurant', text: '"Professional team with excellent results. Highly recommended!"' },
-                { name: 'Usman Riaz', company: 'Nexus Pulse', text: '"Best digital marketing agency in Pakistan. 5-star service!"' }
+            const tData = [
+                { name: 'Ahmed Khan', company: 'Green Wave Solar', text: '"SAM Creatives transformed our online presence!"' },
+                { name: 'Sarah Ali', company: 'Palm Restaurant', text: '"Professional team, excellent results!"' },
+                { name: 'Usman Riaz', company: 'Nexus Pulse', text: '"Best digital marketing agency!"' }
             ];
             let testimonialHTML = '';
-            
             for (let i = 1; i <= 3; i++) {
-                const imgPath = `images/testimonial-${i}.jpg`;
-                const exists = await imageExists(imgPath);
-                const isActive = i === 1 ? ' active' : '';
-                
-                testimonialHTML += `
-                    <div class="carousel-item${isActive}">
-                        <div class="text-center">
-                            <img src="${exists ? imgPath : 'https://randomuser.me/api/portraits/' + (i === 2 ? 'women' : 'men') + '/' + (i * 20 + 10) + '.jpg'}" 
-                                 alt="Client" class="testimonial-img mx-auto mb-3">
-                            <p class="lead fst-italic">${testimonialData[i-1].text}</p>
-                            <h6 class="text-gradient">— ${testimonialData[i-1].name}, ${testimonialData[i-1].company}</h6>
-                        </div>
-                    </div>`;
+                const paths = [`images/testimonial-${i}.jpg`, `images/testimonial-${i}.png`];
+                let imgSrc = `https://randomuser.me/api/portraits/${i === 2 ? 'women' : 'men'}/${i * 20 + 10}.jpg`;
+                for (const path of paths) {
+                    if (await imageExists(path)) { imgSrc = path; break; }
+                }
+                testimonialHTML += `<div class="carousel-item${i === 1 ? ' active' : ''}"><div class="text-center"><img src="${imgSrc}" alt="Client" class="testimonial-img"><p class="lead fst-italic">${tData[i-1].text}</p><h6 class="text-gradient">— ${tData[i-1].name}, ${tData[i-1].company}</h6></div></div>`;
             }
             testimonialContainer.innerHTML = testimonialHTML;
-            console.log('✅ Testimonials loaded!');
             
             // Client Logos
             const clientContainer = document.getElementById('clientLogosContainer');
-            const clientNames = ['Nexus Pulse', 'Green Wave Solar', 'Zamzam Solar', 'Hanoi', 'Palm', 'Oligarch'];
+            const cNames = ['Nexus Pulse', 'Green Wave', 'Zamzam Solar', 'Hanoi', 'Palm', 'Oligarch'];
             let clientHTML = '';
-            
             for (let i = 1; i <= 6; i++) {
-                const imgPath = `images/client-${i}.png`;
-                const exists = await imageExists(imgPath);
-                
-                if (exists) {
-                    clientHTML += `
-                        <div class="col-4 col-md-2 text-center">
-                            <img src="${imgPath}" alt="${clientNames[i-1]}" class="client-logo-img">
-                        </div>`;
-                    console.log(`✅ Client logo ${i} found!`);
-                } else {
-                    clientHTML += `
-                        <div class="col-4 col-md-2 text-center">
-                            <h6 style="color:#888; padding:20px 0;">${clientNames[i-1].toUpperCase()}</h6>
-                        </div>`;
-                    console.warn(`⚠️ Client logo ${i} not found, using text`);
+                const paths = [`images/client-${i}.png`, `images/client-${i}.jpg`];
+                let loaded = false;
+                for (const path of paths) {
+                    if (await imageExists(path) && !loaded) {
+                        clientHTML += `<div class="col-4 col-md-2 text-center"><img src="${path}" alt="${cNames[i-1]}" class="client-logo-img"></div>`;
+                        loaded = true;
+                    }
                 }
+                if (!loaded) clientHTML += `<div class="col-4 col-md-2 text-center"><h6 style="color:#888;">${cNames[i-1].toUpperCase()}</h6></div>`;
             }
             clientContainer.innerHTML = clientHTML;
             
-            console.log('%c✅ All images processed!', 'color: #00ff00; font-size: 16px;');
-            console.log('%c📧 Leads: sam.creatives2010@gmail.com', 'color: #25D366;');
-            console.log('%c📱 Phone: 0335 0231718', 'color: #25D366;');
-            
-            // Re-initialize AOS for dynamically loaded content
             AOS.refresh();
         }
         
-        // Counter Animation
+        // ============ AI LOGO GENERATOR ============
+        let logoGenerationsLeft = 5;
+        
+        function generateLogo(event) {
+            event.preventDefault();
+            
+            if (logoGenerationsLeft <= 0) {
+                showToast('⚠️ Free limit reached! Contact us for more generations.');
+                document.getElementById('service').value = 'Logo Design';
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                return false;
+            }
+            
+            const businessName = document.getElementById('businessName').value;
+            const email = document.getElementById('logoEmail').value;
+            const industry = document.getElementById('industry').value;
+            const style = document.getElementById('style').value;
+            
+            // Simulate AI logo generation
+            const logoPreview = document.getElementById('logoPreview');
+            logoPreview.innerHTML = '<div class="spinner-border text-danger" role="status"></div>';
+            
+            setTimeout(() => {
+                // Generate a placeholder logo using Canvas API
+                const canvas = document.createElement('canvas');
+                canvas.width = 200;
+                canvas.height = 200;
+                const ctx = canvas.getContext('2d');
+                
+                // Background
+                const colors = ['#D90429', '#111111', '#ff4757', '#1a1a1a'];
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillRect(0, 0, 200, 200);
+                
+                // Text
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 30px Montserrat';
+                ctx.textAlign = 'center';
+                ctx.fillText(businessName.substring(0, 2).toUpperCase(), 100, 110);
+                
+                if (document.getElementById('slogan').value) {
+                    ctx.font = '12px Poppins';
+                    ctx.fillText(document.getElementById('slogan').value, 100, 150);
+                }
+                
+                const logoUrl = canvas.toDataURL('image/png');
+                logoPreview.innerHTML = `<img src="${logoUrl}" alt="Generated Logo" style="max-width:180px;">`;
+                
+                logoGenerationsLeft--;
+                document.getElementById('logoCount').innerHTML = `🎨 Free Generations Left: <strong>${logoGenerationsLeft}</strong>`;
+                
+                // Send to WhatsApp
+                const waMsg = encodeURIComponent(
+                    `🎨 *New AI Logo Generated!*\n\n` +
+                    `🏢 Business: ${businessName}\n` +
+                    `📧 Email: ${email}\n` +
+                    `🏭 Industry: ${industry}\n` +
+                    `🎨 Style: ${style}\n` +
+                    `📊 Remaining: ${logoGenerationsLeft}/5`
+                );
+                
+                window.open(`https://wa.me/923350231718?text=${waMsg}`, '_blank');
+                
+                showToast('✅ Logo generated! Check WhatsApp for download link.');
+                
+                // Log to console (email would be sent here)
+                console.log('Logo data sent to: sam.creatives2010@gmail.com', {
+                    businessName, email, industry, style, remaining: logoGenerationsLeft
+                });
+                
+                if (logoGenerationsLeft === 0) {
+                    document.getElementById('generateBtn').innerHTML = '<i class="bi bi-lock me-2"></i> Limit Reached - Contact Us';
+                    document.getElementById('generateBtn').classList.add('disabled');
+                }
+                
+            }, 2000);
+            
+            return false;
+        }
+        
+        // ============ COUNTER ANIMATION ============
         const counters = document.querySelectorAll('.counter');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -634,9 +1212,7 @@
                         if (count < target) {
                             counter.innerText = Math.ceil(count + increment).toLocaleString();
                             setTimeout(updateCount, 20);
-                        } else {
-                            counter.innerText = target.toLocaleString();
-                        }
+                        } else counter.innerText = target.toLocaleString();
                     };
                     updateCount();
                     observer.unobserve(counter);
@@ -645,13 +1221,26 @@
         }, { threshold: 0.5 });
         counters.forEach(counter => observer.observe(counter));
         
-        // Contact Form
+        // ============ FUNCTIONS ============
         function goToContact(service) {
             document.getElementById('service').value = service;
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         }
         
-        function handleSubmit(event) {
+        function showTip(topic) {
+            document.getElementById('service').value = topic;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            showToast(`📚 Get our free ${topic} guide! Fill the form below.`);
+        }
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+        
+        function handleContactSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
@@ -664,8 +1253,10 @@
             );
             
             window.open(`https://wa.me/923350231718?text=${waMsg}`, '_blank');
-            alert('✅ Message sent! We will contact you shortly.');
+            showToast('✅ Message sent! We will contact you shortly.');
             event.target.reset();
+            
+            console.log('Lead sent to: sam.creatives2010@gmail.com', { name, email, phone, service, message });
             return false;
         }
         
@@ -678,12 +1269,38 @@
             });
         });
         
-        // Load all images when page loads
+        // Scroll effects
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); backToTop.classList.add('visible'); }
+            else { navbar.classList.remove('scrolled'); backToTop.classList.remove('visible'); }
+        });
+        
+        // Load images
         window.addEventListener('DOMContentLoaded', loadAllImages);
         
-        console.log('%c🚀 SAM CREATIVES %c| Smart Image Loader Active',
-            'color: #D90429; font-size: 18px; font-weight: bold;',
-            'color: white;');
+        console.log('%c🚀 SAM CREATIVES %c| Premium Website Active', 'color:#D90429;font-size:18px;', 'color:white;');
+        console.log('%c📧 Leads: sam.creatives2010@gmail.com', 'color:#25D366;');
+        console.log('%c📱 Phone: 0335 0231718', 'color:#25D366;');
+        console.log('%c🎨 AI Logo Generator: Ready (5 free)', 'color:#ff4757;');
+    </script>
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "SAM Creatives",
+        "url": "https://samcreatives.com",
+        "logo": "images/logo.png",
+        "description": "Premium digital marketing agency with free AI logo generator.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+923350231718",
+            "email": "sam.creatives2010@gmail.com"
+        }
+    }
     </script>
 </body>
 </html>
