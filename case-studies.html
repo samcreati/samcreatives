@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SAM Creatives Case Studies – Real client success stories.">
-    <title>SAM Creatives | Case Studies – Design. Market. Grow.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="SAM Creatives Case Studies & Art Gallery – 1M followers, CoreTECH Solar, Core Energy, V Mart, and more.">
+    <meta name="keywords" content="case studies, art gallery, digital marketing results, SAM Creatives clients">
+    <meta name="author" content="SAM Creatives">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="SAM Creatives | Art Gallery & Case Studies">
+    <meta property="og:description" content="Explore our creative success stories – 1M followers, 500% lead growth, stunning designs.">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <title>SAM Creatives | Art Gallery & Case Studies</title>
+    
     <style>
         :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -18,7 +26,9 @@
         body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; position:relative; z-index:1; }
         h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
         .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        
         .watermark-logo { position:fixed; top:0; left:0; width:100%; height:100%; background-image:url('images/logo-icon.png'); background-repeat:no-repeat; background-position:center center; background-size:300px auto; opacity:0.03; pointer-events:none; z-index:0; }
+        
         .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; z-index:1000; position:relative; }
         .navbar.scrolled { box-shadow:0 5px 30px rgba(0,0,0,0.5); }
         .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
@@ -30,23 +40,105 @@
         .navbar-brand .brand-tagline { font-size:0.7rem; font-family:'Poppins',sans-serif; color:#666; letter-spacing:1px; text-transform:uppercase; }
         .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
         .nav-link:hover, .nav-link.active { color:#D90429 !important; }
+        
         .btn { font-weight:600; padding:12px 28px; border-radius:50px; transition:0.3s; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem; text-decoration:none; display:inline-block; }
         .btn-primary-red { background:#D90429; border:2px solid #D90429; color:#fff; }
         .btn-primary-red:hover { background:transparent; color:#D90429; transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.3); }
-        .case-study-card { background:#1a1a1a; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); transition:0.3s; }
-        .case-study-card:hover { transform:translateY(-5px); border-color:#D90429; }
-        .case-study-card img { width:100%; height:220px; object-fit:cover; }
+        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
+        .btn-outline-white:hover { background:#fff; color:#000; }
+        
+        /* ── Art Gallery Card ── */
+        .art-card {
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 32px;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        .art-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, #D90429, #ff4757, #FFD700, #ff4757, #D90429);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .art-card:hover {
+            transform: translateY(-6px);
+            border-color: #D90429;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(217,4,41,0.3);
+        }
+        .art-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #D90429);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .art-number {
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+        .art-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            background: rgba(217,4,41,0.15);
+            color: #D90429;
+            border: 1px solid rgba(217,4,41,0.3);
+        }
+        
+        /* Detailed case study card (existing) */
+        .case-card {
+            background: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s;
+            height: 100%;
+        }
+        .case-card:hover { border-color: #D90429; }
+        .testimonial-inline {
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid #D90429;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
         footer { background:#050505; border-top:1px solid #222; position:relative; z-index:1; }
         footer .text-muted, footer a.text-muted { color:#aaa !important; }
         footer .text-muted:hover { color:#D90429 !important; }
         footer h5, footer .brand-name { color:#fff !important; }
+        
+        .floating-wa { position:fixed; bottom:30px; right:30px; background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; z-index:999; animation:bounce 2s infinite; text-decoration:none; }
+        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+        .floating-wa:hover { color:#fff; transform:scale(1.1); }
+        .back-to-top { position:fixed; bottom:100px; right:30px; width:45px; height:45px; background:#D90429; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; z-index:998; opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; }
+        .back-to-top.show { opacity:1; visibility:visible; }
+        
         @media (max-width:768px) { body { padding-top:70px; } }
     </style>
 </head>
 <body>
     <div class="watermark-logo"></div>
 
-    <!-- Navbar (active on Case Studies) -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -78,62 +170,190 @@
     </nav>
 
     <main style="position:relative; z-index:1;">
-        <section class="py-5" style="background:#111;">
+        <!-- Hero -->
+        <section class="py-5" style="background:radial-gradient(ellipse at 50% 0%, rgba(217,4,41,0.1) 0%, transparent 60%);">
             <div class="container text-center">
-                <h1 class="display-4 fw-bold text-gradient mb-4">Case Studies</h1>
-                <p class="lead text-muted">Real results from real clients</p>
+                <h1 class="display-3 fw-bold text-gradient mb-4">Our Creative <span style="background:linear-gradient(180deg,#ff6b6b,#D90429); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Canvas</span></h1>
+                <p class="lead text-muted">A gallery of results painted with strategy, creativity, and execution</p>
             </div>
         </section>
 
+        <!-- Art Gallery Cards (Achievements) -->
         <section class="py-5">
             <div class="container">
+                <h2 class="text-center mb-5">🎨 <span class="text-gradient">Art Gallery</span> of Success</h2>
                 <div class="row g-4">
-                    <div class="col-md-6" data-aos="fade-right">
-                        <div class="case-study-card">
-                            <img src="images/case-study-1.jpg" alt="Green Wave Solar" onerror="this.style.display='none'">
-                            <div class="p-4">
-                                <span class="badge bg-success mb-2">✅ Success</span>
-                                <h5 class="text-gradient">Green Wave Solar</h5>
-                                <p><strong>Challenge:</strong> Low lead generation</p>
-                                <p><strong>Solution:</strong> Meta Ads + Social Media</p>
-                                <div class="row text-center mt-3">
-                                    <div class="col-4"><h4 class="text-gradient">350%</h4><small>Leads</small></div>
-                                    <div class="col-4"><h4 class="text-gradient">200%</h4><small>Reach</small></div>
-                                    <div class="col-4"><h4 class="text-gradient">4x</h4><small>ROI</small></div>
-                                </div>
-                            </div>
+                    
+                    <!-- 1M Followers -->
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                        <div class="art-card text-center">
+                            <div class="art-icon"><i class="bi bi-people-fill"></i></div>
+                            <div class="art-number">1M+</div>
+                            <h5 class="fw-bold">Followers</h5>
+                            <p class="small text-muted">Instagram & Facebook</p>
+                            <span class="art-badge">6 Months</span>
                         </div>
                     </div>
-                    <div class="col-md-6" data-aos="fade-left">
-                        <div class="case-study-card">
-                            <img src="images/case-study-2.jpg" alt="Core Tech Solar" onerror="this.style.display='none'">
-                            <div class="p-4">
-                                <span class="badge bg-success mb-2">✅ Success</span>
-                                <h5 class="text-gradient">Core Tech Solar</h5>
-                                <p><strong>Challenge:</strong> Zero online presence</p>
-                                <p><strong>Solution:</strong> Full branding + website (3 years)</p>
-                                <div class="row text-center mt-3">
-                                    <div class="col-4"><h4 class="text-gradient">500%</h4><small>Lead Growth</small></div>
-                                    <div class="col-4"><h4 class="text-gradient">Top 3</h4><small>Google Ranking</small></div>
-                                    <div class="col-4"><h4 class="text-gradient">3 Years</h4><small>Partnership</small></div>
-                                </div>
-                            </div>
+                    
+                    <!-- CoreTECH Solar -->
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="art-card text-center">
+                            <div class="art-icon"><i class="bi bi-sun-fill"></i></div>
+                            <div class="art-number">350%</div>
+                            <h5 class="fw-bold">CoreTECH Solar</h5>
+                            <p class="small text-muted">Lead increase</p>
+                            <span class="art-badge">3‑Year Partner</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Core Energy -->
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="art-card text-center">
+                            <div class="art-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                            <div class="art-number">500%</div>
+                            <h5 class="fw-bold">Core Energy</h5>
+                            <p class="small text-muted">Lead explosion</p>
+                            <span class="art-badge">Industry Best</span>
+                        </div>
+                    </div>
+                    
+                    <!-- V Mart -->
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="art-card text-center">
+                            <div class="art-icon"><i class="bi bi-image-fill"></i></div>
+                            <div class="art-number">200+</div>
+                            <h5 class="fw-bold">V Mart</h5>
+                            <p class="small text-muted">Web Banners</p>
+                            <span class="art-badge">80% CTR Boost</span>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-5">
-                    <a href="contact.html" class="btn btn-primary-red btn-lg">Discuss Your Project</a>
+                <div class="text-center mt-4">
+                    <p class="lead text-muted">And many more...</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Detailed Case Studies (Existing) -->
+        <section class="py-5 bg-dark-card">
+            <div class="container">
+                <h2 class="text-center mb-5">📋 Detailed <span class="text-gradient">Case Studies</span></h2>
+                
+                <!-- Green Wave Solar -->
+                <div class="case-card p-4 p-lg-5 mb-5" data-aos="fade-up">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 mb-4 mb-lg-0">
+                            <img src="images/case-study-1.jpg" alt="Green Wave Solar" class="card-img rounded-4" onerror="this.style.display='none'">
+                        </div>
+                        <div class="col-lg-7">
+                            <span class="badge bg-success mb-3">✅ Success Story</span>
+                            <h2 class="fw-bold mb-3">Green Wave <span class="text-gradient">Solar</span></h2>
+                            <div class="testimonial-inline">
+                                <p class="mb-0">"SAM Creatives completely turned around our lead generation."</p>
+                                <small class="text-muted">– Ahmed Khan, CEO</small>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-sm-4"><h6 class="text-gradient">Challenge</h6><p class="small text-muted">Zero online presence</p></div>
+                                <div class="col-sm-4"><h6 class="text-gradient">Solution</h6><p class="small text-muted">Website + Meta Ads</p></div>
+                                <div class="col-sm-4"><h6 class="text-gradient">Results</h6><p class="small"><span class="result-highlight">350% leads</span>, 200% reach</p></div>
+                            </div>
+                            <a href="contact.html?service=Case%20Study%20Consultation" class="btn btn-primary-red mt-3">Get Similar Results</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Core Tech Solar (long term) -->
+                <div class="case-card p-4 p-lg-5" data-aos="fade-up">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 order-lg-2 mb-4 mb-lg-0">
+                            <img src="images/case-study-2.jpg" alt="Core Tech Solar" class="card-img rounded-4" onerror="this.style.display='none'">
+                        </div>
+                        <div class="col-lg-7 order-lg-1">
+                            <span class="badge bg-success mb-3">✅ Long‑term Partnership</span>
+                            <h2 class="fw-bold mb-3">Core Tech <span class="text-gradient">Solar</span></h2>
+                            <div class="testimonial-inline">
+                                <p class="mb-0">"Three years of consistent growth. We now rank on the first page of Google."</p>
+                                <small class="text-muted">– Usman Riaz, MD</small>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-sm-4"><h6 class="text-gradient">Challenge</h6><p class="small text-muted">No digital footprint</p></div>
+                                <div class="col-sm-4"><h6 class="text-gradient">Solution</h6><p class="small text-muted">Full branding + SEO</p></div>
+                                <div class="col-sm-4"><h6 class="text-gradient">Results</h6><p class="small"><span class="result-highlight">500% lead growth</span>, Google top‑3</p></div>
+                            </div>
+                            <a href="contact.html?service=Case%20Study%20Consultation" class="btn btn-primary-red mt-3">I Want This Growth</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Final CTA -->
+        <section class="py-5" style="background:linear-gradient(135deg,#8B0000,#D90429);">
+            <div class="container text-center">
+                <h2 class="display-5 fw-bold text-white mb-3">Your Story Could Be Next</h2>
+                <p class="lead text-white mb-4">Let's create a masterpiece together.</p>
+                <a href="contact.html" class="btn btn-light btn-lg"><i class="bi bi-brush me-2"></i>Start Your Project</a>
             </div>
         </section>
     </main>
 
     <!-- Footer (same) -->
-    <!-- ... -->
+    <footer class="py-5" style="position:relative; z-index:1;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 text-center text-lg-start">
+                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
+                    <p class="brand-tagline mt-1">Design. Market. Grow.</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start mt-3">
+                        <a href="tel:+923350231718" class="btn btn-sm btn-outline-white"><i class="bi bi-telephone"></i> Call</a>
+                        <a href="https://wa.me/923350231718" target="_blank" class="btn btn-sm btn-primary-red"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 text-center">
+                    <h5 class="text-white mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html" class="text-muted text-decoration-none">Services</a></li>
+                        <li><a href="portfolio.html" class="text-muted text-decoration-none">Portfolio</a></li>
+                        <li><a href="packages.html" class="text-muted text-decoration-none">Packages</a></li>
+                        <li><a href="case-studies.html" class="text-muted text-decoration-none">Case Studies</a></li>
+                        <li><a href="faq.html" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <h5 class="text-white mb-3">Legal & Policies</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-muted text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#paymentModal" class="text-muted text-decoration-none">Payment Guarantee</a></li>
+                    </ul>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-end mt-3">
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color:#333;">
+            <div class="text-center"><p class="small text-muted mb-0">© 2026 SAM Creatives. All Rights Reserved. | Design. Market. Grow.</p></div>
+        </div>
+    </footer>
+
+    <!-- Modals (same) -->
+    <div class="modal fade" id="termsModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content bg-dark text-white border-secondary"><div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Terms & Conditions</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><h6>1. Acceptance</h6><p class="text-muted">By using our services you agree to these terms.</p></div></div></div></div>
+    <div class="modal fade" id="privacyModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content bg-dark text-white border-secondary"><div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Privacy Policy</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><h6>Information Collection</h6><p class="text-muted">We collect name, email, phone for service delivery.</p></div></div></div></div>
+    <div class="modal fade" id="paymentModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content bg-dark text-white border-secondary"><div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Payment Guarantee</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="alert alert-danger bg-danger bg-opacity-25 border-danger text-white"><i class="bi bi-shield-check me-2"></i>50% Advance Payment Policy</div><ul><li>50% advance for all services</li><li>Remaining 50% after completion</li></ul></div></div></div></div>
+
+    <a href="https://wa.me/923350231718" target="_blank" class="floating-wa"><i class="bi bi-whatsapp"></i></a>
+    <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="bi bi-arrow-up"></i></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
         });
     </script>
 </body>
