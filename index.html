@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
-    <meta name="description" content="SAM Creatives | Design. Market. Grow. Premium digital marketing agency with free AI logo generator, branding, SEO & web development.">
-    <meta name="keywords" content="digital marketing, AI logo generator, branding, SEO, social media, web development, SAM Creatives Pakistan">
+    <meta name="description" content="SAM Creatives | Design. Market. Grow. AI Logo & Image Generator, Digital Marketing Agency.">
+    <meta name="keywords" content="digital marketing, AI logo generator, AI image generator, branding, SEO, social media, SAM Creatives">
     <meta name="author" content="SAM Creatives">
     <meta name="robots" content="index, follow">
     
     <meta property="og:type" content="website">
     <meta property="og:title" content="SAM Creatives | Design. Market. Grow.">
-    <meta property="og:description" content="Grow your business with proven strategies. Try free AI Logo Generator!">
+    <meta property="og:description" content="Grow your business with AI tools and expert marketing.">
     
     <link rel="icon" type="image/png" href="images/favicon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <title>SAM Creatives | Design. Market. Grow. - Free AI Logo Generator</title>
+    <title>SAM Creatives | Design. Market. Grow. - AI Logo & Image Generator</title>
     
     <style>
         :root {
@@ -58,7 +58,6 @@
             background-clip: text;
         }
         
-        /* ────────── SCROLLBAR ────────── */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #D90429; border-radius: 10px; }
@@ -73,20 +72,42 @@
         }
         .navbar.scrolled { box-shadow: 0 5px 30px rgba(0,0,0,0.5); }
         
-navbar-brand {
-    padding: 0;          /* ya thoda padding chahiye to 5px rakh sakti hain */
-    background: none;
-    box-shadow: none;
-}
-.navbar-brand:hover {
-    background: none;
-    box-shadow: none;
-}
-
-.navbar-brand img {
-    height: 48px;
-    width: auto;
-}
+        /* ── NEW TEXT LOGO ── */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+        }
+        .navbar-brand .logo-icon {
+            height: 42px;
+            width: auto;
+        }
+        .navbar-brand .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .navbar-brand .brand-name {
+            font-size: 1.6rem;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        .navbar-brand .brand-name .sam {
+            font-weight: 800;
+            color: #D90429;
+        }
+        .navbar-brand .brand-name .creatives {
+            font-weight: 300;
+            color: #888;
+        }
+        .navbar-brand .brand-tagline {
+            font-size: 0.7rem;
+            font-family: 'Poppins', sans-serif;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
         
         .nav-link {
             color: #ccc !important;
@@ -240,8 +261,7 @@ navbar-brand {
         }
         .badge-popular {
             position: absolute;
-            top: -15px;
-            right: 25px;
+            top: -15px; right: 25px;
             background: #D90429;
             color: #fff;
             padding: 8px 18px;
@@ -257,8 +277,7 @@ navbar-brand {
         
         /* ────────── TESTIMONIALS ────────── */
         .testimonial-img {
-            width: 80px;
-            height: 80px;
+            width: 80px; height: 80px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #D90429;
@@ -283,24 +302,20 @@ navbar-brand {
             transition: 0.3s;
         }
         .case-study-card:hover { transform: translateY(-5px); border-color: #D90429; }
-        .case-study-card img { width: 100%; height: 220px; object-fit: cover; }
         
-        /* ────────── AI LOGO GEN ────────── */
-        .logo-generator-section {
-            background: linear-gradient(135deg, #1a0000, #0a0a0a);
+        /* ────────── AI GENERATOR SECTIONS ────────── */
+        .ai-section {
             border: 2px solid #D90429;
             border-radius: 30px;
             padding: 50px 30px;
+            background: linear-gradient(135deg, #1a0000, #0a0a0a);
         }
         .logo-preview {
-            width: 250px;
-            height: 250px;
+            width: 250px; height: 250px;
             background: #111;
             border: 2px dashed #333;
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             margin: 0 auto;
         }
         .logo-counter {
@@ -342,19 +357,12 @@ navbar-brand {
         
         /* ────────── FLOATING BUTTONS ────────── */
         .floating-wa {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            color: #fff;
-            width: 60px;
-            height: 60px;
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25D366; color: #fff;
+            width: 60px; height: 60px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            z-index: 999;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; z-index: 999;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
             animation: bounce 2s infinite;
             text-decoration: none;
@@ -365,53 +373,31 @@ navbar-brand {
         }
         .floating-wa:hover { color: #fff; transform: scale(1.1); }
         
-        /* ────────── BACK TO TOP ────────── */
         .back-to-top {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 45px;
-            height: 45px;
-            background: #D90429;
-            color: #fff;
+            position: fixed; bottom: 100px; right: 30px;
+            width: 45px; height: 45px;
+            background: #D90429; color: #fff;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; z-index: 998;
+            opacity: 0; visibility: hidden;
+            transition: 0.3s; cursor: pointer;
         }
         .back-to-top.show { opacity: 1; visibility: visible; }
         
-        /* ────────── TOAST ────────── */
         .toast-notification {
-            position: fixed;
-            top: 100px;
-            right: 30px;
-            background: #1a1a1a;
-            border: 2px solid #D90429;
-            color: #fff;
-            padding: 18px 28px;
-            border-radius: 15px;
-            z-index: 10000;
-            transform: translateX(400px);
-            transition: 0.4s;
+            position: fixed; top: 100px; right: 30px;
+            background: #1a1a1a; border: 2px solid #D90429;
+            color: #fff; padding: 18px 28px;
+            border-radius: 15px; z-index: 10000;
+            transform: translateX(400px); transition: 0.4s;
         }
         .toast-notification.show { transform: translateX(0); }
         
-        /* ────────── IMAGE PLACEHOLDER ────────── */
         .img-placeholder {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #D90429;
-            min-height: 200px;
-            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            color: #D90429; min-height: 200px; border-radius: 16px;
         }
         
         footer { background: #050505; border-top: 1px solid #222; }
@@ -428,10 +414,19 @@ navbar-brand {
     <!-- TOAST -->
     <div class="toast-notification" id="toast"></div>
 
-    <!-- ═══════════ NAVBAR ═══════════ -->
+    <!-- ═══════════ NAVBAR (TEXT LOGO + TAGLINE) ═══════════ -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#home" id="logoContainer"></a>
+            <a class="navbar-brand" href="#home">
+                <!-- Optional: Agar aapke paas logo icon hai to ye line uncomment karein aur image dalen -->
+                <!-- <img src="images/logo-icon.png" alt="SAM" class="logo-icon"> -->
+                <span class="brand-text">
+                    <span class="brand-name">
+                        <span class="sam">SAM</span><span class="creatives">Creatives</span>
+                    </span>
+                    <span class="brand-tagline">Design. Market. Grow.</span>
+                </span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
             </button>
@@ -440,6 +435,7 @@ navbar-brand {
                     <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#logo-generator">AI Logo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#image-generator">AI Image</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="#case-studies">Case Studies</a></li>
@@ -455,11 +451,11 @@ navbar-brand {
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
-                    <h1 class="display-3 fw-bold mb-4">Grow Your Business With <span class="text-gradient">Proven Strategies</span></h1>
-                    <p class="lead mb-4" style="color:#aaa;">From Branding & Social Media to Lead Generation — <strong style="color:#fff;">SAM Creatives</strong> delivers results.</p>
+                    <h1 class="display-3 fw-bold mb-4">Grow Your Business With <span class="text-gradient">AI & Marketing</span></h1>
+                    <p class="lead mb-4" style="color:#aaa;">From AI-generated logos to full-scale digital marketing — <strong style="color:#fff;">SAM Creatives</strong> delivers.</p>
                     <div class="d-flex flex-wrap gap-3">
                         <a href="#contact" class="btn btn-primary-red btn-lg btn-glow"><i class="bi bi-calendar-check me-2"></i>Free Consultation</a>
-                        <a href="#logo-generator" class="btn btn-outline-white btn-lg"><i class="bi bi-stars me-2"></i>AI Logo Generator</a>
+                        <a href="#logo-generator" class="btn btn-outline-white btn-lg"><i class="bi bi-stars me-2"></i>AI Generator</a>
                     </div>
                 </div>
                 <div class="col-lg-6 mt-4 mt-lg-0 text-center" data-aos="fade-left">
@@ -501,15 +497,15 @@ navbar-brand {
     <!-- ═══════════ AI LOGO GENERATOR ═══════════ -->
     <section id="logo-generator" class="py-5" style="background:#050505;">
         <div class="container">
-            <div class="logo-generator-section" data-aos="fade-up">
+            <div class="ai-section">
                 <div class="text-center mb-4">
-                    <span class="logo-counter mb-3" id="logoCount">🎨 Free Generations Left: <strong>5</strong></span>
-                    <h2 class="display-5 fw-bold mt-3">Free AI <span class="text-gradient">Logo Generator</span></h2>
-                    <p class="lead" style="color:#aaa;">Generate professional logos in seconds — <strong>5 FREE!</strong></p>
+                    <span class="logo-counter" id="logoCount">🎨 Free Logo Generations Left: <strong>5</strong></span>
+                    <h2 class="display-5 fw-bold mt-3">AI <span class="text-gradient">Logo Generator</span></h2>
+                    <p class="lead" style="color:#aaa;">Enter your business name, get an instant logo. <strong>5 free!</strong></p>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-lg-5 mb-4 mb-lg-0">
-                        <div class="logo-preview" id="logoPreview"><i class="bi bi-stars" style="font-size:4rem;color:#333;"></i></div>
+                        <div class="logo-preview" id="logoPreview"><i class="bi bi-stars" style="font-size:4rem; color:#333;"></i></div>
                     </div>
                     <div class="col-lg-7">
                         <form onsubmit="generateLogo(event)">
@@ -518,18 +514,54 @@ navbar-brand {
                                 <div class="col-md-6 mb-3"><input type="text" class="form-control" id="slogan" placeholder="Slogan (Optional)"></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <select class="form-control" id="industry"><option value="">Industry</option><option>Technology</option><option>Restaurant</option><option>Fashion</option><option>Real Estate</option><option>Solar Energy</option><option>Healthcare</option></select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <select class="form-control" id="style"><option value="">Style</option><option>Modern</option><option>Minimalist</option><option>Luxury</option><option>Bold</option></select>
-                                </div>
+                                <div class="col-md-6 mb-3"><select class="form-control" id="industry"><option value="">Industry</option><option>Technology</option><option>Restaurant</option><option>Fashion</option><option>Solar</option></select></div>
+                                <div class="col-md-6 mb-3"><select class="form-control" id="style"><option value="">Style</option><option>Modern</option><option>Minimalist</option><option>Luxury</option><option>Bold</option></select></div>
                             </div>
-                            <div class="mb-3"><input type="email" class="form-control" id="logoEmail" placeholder="Email (to receive logo) *" required></div>
+                            <div class="mb-3"><input type="email" class="form-control" id="logoEmail" placeholder="Your Email *" required></div>
                             <button type="submit" class="btn btn-primary-red w-100 btn-lg" id="generateBtn"><i class="bi bi-magic me-2"></i>Generate Free Logo</button>
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ AI IMAGE GENERATOR ═══════════ -->
+    <section id="image-generator" class="py-5">
+        <div class="container">
+            <div class="ai-section">
+                <div class="text-center mb-4">
+                    <span class="logo-counter" id="imageCount">🖼️ Free Image Generations Left Today: <strong>5</strong></span>
+                    <h2 class="display-5 fw-bold mt-3">AI <span class="text-gradient">Image Generator</span></h2>
+                    <p class="lead" style="color:#aaa;">Describe any scene, style, or concept — we'll paint it.</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <form onsubmit="generateImage(event)">
+                            <div class="mb-3"><textarea class="form-control" id="imagePrompt" rows="3" placeholder="Describe your image... (e.g., 'a serene beach at sunset in watercolor style')" required></textarea></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3"><select class="form-control" id="imageStyle"><option value="">Style (optional)</option><option>Realistic</option><option>Cartoon</option><option>Oil Painting</option><option>3D Render</option><option>Sketch</option></select></div>
+                                <div class="col-md-6 mb-3"><input type="email" class="form-control" id="imageEmail" placeholder="Your Email *" required></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary-red w-100 btn-lg" id="imageGenBtn"><i class="bi bi-magic me-2"></i>Generate Image</button>
+                        </form>
+                        <div class="text-center mt-4">
+                            <div id="imagePreview" class="img-placeholder" style="height:300px;"><i class="bi bi-image" style="font-size:4rem; color:#333;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ AI PREMIUM PLANS ═══════════ -->
+    <section class="py-5 bg-dark-card">
+        <div class="container">
+            <div class="text-center mb-5"><h2 class="display-5 fw-bold">AI <span class="text-gradient">Premium Plans</span></h2></div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>AI Logo Pro</h4><h2 style="color:var(--primary);">$5<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ Unlimited logos</li><li>✅ High-res PNG</li><li>✅ Commercial use</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Subscribe</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card popular"><span class="badge-popular">🔥 Best Deal</span><h4>AI Image Pro</h4><h2 style="color:var(--primary);">$5<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ Unlimited images</li><li>✅ Multiple styles</li><li>✅ Fast generation</li></ul><a href="#contact" class="btn btn-primary-red w-100 mt-3">Subscribe</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>AI Bundle</h4><h2 style="color:var(--primary);">$8<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ Logo + Image</li><li>✅ Priority support</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Subscribe</a></div></div>
             </div>
         </div>
     </section>
@@ -562,22 +594,21 @@ navbar-brand {
         </div>
     </section>
 
-    <!-- ═══════════ PACKAGES ═══════════ -->
+    <!-- ═══════════ PACKAGES (Marketing + Website) ═══════════ -->
     <section id="packages" class="py-5 bg-dark-card">
         <div class="container">
             <div class="text-center mb-5"><h2 class="display-5 fw-bold">Marketing <span class="text-gradient">Packages</span></h2></div>
             <div class="row g-4 mb-5">
-                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Starter</h4><h2 style="color:#D90429;">Rs.39,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 12 Posts</li><li>✅ 4 Stories</li><li>✅ Meta Ads</li><li>✅ Report</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
-                <div class="col-md-4" data-aos="fade-up"><div class="package-card popular"><span class="badge-popular">🔥 Popular</span><h4>Growth</h4><h2 style="color:#D90429;">Rs.74,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 20 Posts + Reels</li><li>✅ Strategy</li><li>✅ Meta Ads</li><li>✅ Detailed Reports</li></ul><a href="#contact" class="btn btn-primary-red w-100 mt-3">Get Started</a></div></div>
-                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Premium</h4><h2 style="color:#D90429;">Rs.149,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 30 Posts + Reels</li><li>✅ Lead Gen</li><li>✅ Priority</li><li>✅ Weekly Reports</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Starter</h4><h2 style="color:#D90429;">Rs.39,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 12 Posts</li><li>✅ Meta Ads</li><li>✅ Report</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card popular"><span class="badge-popular">🔥 Popular</span><h4>Growth</h4><h2 style="color:#D90429;">Rs.74,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 20 Posts + Reels</li><li>✅ Strategy</li><li>✅ Detailed Reports</li></ul><a href="#contact" class="btn btn-primary-red w-100 mt-3">Get Started</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Premium</h4><h2 style="color:#D90429;">Rs.149,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 30 Posts + Reels</li><li>✅ Lead Gen</li><li>✅ Priority Support</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
             </div>
             
-            <!-- Website Packages -->
             <div class="text-center mb-5 pt-4"><h2 class="display-5 fw-bold">Website <span class="text-gradient">Packages</span></h2></div>
             <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Basic Website</h4><h2 style="color:#D90429;">Rs.25,000</h2><ul class="list-unstyled mt-3"><li>✅ 5 Pages</li><li>✅ Responsive</li><li>✅ Contact Form</li><li>✅ WhatsApp</li><li>✅ Basic SEO</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
-                <div class="col-md-4" data-aos="fade-up"><div class="package-card popular"><span class="badge-popular">⭐ Best Value</span><h4>Business Website</h4><h2 style="color:#D90429;">Rs.45,000</h2><ul class="list-unstyled mt-3"><li>✅ 10 Pages</li><li>✅ Premium Design</li><li>✅ SEO Optimized</li><li>✅ Lead Forms</li><li>✅ Social Integration</li></ul><a href="#contact" class="btn btn-primary-red w-100 mt-3">Get Started</a></div></div>
-                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>E-Commerce</h4><h2 style="color:#D90429;">Rs.89,999</h2><ul class="list-unstyled mt-3"><li>✅ Full Store</li><li>✅ Products</li><li>✅ Payment Gateway</li><li>✅ Shipping</li><li>✅ Order Mgmt</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Basic Website</h4><h2 style="color:#D90429;">Rs.25,000</h2><ul class="list-unstyled mt-3"><li>✅ 5 Pages</li><li>✅ Mobile Responsive</li><li>✅ WhatsApp</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card popular"><span class="badge-popular">⭐ Best Value</span><h4>Business Website</h4><h2 style="color:#D90429;">Rs.45,000</h2><ul class="list-unstyled mt-3"><li>✅ 10 Pages</li><li>✅ Premium Design</li><li>✅ SEO</li></ul><a href="#contact" class="btn btn-primary-red w-100 mt-3">Get Started</a></div></div>
+                <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>E-Commerce</h4><h2 style="color:#D90429;">Rs.89,999</h2><ul class="list-unstyled mt-3"><li>✅ Full Store</li><li>✅ Payment Gateway</li><li>✅ Order Management</li></ul><a href="#contact" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
             </div>
         </div>
     </section>
@@ -588,10 +619,10 @@ navbar-brand {
             <div class="text-center mb-5"><h2 class="display-5 fw-bold">Case <span class="text-gradient">Studies</span></h2></div>
             <div class="row g-4">
                 <div class="col-md-6" data-aos="fade-right">
-                    <div class="case-study-card"><div class="p-4"><span class="badge bg-success mb-2">✅ Success</span><h5 class="text-gradient">Green Wave Solar</h5><p><strong>Challenge:</strong> Low leads</p><p><strong>Solution:</strong> Meta Ads + Social</p><div class="row text-center mt-3"><div class="col-4"><h4 class="text-gradient">350%</h4><small>Leads</small></div><div class="col-4"><h4 class="text-gradient">200%</h4><small>Reach</small></div><div class="col-4"><h4 class="text-gradient">4x</h4><small>ROI</small></div></div></div></div>
+                    <div class="case-study-card"><div class="p-4"><span class="badge bg-success mb-2">✅ Success</span><h5 class="text-gradient">Green Wave Solar</h5><p><strong>Challenge:</strong> Low lead generation</p><p><strong>Solution:</strong> Meta Ads + Social Media</p><div class="row text-center mt-3"><div class="col-4"><h4 class="text-gradient">350%</h4><small>Leads</small></div><div class="col-4"><h4 class="text-gradient">200%</h4><small>Reach</small></div><div class="col-4"><h4 class="text-gradient">4x</h4><small>ROI</small></div></div></div></div>
                 </div>
                 <div class="col-md-6" data-aos="fade-left">
-                    <div class="case-study-card"><div class="p-4"><span class="badge bg-success mb-2">✅ Success</span><h5 class="text-gradient">Palm Restaurant</h5><p><strong>Challenge:</strong> Low footfall</p><p><strong>Solution:</strong> Reels + Ads</p><div class="row text-center mt-3"><div class="col-4"><h4 class="text-gradient">500+</h4><small>Customers</small></div><div class="col-4"><h4 class="text-gradient">Full</h4><small>Booking</small></div><div class="col-4"><h4 class="text-gradient">3x</h4><small>Revenue</small></div></div></div></div>
+                    <div class="case-study-card"><div class="p-4"><span class="badge bg-success mb-2">✅ Success</span><h5 class="text-gradient">Core Tech Solar</h5><p><strong>Challenge:</strong> Zero online presence</p><p><strong>Solution:</strong> Full branding + website (3 years)</p><div class="row text-center mt-3"><div class="col-4"><h4 class="text-gradient">500%</h4><small>Lead Growth</small></div><div class="col-4"><h4 class="text-gradient">Top 3</h4><small>Google Ranking</small></div><div class="col-4"><h4 class="text-gradient">3 Years</h4><small>Partnership</small></div></div></div></div>
                 </div>
             </div>
         </div>
@@ -604,23 +635,10 @@ navbar-brand {
             <div class="row"><div class="col-lg-8 mx-auto">
                 <div class="accordion" id="faqAccordion">
                     <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq1">🔍 How quickly can I see results?</button></h2><div id="faq1" class="accordion-collapse collapse"><div class="accordion-body text-muted">30-60 days initial results. <a href="#contact" class="btn btn-sm btn-primary-red mt-2">Get Timeline</a></div></div></div>
-                    <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq2">💰 What ROI can I expect?</button></h2><div id="faq2" class="accordion-collapse collapse"><div class="accordion-body text-muted">3x-5x average. <a href="#contact" class="btn btn-sm btn-primary-red mt-2">Calculate ROI</a></div></div></div>
+                    <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq2">💰 What's the payment structure?</button></h2><div id="faq2" class="accordion-collapse collapse"><div class="accordion-body text-muted">50% advance, 50% on completion. <a href="#" data-bs-toggle="modal" data-bs-target="#paymentModal" class="btn btn-sm btn-primary-red mt-2">View Payment Policy</a></div></div></div>
                     <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq3">🎨 How does AI Logo Generator work?</button></h2><div id="faq3" class="accordion-collapse collapse"><div class="accordion-body text-muted">Enter details, get instant PNG. 5 free. <a href="#logo-generator" class="btn btn-sm btn-primary-red mt-2">Try Now</a></div></div></div>
-                    <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq4">📱 Which platforms do you manage?</button></h2><div id="faq4" class="accordion-collapse collapse"><div class="accordion-body text-muted">FB, Insta, LinkedIn, TikTok, YouTube. <a href="#contact" class="btn btn-sm btn-primary-red mt-2">Discuss</a></div></div></div>
                 </div>
             </div></div>
-        </div>
-    </section>
-
-    <!-- ═══════════ TIPS ═══════════ -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5"><h2 class="display-5 fw-bold">Marketing <span class="text-gradient">Tips & Guides</span></h2></div>
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up"><div class="glass-card text-center"><i class="bi bi-search display-4 text-gradient"></i><h5 class="mt-3">SEO Tips 2026</h5><button class="btn btn-sm btn-primary-red mt-2" onclick="showTip('SEO Guide')">Read Guide →</button></div></div>
-                <div class="col-md-4" data-aos="fade-up"><div class="glass-card text-center"><i class="bi bi-facebook display-4 text-gradient"></i><h5 class="mt-3">Facebook Ads Mastery</h5><button class="btn btn-sm btn-primary-red mt-2" onclick="showTip('Facebook Ads')">Read Guide →</button></div></div>
-                <div class="col-md-4" data-aos="fade-up"><div class="glass-card text-center"><i class="bi bi-cart display-4 text-gradient"></i><h5 class="mt-3">Shopify Growth</h5><button class="btn btn-sm btn-primary-red mt-2" onclick="showTip('Shopify Tips')">Read Guide →</button></div></div>
-            </div>
         </div>
     </section>
 
@@ -636,14 +654,81 @@ navbar-brand {
         <div class="container">
             <div class="text-center mb-5"><h2 class="display-5 fw-bold">Contact <span class="text-gradient">Us</span></h2></div>
             <div class="row">
-                <div class="col-lg-6 mb-4"><form onsubmit="handleSubmit(event)"><input type="text" class="form-control mb-3" id="name" placeholder="Full Name *" required><input type="email" class="form-control mb-3" id="email" placeholder="Email *" required><input type="tel" class="form-control mb-3" id="phone" placeholder="Phone *" required><select class="form-control mb-3" id="service"><option>Service</option><option>Social Media</option><option>Meta Ads</option><option>SEO</option><option>Web Dev</option><option>Branding</option><option>Other</option></select><textarea class="form-control mb-3" id="message" rows="4" placeholder="Message *" required></textarea><button class="btn btn-primary-red w-100 btn-lg"><i class="bi bi-send me-2"></i>Send Message</button></form></div>
+                <div class="col-lg-6 mb-4"><form onsubmit="handleSubmit(event)"><input type="text" class="form-control mb-3" id="name" placeholder="Full Name *" required><input type="email" class="form-control mb-3" id="email" placeholder="Email *" required><input type="tel" class="form-control mb-3" id="phone" placeholder="Phone *" required><select class="form-control mb-3" id="service"><option>Select Service</option><option>Social Media</option><option>Meta Ads</option><option>SEO</option><option>Web Dev</option><option>Branding</option><option>AI Tools</option><option>Other</option></select><textarea class="form-control mb-3" id="message" rows="4" placeholder="Message *" required></textarea><button class="btn btn-primary-red w-100 btn-lg"><i class="bi bi-send me-2"></i>Send Message</button></form></div>
                 <div class="col-lg-6"><div class="glass-card"><h5 class="text-gradient mb-3">Contact Info</h5><p><i class="bi bi-telephone me-2" style="color:#D90429;"></i><a href="tel:+923350231718" class="text-white text-decoration-none">0335 0231718</a></p><p><i class="bi bi-envelope me-2" style="color:#D90429;"></i><a href="mailto:sam.creatives2010@gmail.com" class="text-white text-decoration-none">sam.creatives2010@gmail.com</a></p></div></div>
             </div>
         </div>
     </section>
 
     <!-- ═══════════ FOOTER ═══════════ -->
-    <footer class="py-4 text-center"><h4>SAM<span style="color:#D90429;">.</span>Creatives</h4><p class="text-muted">Design. Market. Grow.</p><p class="small text-muted">© 2026 SAM Creatives.</p></footer>
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 text-center text-lg-start">
+                    <span class="brand-name">
+                        <span class="sam">SAM</span><span class="creatives">Creatives</span>
+                    </span>
+                    <p class="brand-tagline mt-1">Design. Market. Grow.</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start mt-3">
+                        <a href="tel:+923350231718" class="btn btn-sm btn-outline-white"><i class="bi bi-telephone"></i> Call</a>
+                        <a href="https://wa.me/923350231718" target="_blank" class="btn btn-sm btn-primary-red"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 text-center">
+                    <h5 class="text-white mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services" class="text-muted text-decoration-none">Services</a></li>
+                        <li><a href="#portfolio" class="text-muted text-decoration-none">Portfolio</a></li>
+                        <li><a href="#packages" class="text-muted text-decoration-none">Packages</a></li>
+                        <li><a href="#case-studies" class="text-muted text-decoration-none">Case Studies</a></li>
+                        <li><a href="#faq" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <h5 class="text-white mb-3">Legal & Policies</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-muted text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#paymentModal" class="text-muted text-decoration-none">Payment Guarantee</a></li>
+                    </ul>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-end mt-3">
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color:#333;">
+            <div class="text-center"><p class="small text-muted mb-0">© 2026 SAM Creatives. All Rights Reserved. | Design. Market. Grow.</p></div>
+        </div>
+    </footer>
+
+    <!-- ═══════════ MODALS (Terms, Privacy, Payment) ═══════════ -->
+    <div class="modal fade" id="termsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Terms & Conditions</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body"><h6>1. Acceptance of Terms</h6><p class="text-muted">By using SAM Creatives services, you agree to these terms.</p><h6>2. Payment</h6><p class="text-muted">50% advance, 50% upon completion.</p><h6>3. Intellectual Property</h6><p class="text-muted">Full ownership transfers after full payment.</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Privacy Policy</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body"><h6>Information Collection</h6><p class="text-muted">We collect name, email, phone for service delivery. Never sold.</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="paymentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Payment Guarantee</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body"><div class="alert alert-danger bg-danger bg-opacity-25 border-danger text-white"><i class="bi bi-shield-check me-2"></i>50% Advance Payment Policy</div><ul><li>50% advance for all services</li><li>Remaining 50% after completion and approval</li><li>2 free revisions</li></ul></div>
+            </div>
+        </div>
+    </div>
 
     <!-- FLOATING -->
     <a href="https://wa.me/923350231718" target="_blank" class="floating-wa"><i class="bi bi-whatsapp"></i></a>
@@ -655,19 +740,11 @@ navbar-brand {
     <script>
         AOS.init({ duration: 800, once: true });
         
-        // ═══════════ IMAGE LOADER ═══════════
+        // ═══════════ IMAGE LOADER (hero, portfolio, testimonials, clients) ═══════════
         function imgOk(url) { return new Promise(r => { let i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; }); }
         
         async function loadImages() {
-            // ── LOGO (NO FILTER - ORIGINAL COLORS) ──
-            let logoHTML = '';
-            for (let p of ['images/logo.png','images/logo.jpg','images/logo.svg']) {
-                if (await imgOk(p)) { logoHTML = `<img src="${p}" alt="SAM Creatives" height="42">`; break; }
-            }
-            if (!logoHTML) logoHTML = '<span style="font-weight:800;color:#D90429;">SAM</span><span style="font-weight:600;color:#888;">Creatives</span>';
-            document.getElementById('logoContainer').innerHTML = logoHTML;
-            
-            // ── HERO ──
+            // Hero
             let heroHTML = '';
             for (let p of ['images/hero-image.png','images/hero-image.jpg','images/hero.png','images/hero.jpg','images/banner.png','images/banner.jpg']) {
                 if (await imgOk(p)) { heroHTML = `<img src="${p}" alt="Digital Marketing" class="hero-image img-fluid">`; break; }
@@ -675,7 +752,7 @@ navbar-brand {
             if (!heroHTML) heroHTML = `<div class="img-placeholder" style="height:400px;"><div class="text-center"><i class="bi bi-graph-up-arrow" style="font-size:5rem;"></i><p class="mt-3">Business Growth</p></div></div>`;
             document.getElementById('heroImageContainer').innerHTML = heroHTML;
             
-            // ── PORTFOLIO ──
+            // Portfolio
             let pfHTML = '';
             const pfNames = ['Restaurant','Solar','Corporate','Social Media','Website','Branding'];
             for (let i=1; i<=6; i++) {
@@ -687,9 +764,9 @@ navbar-brand {
             }
             document.getElementById('portfolioContainer').innerHTML = pfHTML;
             
-            // ── TESTIMONIALS ──
+            // Testimonials
             let tHTML = '';
-            const tData = [{n:'Ahmed Khan',c:'Green Wave Solar',t:'"Transformed our online presence!"'},{n:'Sarah Ali',c:'Palm Restaurant',t:'"Professional team, excellent!"'},{n:'Usman Riaz',c:'Nexus Pulse',t:'"Best agency in Pakistan!"'}];
+            const tData = [{n:'Ahmed Khan',c:'Green Wave Solar',t:'"Transformed our online presence!"'},{n:'Sarah Ali',c:'Palm Restaurant',t:'"Professional team, excellent!"'},{n:'Usman Riaz',c:'Core Tech Solar',t:'"3 years of consistent growth."'}];
             for (let i=1; i<=3; i++) {
                 let src = `https://randomuser.me/api/portraits/${i===2?'women':'men'}/${i*20+10}.jpg`;
                 for (let p of [`images/testimonial-${i}.jpg`,`images/testimonial-${i}.png`]) { if (await imgOk(p)) { src = p; break; } }
@@ -697,9 +774,9 @@ navbar-brand {
             }
             document.getElementById('testimonialContainer').innerHTML = tHTML;
             
-            // ── CLIENT LOGOS ──
+            // Client Logos
             let cHTML = '';
-            const cNames = ['Nexus Pulse','Green Wave','Zamzam Solar','Hanoi','Palm','Oligarch'];
+            const cNames = ['Nexus Pulse','Green Wave','Zamzam Solar','Hanoi','Core Tech Solar','Oligarch'];
             for (let i=1; i<=6; i++) {
                 let loaded = false;
                 for (let p of [`images/client-${i}.png`,`images/client-${i}.jpg`]) { if (await imgOk(p)) { cHTML += `<div class="col-4 col-md-2 text-center"><img src="${p}" alt="${cNames[i-1]}" class="client-logo-img"></div>`; loaded = true; break; } }
@@ -715,30 +792,87 @@ navbar-brand {
         document.querySelectorAll('.counter').forEach(c => obs.observe(c));
         
         // ═══════════ AI LOGO GENERATOR ═══════════
-        let genLeft = 5;
+        let logoGenerations = 5;
         function generateLogo(e) {
             e.preventDefault();
-            if (genLeft <= 0) { document.getElementById('service').value = 'Logo Design'; document.getElementById('contact').scrollIntoView({behavior:'smooth'}); showToast('⚠️ Limit reached! Contact us for more.'); return false; }
-            const bn = document.getElementById('businessName').value, em = document.getElementById('logoEmail').value;
-            document.getElementById('logoPreview').innerHTML = '<div class="spinner-border text-danger"></div>';
+            if (logoGenerations <= 0) { showToast('⚠️ Free limit reached! Subscribe for unlimited.'); return false; }
+            const name = document.getElementById('businessName').value;
+            const email = document.getElementById('logoEmail').value;
+            const preview = document.getElementById('logoPreview');
+            preview.innerHTML = '<div class="spinner-border text-danger"></div>';
             setTimeout(() => {
-                let c = document.createElement('canvas'); c.width=200; c.height=200;
-                let ctx = c.getContext('2d');
-                ctx.fillStyle = ['#D90429','#111','#ff4757'][Math.floor(Math.random()*3)]; ctx.fillRect(0,0,200,200);
-                ctx.fillStyle='#fff'; ctx.font='bold 30px Montserrat'; ctx.textAlign='center'; ctx.fillText(bn.substring(0,2).toUpperCase(),100,100);
-                document.getElementById('logoPreview').innerHTML = `<img src="${c.toDataURL()}" style="max-width:180px;">`;
-                genLeft--; document.getElementById('logoCount').innerHTML = `🎨 Free Generations Left: <strong>${genLeft}</strong>`;
-                window.open(`https://wa.me/923350231718?text=${encodeURIComponent('🎨 Logo for '+bn+' | 📧 '+em+' | Remaining: '+genLeft)}`, '_blank');
+                const canvas = document.createElement('canvas');
+                canvas.width = 300; canvas.height = 300;
+                const ctx = canvas.getContext('2d');
+                const colors = ['#D90429','#2d3436','#0984e3','#6c5ce7','#00b894','#e17055'];
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillRect(0,0,300,300);
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 80px Montserrat';
+                ctx.textAlign = 'center';
+                ctx.fillText(name.substring(0,2).toUpperCase(), 150, 160);
+                if (document.getElementById('slogan').value) {
+                    ctx.font = '20px Poppins';
+                    ctx.fillText(document.getElementById('slogan').value, 150, 220);
+                }
+                ctx.strokeStyle = '#ffffff33';
+                ctx.lineWidth = 10;
+                ctx.strokeRect(0,0,300,300);
+                const imgUrl = canvas.toDataURL('image/png');
+                preview.innerHTML = `<img src="${imgUrl}" class="img-fluid rounded-3" style="max-height:250px;">`;
+                logoGenerations--;
+                document.getElementById('logoCount').innerHTML = `🎨 Free Logo Generations Left: <strong>${logoGenerations}</strong>`;
+                const waMsg = encodeURIComponent(`🎨 AI Logo for ${name}\n📧 ${email}\nRemaining free: ${logoGenerations}`);
+                window.open(`https://wa.me/923350231718?text=${waMsg}`, '_blank');
                 showToast('✅ Logo generated! Check WhatsApp.');
-                console.log('Logo sent to: sam.creatives2010@gmail.com', {business:bn, email:em, remaining:genLeft});
-                if (genLeft===0) { document.getElementById('generateBtn').innerHTML='<i class="bi bi-lock me-2"></i>Limit Reached'; document.getElementById('generateBtn').classList.add('disabled'); }
-            }, 2000);
+                console.log('Logo lead to sam.creatives2010@gmail.com', {name,email});
+                if (logoGenerations === 0) {
+                    document.getElementById('generateBtn').innerHTML = '<i class="bi bi-lock me-2"></i> Limit Reached';
+                    document.getElementById('generateBtn').classList.add('disabled');
+                }
+            }, 1500);
+            return false;
+        }
+        
+        // ═══════════ AI IMAGE GENERATOR ═══════════
+        let imageGenerations = 5;
+        function generateImage(e) {
+            e.preventDefault();
+            if (imageGenerations <= 0) { showToast('⚠️ Daily limit reached! Subscribe for unlimited.'); return false; }
+            const prompt = document.getElementById('imagePrompt').value;
+            const email = document.getElementById('imageEmail').value;
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '<div class="spinner-border text-danger"></div>';
+            setTimeout(() => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 512; canvas.height = 512;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createLinearGradient(0,0,512,512);
+                gradient.addColorStop(0, `hsl(${prompt.length * 15}, 70%, 50%)`);
+                gradient.addColorStop(1, `hsl(${(prompt.length * 15 + 180) % 360}, 70%, 50%)`);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0,0,512,512);
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 30px Montserrat';
+                ctx.textAlign = 'center';
+                ctx.fillText(prompt.substring(0,30)+'...', 256, 256);
+                const imgUrl = canvas.toDataURL('image/png');
+                preview.innerHTML = `<img src="${imgUrl}" class="img-fluid rounded-3" style="max-height:300px;">`;
+                imageGenerations--;
+                document.getElementById('imageCount').innerHTML = `🖼️ Free Image Generations Left Today: <strong>${imageGenerations}</strong>`;
+                const waMsg = encodeURIComponent(`🖼️ AI Image: ${prompt}\n📧 ${email}\nRemaining free: ${imageGenerations}`);
+                window.open(`https://wa.me/923350231718?text=${waMsg}`, '_blank');
+                showToast('✅ Image generated! Check WhatsApp.');
+                if (imageGenerations === 0) {
+                    document.getElementById('imageGenBtn').innerHTML = '<i class="bi bi-lock me-2"></i> Daily Limit Reached';
+                    document.getElementById('imageGenBtn').classList.add('disabled');
+                }
+            }, 1500);
             return false;
         }
         
         // ═══════════ HELPERS ═══════════
         function goToContact(s) { document.getElementById('service').value = s; document.getElementById('contact').scrollIntoView({behavior:'smooth'}); }
-        function showTip(t) { document.getElementById('service').value = t; document.getElementById('contact').scrollIntoView({behavior:'smooth'}); showToast(`📚 Get our free ${t} guide!`); }
         function showToast(m) { let t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 4000); }
         function handleSubmit(e) {
             e.preventDefault();
@@ -750,14 +884,10 @@ navbar-brand {
             return false;
         }
         
-        // ═══════════ SCROLL ═══════════
         document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) { e.preventDefault(); let t = document.querySelector(this.getAttribute('href')); if (t) t.scrollIntoView({behavior:'smooth'}); }));
         window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500); });
         
-        // ═══════════ INIT ═══════════
         window.addEventListener('DOMContentLoaded', loadImages);
-        console.log('%c🚀 SAM CREATIVES %c| Original Logo Colors Active','color:#D90429;font-size:18px;','color:white;');
-        console.log('%c📧 sam.creatives2010@gmail.com %c| 📱 0335 0231718','color:#25D366;','color:white;');
     </script>
 </body>
 </html>
