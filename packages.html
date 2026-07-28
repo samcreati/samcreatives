@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAM Creatives Packages – Marketing & Website development plans.">
+    <title>SAM Creatives | Packages – Design. Market. Grow.</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; position:relative; z-index:1; }
+        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
+        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .watermark-logo { position:fixed; top:0; left:0; width:100%; height:100%; background-image:url('images/logo-icon.png'); background-repeat:no-repeat; background-position:center center; background-size:300px auto; opacity:0.03; pointer-events:none; z-index:0; }
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; z-index:1000; position:relative; }
+        .navbar.scrolled { box-shadow:0 5px 30px rgba(0,0,0,0.5); }
+        .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
+        .navbar-brand .logo-icon { height:42px; width:auto; }
+        .navbar-brand .brand-text { display:flex; flex-direction:column; line-height:1.2; }
+        .navbar-brand .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; letter-spacing:-0.5px; }
+        .navbar-brand .brand-name .sam { font-weight:800; color:#D90429; }
+        .navbar-brand .brand-name .creatives { font-weight:300; color:#888; }
+        .navbar-brand .brand-tagline { font-size:0.7rem; font-family:'Poppins',sans-serif; color:#666; letter-spacing:1px; text-transform:uppercase; }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
+        .nav-link:hover, .nav-link.active { color:#D90429 !important; }
+        .btn { font-weight:600; padding:12px 28px; border-radius:50px; transition:0.3s; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem; text-decoration:none; display:inline-block; }
+        .btn-primary-red { background:#D90429; border:2px solid #D90429; color:#fff; }
+        .btn-primary-red:hover { background:transparent; color:#D90429; transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.3); }
+        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
+        .btn-outline-white:hover { background:#fff; color:#000; }
+        .package-card { background:#1a1a1a; border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:35px 25px; transition:0.3s; height:100%; position:relative; }
+        .package-card.popular { border:2px solid #D90429; transform:scale(1.05); box-shadow:0 20px 40px rgba(217,4,41,0.2); }
+        .badge-popular { position:absolute; top:-15px; right:25px; background:#D90429; color:#fff; padding:8px 18px; border-radius:50px; font-weight:700; font-size:0.8rem; animation:pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+        footer { background:#050505; border-top:1px solid #222; position:relative; z-index:1; }
+        footer .text-muted, footer a.text-muted { color:#aaa !important; }
+        footer .text-muted:hover { color:#D90429 !important; }
+        footer h5, footer .brand-name { color:#fff !important; }
+        @media (max-width:768px) { body { padding-top:70px; } .package-card.popular { transform:scale(1); } }
+    </style>
+</head>
+<body>
+    <div class="watermark-logo"></div>
+
+    <!-- Navbar (active on Packages) -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
+                <span class="brand-text">
+                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
+                    <span class="brand-tagline">Design. Market. Grow.</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="videos.html">Videos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logo-generator.html">AI Logo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="image-generator.html">AI Image</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main style="position:relative; z-index:1;">
+        <section class="py-5" style="background:#111;">
+            <div class="container text-center">
+                <h1 class="display-4 fw-bold text-gradient mb-4">Our Packages</h1>
+                <p class="lead text-muted">Flexible plans for every business size</p>
+            </div>
+        </section>
+
+        <!-- Marketing Packages -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Marketing <span class="text-gradient">Packages</span></h2>
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="package-card">
+                            <h4>Starter</h4>
+                            <h2 style="color:#D90429;">Rs.39,999<small>/mo</small></h2>
+                            <ul class="list-unstyled mt-3"><li>✅ 12 Posts</li><li>✅ 4 Stories</li><li>✅ Meta Ads</li><li>✅ Monthly Report</li></ul>
+                            <a href="contact.html?service=Starter%20Package" class="btn btn-outline-white w-100 mt-3">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="package-card popular">
+                            <span class="badge-popular">🔥 Popular</span>
+                            <h4>Growth</h4>
+                            <h2 style="color:#D90429;">Rs.74,999<small>/mo</small></h2>
+                            <ul class="list-unstyled mt-3"><li>✅ 20 Posts + Reels</li><li>✅ Strategy</li><li>✅ Meta Ads</li><li>✅ Detailed Reports</li></ul>
+                            <a href="contact.html?service=Growth%20Package" class="btn btn-primary-red w-100 mt-3">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="package-card">
+                            <h4>Premium</h4>
+                            <h2 style="color:#D90429;">Rs.149,999<small>/mo</small></h2>
+                            <ul class="list-unstyled mt-3"><li>✅ 30 Posts + Reels</li><li>✅ Lead Gen</li><li>✅ Priority Support</li><li>✅ Weekly Reports</li></ul>
+                            <a href="contact.html?service=Premium%20Package" class="btn btn-outline-white w-100 mt-3">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Website Packages -->
+        <section class="py-5 bg-dark-card">
+            <div class="container">
+                <h2 class="text-center mb-5">Website <span class="text-gradient">Packages</span></h2>
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="package-card">
+                            <h4>Basic Website</h4>
+                            <h2 style="color:#D90429;">Rs.25,000</h2>
+                            <ul class="list-unstyled mt-3"><li>✅ Up to 5 Pages</li><li>✅ Mobile Responsive</li><li>✅ WhatsApp</li></ul>
+                            <a href="contact.html?service=Basic%20Website" class="btn btn-outline-white w-100 mt-3">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="package-card popular">
+                            <span class="badge-popular">⭐ Best Value</span>
+                            <h4>Business Website</h4>
+                            <h2 style="color:#D90429;">Rs.45,000</h2>
+                            <ul class="list-unstyled mt-3"><li>✅ Up to 10 Pages</li><li>✅ Premium Design</li><li>✅ SEO</li></ul>
+                            <a href="contact.html?service=Business%20Website" class="btn btn-primary-red w-100 mt-3">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="package-card">
+                            <h4>E‑Commerce</h4>
+                            <h2 style="color:#D90429;">Rs.89,999</h2>
+                            <ul class="list-unstyled mt-3"><li>✅ Full Store</li><li>✅ Payment Gateway</li><li>✅ Order Management</li></ul>
+                            <a href="contact.html?service=E‑Commerce%20Website" class="btn btn-outline-white w-100 mt-3">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (same) -->
+    <!-- ... copy footer from previous page ... -->
+    <script>
+        AOS.init({ duration: 800, once: true });
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

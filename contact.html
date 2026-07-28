@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact SAM Creatives – Get free consultation & digital marketing solutions.">
+    <title>SAM Creatives | Contact – Design. Market. Grow.</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; position:relative; z-index:1; }
+        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
+        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .watermark-logo { position:fixed; top:0; left:0; width:100%; height:100%; background-image:url('images/logo-icon.png'); background-repeat:no-repeat; background-position:center center; background-size:300px auto; opacity:0.03; pointer-events:none; z-index:0; }
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; z-index:1000; position:relative; }
+        .navbar.scrolled { box-shadow:0 5px 30px rgba(0,0,0,0.5); }
+        .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
+        .navbar-brand .logo-icon { height:42px; width:auto; }
+        .navbar-brand .brand-text { display:flex; flex-direction:column; line-height:1.2; }
+        .navbar-brand .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; letter-spacing:-0.5px; }
+        .navbar-brand .brand-name .sam { font-weight:800; color:#D90429; }
+        .navbar-brand .brand-name .creatives { font-weight:300; color:#888; }
+        .navbar-brand .brand-tagline { font-size:0.7rem; font-family:'Poppins',sans-serif; color:#666; letter-spacing:1px; text-transform:uppercase; }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
+        .nav-link:hover, .nav-link.active { color:#D90429 !important; }
+        .btn { font-weight:600; padding:12px 28px; border-radius:50px; transition:0.3s; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem; text-decoration:none; display:inline-block; }
+        .btn-primary-red { background:#D90429; border:2px solid #D90429; color:#fff; }
+        .btn-primary-red:hover { background:transparent; color:#D90429; transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.3); }
+        .glass-card { background:rgba(26,26,26,0.8); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:30px; }
+        .form-control { background:#0a0a0a; border:1px solid #333; color:#fff; padding:14px 20px; border-radius:12px; }
+        .form-control:focus { background:#0a0a0a; border-color:#D90429; box-shadow:0 0 0 3px rgba(217,4,41,0.2); color:#fff; }
+        .accordion-button { background:#1a1a1a !important; color:#fff !important; border:1px solid #333; font-weight:600; }
+        .accordion-button:not(.collapsed) { background:#D90429 !important; color:#fff !important; }
+        .accordion-button::after { filter:invert(1); }
+        footer { background:#050505; border-top:1px solid #222; position:relative; z-index:1; }
+        footer .text-muted, footer a.text-muted { color:#aaa !important; }
+        footer .text-muted:hover { color:#D90429 !important; }
+        footer h5, footer .brand-name { color:#fff !important; }
+        @media (max-width:768px) { body { padding-top:70px; } }
+    </style>
+</head>
+<body>
+    <div class="watermark-logo"></div>
+
+    <!-- Navbar (active on Contact) -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
+                <span class="brand-text">
+                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
+                    <span class="brand-tagline">Design. Market. Grow.</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="videos.html">Videos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logo-generator.html">AI Logo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="image-generator.html">AI Image</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main style="position:relative; z-index:1;">
+        <section class="py-5" style="background:#111;">
+            <div class="container text-center">
+                <h1 class="display-4 fw-bold text-gradient mb-4">Contact Us</h1>
+                <p class="lead text-muted">Let’s discuss your project</p>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-4" data-aos="fade-right">
+                        <form id="contactForm" onsubmit="handleSubmit(event)">
+                            <div class="mb-3"><input type="text" class="form-control" id="name" placeholder="Full Name *" required></div>
+                            <div class="mb-3"><input type="email" class="form-control" id="email" placeholder="Email *" required></div>
+                            <div class="mb-3"><input type="tel" class="form-control" id="phone" placeholder="Phone *" required></div>
+                            <div class="mb-3"><input type="text" class="form-control" id="business" placeholder="Business Name"></div>
+                            <div class="mb-3">
+                                <select class="form-control" id="service">
+                                    <option value="">Select Service</option>
+                                    <option>Social Media Management</option>
+                                    <option>Meta Ads</option>
+                                    <option>Google Business Profile</option>
+                                    <option>SEO Services</option>
+                                    <option>Website Development</option>
+                                    <option>Shopify Development</option>
+                                    <option>Branding & Logo Design</option>
+                                    <option>Video Editing</option>
+                                    <option>Lead Generation</option>
+                                    <option>Content Creation</option>
+                                    <option>Email Marketing</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3"><textarea class="form-control" id="message" rows="4" placeholder="Message *" required></textarea></div>
+                            <button type="submit" class="btn btn-primary-red w-100 btn-lg"><i class="bi bi-send me-2"></i>Send Message</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="glass-card mb-4">
+                            <h5 class="text-gradient mb-3">Contact Information</h5>
+                            <p><i class="bi bi-telephone me-2" style="color:#D90429;"></i><a href="tel:+923350231718" class="text-white text-decoration-none">0335 0231718</a></p>
+                            <p><i class="bi bi-envelope me-2" style="color:#D90429;"></i><a href="mailto:sam.creatives2010@gmail.com" class="text-white text-decoration-none">sam.creatives2010@gmail.com</a></p>
+                            <p><i class="bi bi-whatsapp me-2" style="color:#D90429;"></i><a href="https://wa.me/923350231718" target="_blank" class="text-white text-decoration-none">Chat on WhatsApp</a></p>
+                        </div>
+                        <!-- FAQ snippet -->
+                        <div class="glass-card">
+                            <h5 class="text-gradient mb-3">FAQ</h5>
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item bg-transparent border-secondary mb-2 rounded-3">
+                                    <h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq1">How quickly can I see results?</button></h2>
+                                    <div id="faq1" class="accordion-collapse collapse"><div class="accordion-body text-muted">30-60 days for initial results.</div></div>
+                                </div>
+                                <div class="accordion-item bg-transparent border-secondary mb-2 rounded-3">
+                                    <h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq2">What’s the payment structure?</button></h2>
+                                    <div id="faq2" class="accordion-collapse collapse"><div class="accordion-body text-muted">50% advance, 50% on completion.</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (same) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        // Read URL params to pre-select service
+        const params = new URLSearchParams(window.location.search);
+        const serviceParam = params.get('service');
+        if (serviceParam) {
+            const select = document.getElementById('service');
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].value.toLowerCase() === serviceParam.toLowerCase() ||
+                    select.options[i].text.toLowerCase().includes(serviceParam.toLowerCase())) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            const waMsg = encodeURIComponent(`🔔 New Lead!\n\n👤 ${name}\n📧 ${email}\n📱 ${phone}\n🎯 ${service}\n💬 ${message}`);
+            window.open(`https://wa.me/923350231718?text=${waMsg}`, '_blank');
+            alert('✅ Message sent! We will contact you shortly.');
+            e.target.reset();
+            return false;
+        }
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

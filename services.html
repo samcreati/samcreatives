@@ -2,29 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="SAM Creatives | Design. Market. Grow. Digital marketing agency with AI logo & image generator. Get free consultation.">
-    <meta name="keywords" content="SAM Creatives, digital marketing, AI logo generator, branding, SEO, social media, web development">
-    <meta name="author" content="SAM Creatives">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="SAM Creatives | Design. Market. Grow.">
-    <meta property="og:description" content="Grow your business with AI tools and expert marketing.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAM Creatives Services – Social Media, SEO, Web Development, Branding & more.">
+    <title>SAM Creatives | Services – Design. Market. Grow.</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <title>SAM Creatives | Design. Market. Grow. – Home</title>
     <style>
-        /* ═══════════ FULL CSS ═══════════ */
         :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
         * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; scroll-padding-top:80px; }
+        html { scroll-behavior:smooth; }
         body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; position:relative; z-index:1; }
         h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
         .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background:#0a0a0a; } ::-webkit-scrollbar-thumb { background:#D90429; border-radius:10px; }
         .watermark-logo { position:fixed; top:0; left:0; width:100%; height:100%; background-image:url('images/logo-icon.png'); background-repeat:no-repeat; background-position:center center; background-size:300px auto; opacity:0.03; pointer-events:none; z-index:0; }
         .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; z-index:1000; position:relative; }
         .navbar.scrolled { box-shadow:0 5px 30px rgba(0,0,0,0.5); }
@@ -41,58 +34,20 @@
         .btn-primary-red { background:#D90429; border:2px solid #D90429; color:#fff; }
         .btn-primary-red:hover { background:transparent; color:#D90429; transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.3); }
         .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
-        .btn-outline-white:hover { background:#fff; color:#000; transform:translateY(-3px); }
-        .btn-glow { animation:glow 2s ease-in-out infinite alternate; }
-        @keyframes glow { from { box-shadow:0 0 10px rgba(217,4,41,0.5); } to { box-shadow:0 0 30px rgba(217,4,41,0.8); } }
-        .hero-section { min-height:90vh; display:flex; align-items:center; background:radial-gradient(ellipse at 50% 0%, rgba(217,4,41,0.15) 0%, transparent 50%); position:relative; z-index:1; }
-        .hero-image { max-width:100%; border-radius:20px; animation:float 6s ease-in-out infinite; filter:drop-shadow(0 20px 40px rgba(217,4,41,0.3)); }
-        @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
-        .counter { font-size:2.8rem; font-weight:900; font-family:'Montserrat',sans-serif; background:linear-gradient(135deg,#D90429,#ff6b6b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .glass-card { background:rgba(26,26,26,0.8); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:30px; transition:0.3s; }
-        .glass-card:hover { border-color:#D90429; }
+        .btn-outline-white:hover { background:#fff; color:#000; }
         .service-card { background:#1a1a1a; border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:35px 25px; text-align:center; transition:0.3s; height:100%; cursor:pointer; }
         .service-card:hover { transform:translateY(-10px); border-color:#D90429; box-shadow:0 20px 40px rgba(217,4,41,0.15); }
         .service-icon { font-size:2.8rem; color:#D90429; margin-bottom:15px; }
-        .portfolio-item { position:relative; overflow:hidden; border-radius:16px; cursor:pointer; }
-        .portfolio-item img { width:100%; height:280px; object-fit:cover; transition:0.5s; }
-        .portfolio-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(217,4,41,0.9), rgba(0,0,0,0.7)); display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transition:0.4s; color:#fff; }
-        .portfolio-item:hover .portfolio-overlay { opacity:1; }
-        .portfolio-item:hover img { transform:scale(1.1); }
-        .package-card { background:#1a1a1a; border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:35px 25px; transition:0.3s; height:100%; position:relative; }
-        .package-card.popular { border:2px solid #D90429; transform:scale(1.05); box-shadow:0 20px 40px rgba(217,4,41,0.2); }
-        .badge-popular { position:absolute; top:-15px; right:25px; background:#D90429; color:#fff; padding:8px 18px; border-radius:50px; font-weight:700; font-size:0.8rem; animation:pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
-        .testimonial-img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid #D90429; margin:0 auto 15px; }
-        .client-logo-img { max-height:45px; filter:grayscale(100%) brightness(0.7); opacity:0.6; transition:0.3s; }
-        .client-logo-img:hover { filter:grayscale(0); opacity:1; }
-        .case-study-card { background:#1a1a1a; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); transition:0.3s; }
-        .case-study-card:hover { transform:translateY(-5px); border-color:#D90429; }
-        .ai-section { border:2px solid #D90429; border-radius:30px; padding:50px 30px; background:linear-gradient(135deg, #1a0000, #0a0a0a); }
-        .logo-preview { width:250px; height:250px; background:#111; border:2px dashed #333; border-radius:20px; display:flex; align-items:center; justify-content:center; margin:0 auto; }
-        .logo-counter { display:inline-block; background:#D90429; color:#fff; padding:5px 15px; border-radius:50px; font-weight:700; }
-        .accordion-button { background:#1a1a1a !important; color:#fff !important; border:1px solid #333; font-weight:600; }
-        .accordion-button:not(.collapsed) { background:#D90429 !important; color:#fff !important; }
-        .accordion-button::after { filter:invert(1); }
-        .form-control { background:#0a0a0a; border:1px solid #333; color:#fff; padding:14px 20px; border-radius:12px; }
-        .form-control:focus { background:#0a0a0a; border-color:#D90429; box-shadow:0 0 0 3px rgba(217,4,41,0.2); color:#fff; }
-        .floating-wa { position:fixed; bottom:30px; right:30px; background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; z-index:999; animation:bounce 2s infinite; text-decoration:none; }
-        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-        .floating-wa:hover { color:#fff; transform:scale(1.1); }
-        .back-to-top { position:fixed; bottom:100px; right:30px; width:45px; height:45px; background:#D90429; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; z-index:998; opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; }
-        .back-to-top.show { opacity:1; visibility:visible; }
-        .toast-notification { position:fixed; top:100px; right:30px; background:#1a1a1a; border:2px solid #D90429; color:#fff; padding:18px 28px; border-radius:15px; z-index:10000; transform:translateX(400px); transition:0.4s; }
-        .toast-notification.show { transform:translateX(0); }
-        .img-placeholder { background:linear-gradient(135deg, #1a1a1a, #2a2a2a); display:flex; align-items:center; justify-content:center; color:#D90429; min-height:200px; border-radius:16px; }
+        .glass-card { background:rgba(26,26,26,0.8); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:30px; }
         footer { background:#050505; border-top:1px solid #222; position:relative; z-index:1; }
         footer .text-muted, footer a.text-muted { color:#aaa !important; }
         footer .text-muted:hover { color:#D90429 !important; }
         footer h5, footer .brand-name { color:#fff !important; }
-        @media (max-width:768px) { body { padding-top:70px; } .counter { font-size:2rem; } .package-card.popular { transform:scale(1); } }
+        @media (max-width:768px) { body { padding-top:70px; } }
     </style>
 </head>
 <body>
     <div class="watermark-logo"></div>
-    <div class="toast-notification" id="toast"></div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
@@ -109,9 +64,9 @@
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
@@ -125,40 +80,112 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section" style="position:relative; z-index:1;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <h1 class="display-3 fw-bold mb-4">Grow Your Business With <span class="text-gradient">AI & Marketing</span></h1>
-                    <p class="lead mb-4" style="color:#aaa;">From AI-generated logos to full-scale digital marketing — <strong style="color:#fff;">SAM Creatives</strong> delivers.</p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="contact.html" class="btn btn-primary-red btn-lg btn-glow"><i class="bi bi-calendar-check me-2"></i>Free Consultation</a>
-                        <a href="logo-generator.html" class="btn btn-outline-white btn-lg"><i class="bi bi-stars me-2"></i>AI Generator</a>
+    <!-- Main Content -->
+    <main style="position:relative; z-index:1;">
+        <section class="py-5" style="background:#111;">
+            <div class="container text-center">
+                <h1 class="display-4 fw-bold text-gradient mb-4">Our Services</h1>
+                <p class="lead text-muted">Complete digital marketing solutions under one roof</p>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="service-card" onclick="goToService('Social Media Management')">
+                            <i class="bi bi-phone service-icon"></i>
+                            <h5>Social Media Management</h5>
+                            <p class="small text-muted">Grow your audience & engagement</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="service-card" onclick="goToService('Meta Ads')">
+                            <i class="bi bi-meta service-icon"></i>
+                            <h5>Meta Ads</h5>
+                            <p class="small text-muted">Facebook & Instagram advertising</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="service-card" onclick="goToService('Google Business Profile')">
+                            <i class="bi bi-google service-icon"></i>
+                            <h5>Google Business Profile</h5>
+                            <p class="small text-muted">Local SEO & visibility</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="service-card" onclick="goToService('SEO Services')">
+                            <i class="bi bi-graph-up service-icon"></i>
+                            <h5>SEO Services</h5>
+                            <p class="small text-muted">Rank higher on Google</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="service-card" onclick="goToService('Website Development')">
+                            <i class="bi bi-code-slash service-icon"></i>
+                            <h5>Website Development</h5>
+                            <p class="small text-muted">Custom responsive websites</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="service-card" onclick="goToService('Shopify Development')">
+                            <i class="bi bi-bag-check service-icon"></i>
+                            <h5>Shopify Development</h5>
+                            <p class="small text-muted">E‑commerce store setup</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="service-card" onclick="goToService('Branding & Logo Design')">
+                            <i class="bi bi-brush service-icon"></i>
+                            <h5>Branding & Logo Design</h5>
+                            <p class="small text-muted">Identity that stands out</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="service-card" onclick="goToService('Video Editing')">
+                            <i class="bi bi-camera-video service-icon"></i>
+                            <h5>Video Editing</h5>
+                            <p class="small text-muted">Reels, ads & content</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="service-card" onclick="goToService('Lead Generation')">
+                            <i class="bi bi-bullseye service-icon"></i>
+                            <h5>Lead Generation</h5>
+                            <p class="small text-muted">Attract more customers</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="service-card" onclick="goToService('Content Creation')">
+                            <i class="bi bi-pencil-square service-icon"></i>
+                            <h5>Content Creation</h5>
+                            <p class="small text-muted">Engaging posts & copy</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="service-card" onclick="goToService('Email Marketing')">
+                            <i class="bi bi-envelope service-icon"></i>
+                            <h5>Email Marketing</h5>
+                            <p class="small text-muted">Nurture leads & boost sales</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="service-card" onclick="goToService('Other')">
+                            <i class="bi bi-three-dots service-icon"></i>
+                            <h5>Custom Project</h5>
+                            <p class="small text-muted">Tell us your needs</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-4 mt-lg-0 text-center" data-aos="fade-left">
-                    <div id="heroImageContainer"></div>
+                <div class="text-center mt-5">
+                    <a href="contact.html" class="btn btn-primary-red btn-lg">Get Free Consultation</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Stats, Services, Portfolio, Testimonials, etc. same as before -->
-    <!-- Note: I am including only essential sections for brevity; full content would be copy-pasted from single-page version -->
-    <section class="py-4 border-top border-secondary border-opacity-10" style="position:relative; z-index:1;">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-6 col-md-3 mb-3"><div class="counter" data-target="250">0</div><p class="text-light">Projects Done</p></div>
-                <div class="col-6 col-md-3 mb-3"><div class="counter" data-target="100">0</div><p class="text-light">Happy Clients</p></div>
-                <div class="col-6 col-md-3 mb-3"><div class="counter" data-target="50000">0</div><p class="text-light">Leads Generated</p></div>
-                <div class="col-6 col-md-3 mb-3"><div class="counter" data-target="100000">0</div><p class="text-light">Ad Spend (£)</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (same as template, but I'll include a complete one) -->
-    <footer class="py-5" style="position:relative; z-index:1;">
+    <!-- Footer -->
+    <footer class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4 text-center text-lg-start">
@@ -211,22 +238,13 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-        // Image loader for hero
-        function imgOk(url) { return new Promise(r => { let i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; }); }
-        async function loadHero() {
-            let h = '';
-            for (let p of ['images/hero-image.png','images/hero-image.jpg','images/hero.png','images/hero.jpg']) {
-                if (await imgOk(p)) { h = `<img src="${p}" alt="Digital Marketing" class="hero-image img-fluid">`; break; }
-            }
-            if (!h) h = `<div class="img-placeholder" style="height:400px;"><i class="bi bi-graph-up-arrow" style="font-size:5rem;"></i><p>Business Growth</p></div>`;
-            document.getElementById('heroImageContainer').innerHTML = h;
+        function goToService(service) {
+            window.location.href = 'contact.html?service=' + encodeURIComponent(service);
         }
-        loadHero();
-        // Counter
-        const obs = new IntersectionObserver((e) => { e.forEach(en => { if (en.isIntersecting) { const c = en.target, t = +c.dataset.target, up = () => { let v = +c.innerText.replace(/,/g,''); if (v < t) { c.innerText = Math.ceil(v + t/200).toLocaleString(); setTimeout(up,20); } else c.innerText = t.toLocaleString(); }; up(); obs.unobserve(c); } }); }, { threshold: 0.5 });
-        document.querySelectorAll('.counter').forEach(c => obs.observe(c));
-        // Scroll
-        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500); });
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
+        });
     </script>
 </body>
 </html>
