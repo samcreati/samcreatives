@@ -50,34 +50,39 @@
 
     <!-- Navbar (active on Videos) -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
-                <span class="brand-text">
-                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
-                    <span class="brand-tagline">Design. Market. Grow.</span>
-                </span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
-                    <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
-                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="videos.html">Videos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="logo-generator.html">AI Logo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="image-generator.html">AI Image</a></li>
-                </ul>
-            </div>
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
+            <span class="brand-text">
+                <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
+                <span class="brand-tagline">Design. Market. Grow.</span>
+            </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="videos.html">Videos</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <!-- AI Logo and AI Image links removed -->
+                <!-- Client Portal button (if you have) can stay -->
+                <li class="nav-item ms-2" id="accountNavItem">
+                    <button class="btn btn-outline-white btn-sm" data-bs-toggle="modal" data-bs-target="#accountModal">
+                        <i class="bi bi-person-circle me-1"></i> <span id="accountBtnText">Login / Register</span>
+                    </button>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <main style="position:relative; z-index:1;">
         <section class="py-5" style="background:#111;">
