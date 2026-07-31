@@ -2,609 +2,515 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Free AI tools: Logo, Image, Caption, Hashtag, Calculator, Currency, PDF converters.">
-    <meta name="keywords" content="ai logo generator, ai image generator, free pdf tools, online calculator, currency converter">
-    <meta name="author" content="SAM Creatives">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="SAM Creatives | Free AI Tools">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-
-    <title>SAM Creatives | Free AI Tools & PDF Utilities</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAM Creatives AI - Premium AI Image Generator</title>
     <style>
-        :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
-        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; position:relative; z-index:1; }
-        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
-        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background:#0a0a0a; } ::-webkit-scrollbar-thumb { background:#D90429; border-radius:10px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
 
-        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; z-index:1000; position:relative; }
-        .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
-        .navbar-brand .logo-icon { height:42px; width:auto; }
-        .navbar-brand .brand-text { display:flex; flex-direction:column; line-height:1.2; }
-        .navbar-brand .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; letter-spacing:-0.5px; }
-        .navbar-brand .brand-name .sam { font-weight:800; color:#D90429; }
-        .navbar-brand .brand-name .creatives { font-weight:300; color:#888; }
-        .navbar-brand .brand-tagline { font-size:0.7rem; font-family:'Poppins',sans-serif; color:#666; letter-spacing:1px; text-transform:uppercase; }
-        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
-        .nav-link:hover { color:#D90429 !important; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #020617;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        .btn { font-weight:600; padding:12px 28px; border-radius:50px; transition:0.3s; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem; text-decoration:none; display:inline-block; cursor:pointer; }
-        .btn-primary-red { background:#D90429; border:2px solid #D90429; color:#fff; }
-        .btn-primary-red:hover { background:transparent; color:#D90429; transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.3); }
-        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
-        .btn-outline-white:hover { background:#fff; color:#000; }
+        /* ============ CURSOR GLOW EFFECTS ============ */
+        
+        /* Cursor Container */
+        .cursor-glow-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: opacity 0.3s ease;
+        }
 
-        .dashboard { padding:2rem 0; }
-        .tab-buttons { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:2rem; }
-        .tab-btn { background:#1a1a1a; border:1px solid rgba(255,255,255,0.1); color:#aaa; padding:10px 20px; border-radius:50px; font-weight:600; font-size:0.85rem; transition:0.3s; cursor:pointer; }
-        .tab-btn.active, .tab-btn:hover { background:#D90429; color:#fff; border-color:#D90429; }
+        /* Large Soft Glow */
+        .cursor-glow-large {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(239, 68, 68, 0.15) 0%, 
+                rgba(239, 68, 68, 0.08) 30%, 
+                rgba(239, 68, 68, 0.03) 60%, 
+                transparent 70%
+            );
+            filter: blur(40px);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
 
-        .tool-card { background:rgba(26,26,26,0.8); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:30px; transition:0.3s; margin-bottom:30px; }
-        .tool-card:hover { border-color:#D90429; }
-        .preview-area { background:#111; border:2px dashed #333; border-radius:20px; min-height:200px; display:flex; align-items:center; justify-content:center; margin:20px 0; overflow:hidden; }
-        .preview-area img { max-width:100%; max-height:300px; border-radius:12px; }
+        /* Medium Glow */
+        .cursor-glow-medium {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(239, 68, 68, 0.2) 0%, 
+                rgba(239, 68, 68, 0.1) 40%, 
+                transparent 70%
+            );
+            filter: blur(30px);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
 
-        .form-control { background:#0a0a0a; border:1px solid #333; color:#fff; padding:14px 20px; border-radius:12px; }
-        .form-control:focus { background:#0a0a0a; border-color:#D90429; box-shadow:0 0 0 3px rgba(217,4,41,0.2); color:#fff; }
-        select.form-control { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 12px center; background-size:16px 12px; }
+        /* Small Glow */
+        .cursor-glow-small {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(239, 68, 68, 0.3) 0%, 
+                rgba(239, 68, 68, 0.15) 50%, 
+                transparent 70%
+            );
+            filter: blur(20px);
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease;
+        }
 
-        .history-item { background:rgba(255,255,255,0.03); border-radius:12px; padding:12px; margin-bottom:8px; display:flex; align-items:center; gap:12px; }
-        .history-item img { width:45px; height:45px; object-fit:cover; border-radius:8px; }
+        /* Core Glow */
+        .cursor-glow-core {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(239, 68, 68, 0.5) 0%, 
+                rgba(239, 68, 68, 0.2) 50%, 
+                transparent 70%
+            );
+            filter: blur(10px);
+            transform: translate(-50%, -50%);
+            transition: width 0.15s ease, height 0.15s ease;
+        }
 
-        .seo-content { background:rgba(255,255,255,0.02); border-radius:16px; padding:20px; margin-top:20px; }
-        .seo-content h3 { color:#fff; font-size:1.2rem; }
-        .seo-content p { color:#aaa; font-size:0.9rem; }
+        /* Cursor Dot */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100000;
+            mix-blend-mode: difference;
+            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+        }
 
-        .floating-wa { position:fixed; bottom:30px; right:30px; background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; z-index:999; animation:bounce 2s infinite; text-decoration:none; }
-        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-        .floating-wa:hover { color:#fff; transform:scale(1.1); }
+        /* Hover States */
+        .cursor-glow-container.hovering .cursor-glow-large {
+            width: 500px;
+            height: 500px;
+        }
 
-        .calc-btn { border-radius:12px !important; font-size:1.2rem; }
+        .cursor-glow-container.hovering .cursor-glow-medium {
+            width: 300px;
+            height: 300px;
+        }
 
-        @media (max-width:768px) { body { padding-top:70px; } .tab-buttons { justify-content:center; } .preview-area { min-height:180px; } }
+        .cursor-glow-container.hovering .cursor-glow-small {
+            width: 150px;
+            height: 150px;
+        }
+
+        .cursor-glow-container.hovering .cursor-glow-core {
+            width: 50px;
+            height: 50px;
+        }
+
+        .cursor-dot.hovering {
+            width: 20px;
+            height: 20px;
+            background: rgba(239, 68, 68, 0.5);
+            mix-blend-mode: normal;
+        }
+
+        /* Particles */
+        .cursor-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: particleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(20px, -30px) scale(1.5);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-10px, -60px) scale(1);
+                opacity: 0.3;
+            }
+            75% {
+                transform: translate(-25px, -30px) scale(1.5);
+                opacity: 0.6;
+            }
+        }
+
+        /* ============ PAGE STYLING ============ */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: none;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: none;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: bold;
+            background: linear-gradient(to right, #fff, #fecaca, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 8px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            padding: 12px 16px;
+            outline: none;
+            cursor: none;
+        }
+
+        .search-box input::placeholder {
+            color: #64748b;
+        }
+
+        .search-box button {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-box button:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+
+        .features {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(239, 68, 68, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(239, 68, 68, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        a, button, input, textarea {
+            cursor: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Cursor Dot -->
+    <div class="cursor-dot" id="cursorDot"></div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Cursor Glow Container -->
+    <div class="cursor-glow-container" id="cursorGlow">
+        <div class="cursor-glow-large"></div>
+        <div class="cursor-glow-medium"></div>
+        <div class="cursor-glow-small"></div>
+        <div class="cursor-glow-core"></div>
+        
+        <!-- Particles -->
+        <div class="cursor-particle" style="left: 100px; top: 80px; animation-delay: 0s;"></div>
+        <div class="cursor-particle" style="left: 200px; top: 120px; animation-delay: 0.3s;"></div>
+        <div class="cursor-particle" style="left: 150px; top: 200px; animation-delay: 0.6s;"></div>
+        <div class="cursor-particle" style="left: 250px; top: 150px; animation-delay: 0.9s;"></div>
+        <div class="cursor-particle" style="left: 180px; top: 250px; animation-delay: 1.2s;"></div>
+        <div class="cursor-particle" style="left: 220px; top: 180px; animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
-                <span class="brand-text">
-                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
-                    <span class="brand-tagline">Design. Market. Grow.</span>
-                </span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Main Site</a></li>
-                </ul>
+            <div class="nav-content">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    SAM Creatives AI
+                </div>
+                <div class="nav-links">
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Blog</a>
+                    <a href="#" class="btn-primary">Get Started</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <main class="dashboard">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <div class="text-center mb-4">
-                <h1 class="display-4 fw-bold text-gradient">Free AI Tools & Utilities</h1>
-                <p class="lead" style="color:#aaa;">Everything you need in one place – 100% free</p>
-            </div>
-
-            <div class="tab-buttons justify-content-center">
-                <button class="tab-btn active" onclick="switchTab('logo')"><i class="bi bi-pentagon"></i> Logo</button>
-                <button class="tab-btn" onclick="switchTab('image')"><i class="bi bi-image"></i> Image</button>
-                <button class="tab-btn" onclick="switchTab('caption')"><i class="bi bi-chat-quote"></i> Caption</button>
-                <button class="tab-btn" onclick="switchTab('hashtag')"><i class="bi bi-hash"></i> Hashtag</button>
-                <button class="tab-btn" onclick="switchTab('calculator')"><i class="bi bi-calculator"></i> Calculator</button>
-                <button class="tab-btn" onclick="switchTab('currency')"><i class="bi bi-currency-exchange"></i> Currency</button>
-                <button class="tab-btn" onclick="switchTab('wordtopdf')"><i class="bi bi-file-word"></i> Word→PDF</button>
-                <button class="tab-btn" onclick="switchTab('pdftoword')"><i class="bi bi-file-pdf"></i> PDF→Text</button>
-                <button class="tab-btn" onclick="switchTab('pdfcompress')"><i class="bi bi-file-zip"></i> Compress</button>
-                <button class="tab-btn" onclick="switchTab('imagetopdf')"><i class="bi bi-file-image"></i> Image→PDF</button>
-                <button class="tab-btn" onclick="switchTab('imagecombinepdf')"><i class="bi bi-images"></i> Combine</button>
-            </div>
-
-            <!-- ====================== LOGO GENERATOR ====================== -->
-            <div id="tab-logo" class="tab-pane active">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="tool-card">
-                            <h4 class="text-gradient"><i class="bi bi-pentagon me-2"></i>AI Logo Generator</h4>
-                            <p class="text-muted">Create professional logos instantly with AI.</p>
-                            <div class="row"><div class="col-md-6 mb-3"><input type="text" class="form-control" id="logoBusinessName" placeholder="Business Name *" required></div><div class="col-md-6 mb-3"><input type="text" class="form-control" id="logoIndustry" placeholder="Industry (e.g., Tech, Restaurant)"></div></div>
-                            <div class="row"><div class="col-md-6 mb-3"><select class="form-control" id="logoStyle"><option value="">Select Style</option><option>Modern</option><option>Minimalist</option><option>Luxury</option><option>Bold</option><option>Vintage</option></select></div><div class="col-md-6 mb-3"><input type="text" class="form-control" id="logoColors" placeholder="Colors (e.g., red, gold, black)"></div></div>
-                            <div class="preview-area" id="logoPreview"><i class="bi bi-stars" style="font-size:4rem; color:#333;"></i></div>
-                            <div class="d-flex gap-2"><button class="btn btn-primary-red" onclick="generateLogo()"><i class="bi bi-magic me-2"></i>Generate Logo</button><button class="btn btn-outline-white" id="downloadLogoBtn" style="display:none;" onclick="downloadResult('logo')"><i class="bi bi-download me-2"></i>Download PNG</button></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="tool-card history-card"><h5 class="text-gradient"><i class="bi bi-clock-history"></i> History</h5><div id="logoHistory" class="mt-3">No logos generated yet.</div></div>
-                    </div>
-                </div>
-                <div class="seo-content"><h3>Free AI Logo Generator – Create Professional Logos Online</h3><p>Create stunning business logos in seconds with our free AI Logo Generator. Whether you're launching a startup, ecommerce store, restaurant, digital marketing agency, or personal brand, our AI-powered logo maker helps generate unique logo concepts instantly. Simply enter your business name, select your industry, and get professional logo ideas without hiring a designer.</p><p class="small text-muted">Keywords: AI Logo Generator, Free Logo Maker, Business Logo Creator</p></div>
-            </div>
-
-            <!-- ====================== IMAGE GENERATOR ====================== -->
-            <div id="tab-image" class="tab-pane" style="display:none;">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="tool-card">
-                            <h4 class="text-gradient"><i class="bi bi-image me-2"></i>AI Image Generator</h4>
-                            <p class="text-muted">Turn your ideas into stunning visuals.</p>
-                            <textarea class="form-control mb-3" id="imagePrompt" rows="3" placeholder="Describe the image you want..."></textarea>
-                            <div class="row"><div class="col-md-6 mb-3"><label class="text-muted small">Width (px)</label><input type="number" class="form-control" id="imageWidth" value="512" min="256" max="1024"></div><div class="col-md-6 mb-3"><label class="text-muted small">Height (px)</label><input type="number" class="form-control" id="imageHeight" value="512" min="256" max="1024"></div></div>
-                            <div class="preview-area" id="imagePreview"><i class="bi bi-image" style="font-size:4rem; color:#333;"></i></div>
-                            <div class="d-flex gap-2"><button class="btn btn-primary-red" onclick="generateImage()"><i class="bi bi-magic me-2"></i>Generate Image</button><button class="btn btn-outline-white" id="downloadImageBtn" style="display:none;" onclick="downloadResult('image')"><i class="bi bi-download me-2"></i>Download PNG</button></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4"><div class="tool-card history-card"><h5 class="text-gradient"><i class="bi bi-clock-history"></i> History</h5><div id="imageHistory" class="mt-3">No images generated yet.</div></div></div>
-                </div>
-                <div class="seo-content"><h3>Free AI Image Generator – Create Images from Text</h3><p>Turn your ideas into stunning visuals with our free AI Image Generator. Generate social media graphics, marketing banners, product mockups, website images, digital artwork, and promotional content using simple text prompts. Perfect for marketers, business owners, designers, and content creators.</p><p class="small text-muted">Keywords: AI Image Generator, Text to Image AI, Free AI Art Generator</p></div>
-            </div>
-
-            <!-- ====================== CAPTION GENERATOR ====================== -->
-            <div id="tab-caption" class="tab-pane" style="display:none;">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="tool-card">
-                            <h4 class="text-gradient"><i class="bi bi-chat-quote me-2"></i>AI Caption Generator</h4>
-                            <p class="text-muted">Write engaging social media captions instantly.</p>
-                            <input type="text" class="form-control mb-3" id="captionBusinessType" placeholder="Business type (e.g., online clothing store)">
-                            <div class="row"><div class="col-md-6 mb-3"><label class="text-muted small">Platform</label><select class="form-control" id="captionPlatform"><option>Instagram</option><option>Facebook</option><option>Google Ads</option></select></div><div class="col-md-6 mb-3"><label class="text-muted small">Tone</label><select class="form-control" id="captionTone"><option>Professional</option><option>Casual</option><option>Humorous</option><option>Inspirational</option></select></div></div>
-                            <div class="preview-area" id="captionPreview" style="display:block; text-align:left; padding:20px; overflow-y:auto; height:auto; min-height:150px;"><p class="text-muted">Your caption will appear here...</p></div>
-                            <div class="d-flex gap-2"><button class="btn btn-primary-red" onclick="generateCaption()"><i class="bi bi-magic me-2"></i>Generate Caption</button><button class="btn btn-outline-white" id="copyCaptionBtn" style="display:none;" onclick="copyToClipboard('caption')"><i class="bi bi-copy me-2"></i>Copy</button></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4"><div class="tool-card history-card"><h5 class="text-gradient"><i class="bi bi-clock-history"></i> History</h5><div id="captionHistory" class="mt-3">No captions generated yet.</div></div></div>
-                </div>
-                <div class="seo-content"><h3>Free AI Caption Generator for Social Media</h3><p>Generate engaging captions for Facebook, Instagram, LinkedIn, TikTok, and other social media platforms. Our AI Caption Generator helps businesses create high-converting social media content, promotional posts, ad copy, and marketing captions in seconds.</p><p class="small text-muted">Keywords: AI Caption Generator, Social Media Caption Generator</p></div>
-            </div>
-
-            <!-- ====================== HASHTAG GENERATOR ====================== -->
-            <div id="tab-hashtag" class="tab-pane" style="display:none;">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="tool-card">
-                            <h4 class="text-gradient"><i class="bi bi-hash me-2"></i>AI Hashtag Generator</h4>
-                            <p class="text-muted">Find the best hashtags for your post.</p>
-                            <input type="text" class="form-control mb-3" id="hashtagKeywords" placeholder="Keywords (e.g., digital marketing, startup)">
-                            <div class="preview-area" id="hashtagPreview" style="display:block; text-align:left; padding:20px; overflow-y:auto; height:auto; min-height:100px;"><p class="text-muted">Hashtags will appear here...</p></div>
-                            <div class="d-flex gap-2"><button class="btn btn-primary-red" onclick="generateHashtags()"><i class="bi bi-magic me-2"></i>Generate Hashtags</button><button class="btn btn-outline-white" id="copyHashtagBtn" style="display:none;" onclick="copyToClipboard('hashtag')"><i class="bi bi-copy me-2"></i>Copy</button></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4"><div class="tool-card history-card"><h5 class="text-gradient"><i class="bi bi-clock-history"></i> History</h5><div id="hashtagHistory" class="mt-3">No hashtags generated yet.</div></div></div>
-                </div>
-                <div class="seo-content"><h3>Free AI Hashtag Generator for Better Reach</h3><p>Increase your social media visibility with relevant hashtags generated by AI. Find trending hashtags for Instagram, Facebook, TikTok, YouTube, and LinkedIn to improve engagement and reach a larger audience.</p><p class="small text-muted">Keywords: Hashtag Generator, Instagram Hashtags, AI Hashtag Tool</p></div>
-            </div>
-
-            <!-- ====================== CALCULATOR ====================== -->
-            <div id="tab-calculator" class="tab-pane" style="display:none;">
-                <div class="row"><div class="col-lg-6 mx-auto"><div class="tool-card">
-                    <h4 class="text-gradient"><i class="bi bi-calculator me-2"></i>Free Online Calculator</h4>
-                    <input type="text" id="calcDisplay" class="form-control mb-3 text-end" readonly placeholder="0">
-                    <div class="row g-2">
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('7')">7</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('8')">8</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('9')">9</button></div>
-                        <div class="col-3"><button class="btn btn-primary-red w-100 calc-btn" onclick="appendCalc('/')">÷</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('4')">4</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('5')">5</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('6')">6</button></div>
-                        <div class="col-3"><button class="btn btn-primary-red w-100 calc-btn" onclick="appendCalc('*')">×</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('1')">1</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('2')">2</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('3')">3</button></div>
-                        <div class="col-3"><button class="btn btn-primary-red w-100 calc-btn" onclick="appendCalc('-')">−</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('0')">0</button></div>
-                        <div class="col-3"><button class="btn btn-outline-white w-100 calc-btn" onclick="appendCalc('.')">.</button></div>
-                        <div class="col-3"><button class="btn btn-success w-100 calc-btn" onclick="calculateResult()">=</button></div>
-                        <div class="col-3"><button class="btn btn-primary-red w-100 calc-btn" onclick="appendCalc('+')">+</button></div>
-                    </div>
-                    <button class="btn btn-outline-white w-100 mt-3" onclick="clearCalc()">Clear</button>
-                </div></div></div>
-                <div class="seo-content"><h3>Free Online Calculator</h3><p>Use our free online calculator for quick and accurate calculations. Perfect for students, professionals, business owners, and everyday use.</p></div>
-            </div>
-
-            <!-- ====================== CURRENCY CONVERTER ====================== -->
-            <div id="tab-currency" class="tab-pane" style="display:none;">
-                <div class="row"><div class="col-lg-6 mx-auto"><div class="tool-card">
-                    <h4 class="text-gradient"><i class="bi bi-currency-exchange me-2"></i>Real-Time Currency Converter</h4>
-                    <input type="number" class="form-control mb-3" id="currencyAmount" placeholder="Amount" value="1">
-                    <div class="row"><div class="col-md-6 mb-3"><select class="form-control" id="fromCurrency"><option value="USD">USD</option><option value="EUR">EUR</option><option value="PKR">PKR</option><option value="GBP">GBP</option><option value="AED">AED</option></select></div><div class="col-md-6 mb-3"><select class="form-control" id="toCurrency"><option value="PKR">PKR</option><option value="USD">USD</option><option value="EUR">EUR</option></select></div></div>
-                    <button class="btn btn-primary-red w-100" onclick="convertCurrency()">Convert</button>
-                    <div class="preview-area mt-3" id="currencyPreview" style="height:auto; min-height:80px; display:block; text-align:center; padding:20px;"><p class="text-muted">Converted amount will appear here</p></div>
-                </div></div></div>
-                <div class="seo-content"><h3>Real-Time Currency Converter</h3><p>Convert USD, GBP, EUR, AED, PKR, and other currencies instantly using live exchange rates. Ideal for freelancers, ecommerce businesses, travelers, and international transactions.</p></div>
-            </div>
-
-            <!-- ====================== WORD TO PDF ====================== -->
-            <div id="tab-wordtopdf" class="tab-pane" style="display:none;">
-                <div class="row"><div class="col-lg-6 mx-auto"><div class="tool-card">
-                    <h4 class="text-gradient"><i class="bi bi-file-word me-2"></i>Text to PDF Converter</h4>
-                    <textarea class="form-control mb-3" id="wordToPdfText" rows="6" placeholder="Enter your text here..."></textarea>
-                    <button class="btn btn-primary-red w-100" onclick="convertTextToPDF()">Download as PDF</button>
-                </div></div></div>
-                <div class="seo-content"><h3>Free Word to PDF Converter Online</h3><p>Convert your text documents into professional PDF files instantly. No software needed, completely free.</p></div>
-            </div>
-
-            <!-- ====================== PDF TO TEXT ====================== -->
-            <div id="tab-pdftoword" class="tab-pane" style="display:none;">
-                <div class="row"><div class="col-lg-6 mx-auto"><div class="tool-card">
-                    <h4 class="text-gradient"><i class="bi bi-file-pdf me-2"></i>PDF to Text Extractor</h4>
-                    <input type="file" class="form-control mb-3" id="pdfFileInput" accept=".pdf" onchange="extractPDFText()">
-                    <div class="preview-area" id="pdfExtractedText" style="display:block; height:auto; min-height:150px; padding:20px; text-align:left; overflow-y:auto;"><p class="text-muted">Extracted text will appear here...</p></div>
-                </div></div></div>
-                <div class="seo-content"><h3>Free PDF to Word Converter Online</h3><p>Extract text from PDF files easily. Upload your PDF and get editable text in seconds.</p></div>
-            </div>
-
-            <!-- ====================== PDF COMPRESS ====================== -->
-            <div id="tab-pdfcompress" class="tab-pane" style="display:none;">
-                <div class="row"><div class="col-lg-6 mx-auto"><div class="tool-card">
-                    <h4 class="text-gradient"><i class="bi bi-file-zip me-2"></i>PDF Compressor</h4>
-                    <input type="file" class="form-control mb-3" id="pdfCompressInput" accept=".pdf" onchange="compressPDF()">
-                    <div class="preview-area" id="compressStatus" style="height:auto; min-height:100px; padding:20px; text-align:center;"><p class="text-muted">Select a PDF file to compress. The processed file will download automatically.</p></div>
-                </div></div></div>
-                <div class="seo-content"><h3>Free PDF Compressor Online</h3><p>Reduce PDF file size while maintaining quality. Optimize your documents for sharing and storage.</p></div>
-            </div>
-
-            <!-- ====================== IMAGE TO PDF ====================== -->
-            <div id="tab-imagetopdf" class="tab-pane" style="display:none;">
-                <div class="row"><div class="col-lg-6 mx-auto"><div class="tool-card">
-                    <h4 class="text-gradient"><i class="bi bi-file-image me-2"></i>Image to PDF Converter</h4>
-                    <input type="file" class="form-control mb-3" id="imageToPdfInput" accept="image/*" onchange="convertImageToPDF()">
-                    <div class="preview-area" id="imageToPdfPreview" style="height:auto; min-height:150px; padding:20px; text-align:center;"><p class="text-muted">Select an image to convert to PDF. The PDF will download automatically.</p></div>
-                </div></div></div>
-                <div class="seo-content"><h3>Free Image to PDF Converter</h3><p>Convert JPG, PNG, WebP images to PDF documents instantly. Perfect for combining images into one file.</p></div>
-            </div>
-
-            <!-- ====================== IMAGE COMBINE TO PDF ====================== -->
-            <div id="tab-imagecombinepdf" class="tab-pane" style="display:none;">
-                <div class="row"><div class="col-lg-6 mx-auto"><div class="tool-card">
-                    <h4 class="text-gradient"><i class="bi bi-images me-2"></i>Combine Images to PDF</h4>
-                    <input type="file" class="form-control mb-3" id="combineImagesInput" accept="image/*" multiple onchange="combineImagesToPDF()">
-                    <div class="preview-area" id="combineImagesPreview" style="height:auto; min-height:150px; padding:20px; text-align:center;"><p class="text-muted">Select multiple images. They will be combined into a single PDF file.</p></div>
-                </div></div></div>
-                <div class="seo-content"><h3>Free Combine Images to PDF</h3><p>Merge multiple JPG, PNG images into one PDF document. Ideal for portfolios, reports, and presentations.</p></div>
-            </div>
-
-            <!-- Homepage SEO Section -->
-            <div class="seo-content mt-5" style="text-align:center;">
-                <h2>Free AI Tools for Businesses, Marketers & Creators</h2>
-                <p>SAM Creatives AI Tools Hub provides free AI-powered tools including AI Logo Generator, AI Image Generator, AI Caption Generator, AI Hashtag Generator, Currency Converter, Calculator, and PDF Tools. Whether you're a digital marketer, business owner, freelancer, ecommerce seller, content creator, or startup founder, our tools help you save time and improve productivity.</p>
-                <p>Create logos, generate images, write captions, discover hashtags, convert currencies, and manage PDF documents from one powerful platform. No downloads required. Start using our free AI tools today.</p>
+            <h1>Create Amazing AI Images In Seconds</h1>
+            <p>Transform simple text into stunning artwork, realistic photos, social media graphics, logos, and marketing creatives using advanced AI technology.</p>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Describe your image... e.g., A futuristic cyberpunk city at night with neon lights">
+                <button>
+                    <span>✨</span>
+                    Generate Free Images
+                </button>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Lead Modal -->
-    <div class="modal fade" id="leadModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white border-secondary">
-                <div class="modal-header border-secondary"><h5 class="modal-title text-gradient"><i class="bi bi-envelope-paper"></i> Unlock Free Tools</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body">
-                    <form id="leadForm" onsubmit="submitLead(event)">
-                        <input type="text" class="form-control mb-3" id="leadName" placeholder="Your Name *" required>
-                        <input type="email" class="form-control mb-3" id="leadEmail" placeholder="Email Address *" required>
-                        <input type="tel" class="form-control mb-3" id="leadPhone" placeholder="Phone Number *" required>
-                        <button type="submit" class="btn btn-primary-red w-100">Start Generating Free</button>
-                    </form>
-                </div>
+    <!-- Features -->
+    <section class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>AI Text-to-Image</h3>
+                <p>Transform your ideas into stunning visuals with advanced AI technology.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Multiple Styles</h3>
+                <p>Choose from 12+ artistic styles including realistic, anime, cyberpunk, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>HD Quality</h3>
+                <p>Generate high-resolution images up to 1536x1536 pixels with premium quality.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <a href="https://wa.me/923350231718" target="_blank" class="floating-wa"><i class="bi bi-whatsapp"></i></a>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // ====================== GLOBAL STATE ======================
-        const LEAD_KEY = 'sam_ai_lead';
-        const HIST_PREFIX = 'ai_history_';
-        const IMG_API = 'https://image.pollinations.ai/prompt/';
-        const TEXT_API = 'https://text.pollinations.ai/';
-        let leadData = JSON.parse(localStorage.getItem(LEAD_KEY) || 'null');
-        let pendingGeneration = null;
+        // Cursor Elements
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorGlow = document.getElementById('cursorGlow');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
 
-        // Tab switching
-        window.switchTab = function(tab) {
-            document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
-            const target = document.getElementById(`tab-${tab}`);
-            if (target) target.style.display = 'block';
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            const activeBtn = document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`);
-            if (activeBtn) activeBtn.classList.add('active');
-        };
+        // Mouse move handler
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Update cursor dot immediately
+            cursorDot.style.left = (mouseX - 4) + 'px';
+            cursorDot.style.top = (mouseY - 4) + 'px';
+            cursorDot.style.opacity = '1';
+        });
 
-        // Lead
-        function requireLead() {
-            if (!leadData) {
-                new bootstrap.Modal(document.getElementById('leadModal')).show();
-                return false;
-            }
-            return true;
-        }
-        window.submitLead = function(e) {
-            e.preventDefault();
-            leadData = {
-                name: document.getElementById('leadName').value.trim(),
-                email: document.getElementById('leadEmail').value.trim(),
-                phone: document.getElementById('leadPhone').value.trim(),
-                timestamp: new Date().toISOString()
-            };
-            localStorage.setItem(LEAD_KEY, JSON.stringify(leadData));
-            bootstrap.Modal.getInstance(document.getElementById('leadModal')).hide();
-            if (pendingGeneration) { pendingGeneration(); pendingGeneration = null; }
-        };
-
-        // History
-        function getHistory(tool) { return JSON.parse(localStorage.getItem(HIST_PREFIX + tool) || '[]'); }
-        function addHistory(tool, entry) {
-            const hist = getHistory(tool); hist.unshift(entry);
-            if (hist.length > 20) hist.pop();
-            localStorage.setItem(HIST_PREFIX + tool, JSON.stringify(hist));
-            renderHistory(tool);
-        }
-        function renderHistory(tool) {
-            const container = document.getElementById(`${tool}History`);
-            if (!container) return;
-            const hist = getHistory(tool);
-            if (!hist.length) {
-                container.innerHTML = `<p class="text-muted small">No ${tool}s yet.</p>`;
-                return;
-            }
-            container.innerHTML = hist.map(item => {
-                if (item.dataUrl) return `<div class="history-item"><img src="${item.dataUrl}" alt="${tool}"><div><small class="text-white">${item.prompt.substring(0,30)}...</small></div></div>`;
-                else return `<div class="history-item"><i class="bi bi-chat-quote fs-4 text-gradient"></i><div><small class="text-white">${item.prompt.substring(0,40)}...</small><br><small class="text-muted">${item.result.substring(0,50)}...</small></div></div>`;
-            }).join('');
+        // Smooth animation for glow
+        function animateGlow() {
+            // Smooth follow with easing
+            currentX += (mouseX - currentX) * 0.1;
+            currentY += (mouseY - currentY) * 0.1;
+            
+            cursorGlow.style.left = (currentX - 200) + 'px';
+            cursorGlow.style.top = (currentY - 200) + 'px';
+            cursorGlow.style.opacity = '1';
+            
+            requestAnimationFrame(animateGlow);
         }
 
-        // API helpers
-        async function fetchImageUrl(prompt, w=512, h=512) { return `${IMG_API}${encodeURIComponent(prompt)}?width=${w}&height=${h}&nologo=true`; }
-        async function fetchText(prompt) {
-            const res = await fetch(`${TEXT_API}${encodeURIComponent(prompt)}`);
-            if (!res.ok) throw new Error('Text generation failed');
-            return await res.text();
-        }
+        animateGlow();
 
-        // ====================== AI GENERATORS ======================
-        window.generateLogo = async function() {
-            if (!requireLead()) { pendingGeneration = generateLogo; return; }
-            const name = document.getElementById('logoBusinessName').value.trim();
-            if (!name) return alert('Enter business name');
-            const industry = document.getElementById('logoIndustry').value, style = document.getElementById('logoStyle').value, colors = document.getElementById('logoColors').value;
-            let prompt = `Logo for "${name}"`;
-            if (industry) prompt += ` in ${industry} industry`;
-            if (style) prompt += `, ${style} style`;
-            if (colors) prompt += `, colors: ${colors}`;
-            prompt += ', professional, high-quality, vector design, on dark background';
-            document.getElementById('logoPreview').innerHTML = '<div class="spinner-border text-danger"></div>';
-            document.getElementById('downloadLogoBtn').style.display = 'none';
-            try {
-                const url = await fetchImageUrl(prompt, 512, 512);
-                const img = new Image();
-                img.onload = () => {
-                    document.getElementById('logoPreview').innerHTML = `<img src="${url}" alt="Logo">`;
-                    document.getElementById('downloadLogoBtn').style.display = 'inline-block';
-                    addHistory('logo', { prompt, dataUrl: url });
-                };
-                img.onerror = () => document.getElementById('logoPreview').innerHTML = '<p class="text-danger">Image load failed.</p>';
-                img.src = url;
-            } catch(e) { document.getElementById('logoPreview').innerHTML = '<p class="text-danger">Generation error.</p>'; }
-        };
+        // Mouse leave/enter handlers
+        document.addEventListener('mouseleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorGlow.style.opacity = '0';
+        });
 
-        window.generateImage = async function() {
-            if (!requireLead()) { pendingGeneration = generateImage; return; }
-            const prompt = document.getElementById('imagePrompt').value.trim();
-            if (!prompt) return alert('Enter description');
-            const w = document.getElementById('imageWidth').value || 512, h = document.getElementById('imageHeight').value || 512;
-            document.getElementById('imagePreview').innerHTML = '<div class="spinner-border text-danger"></div>';
-            document.getElementById('downloadImageBtn').style.display = 'none';
-            try {
-                const url = await fetchImageUrl(prompt, w, h);
-                const img = new Image();
-                img.onload = () => {
-                    document.getElementById('imagePreview').innerHTML = `<img src="${url}" alt="Image">`;
-                    document.getElementById('downloadImageBtn').style.display = 'inline-block';
-                    addHistory('image', { prompt, dataUrl: url });
-                };
-                img.onerror = () => document.getElementById('imagePreview').innerHTML = '<p class="text-danger">Image load failed.</p>';
-                img.src = url;
-            } catch(e) { document.getElementById('imagePreview').innerHTML = '<p class="text-danger">Generation error.</p>'; }
-        };
+        document.addEventListener('mouseenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorGlow.style.opacity = '1';
+        });
 
-        window.generateCaption = async function() {
-            if (!requireLead()) { pendingGeneration = generateCaption; return; }
-            const business = document.getElementById('captionBusinessType').value.trim();
-            if (!business) return alert('Enter business type');
-            const platform = document.getElementById('captionPlatform').value, tone = document.getElementById('captionTone').value;
-            const prompt = `Write a ${tone} social media caption for a ${business} business, suitable for ${platform}. Include emojis and a call to action. Keep under 150 words.`;
-            document.getElementById('captionPreview').innerHTML = '<div class="spinner-border text-danger"></div>';
-            document.getElementById('copyCaptionBtn').style.display = 'none';
-            try {
-                const text = await fetchText(prompt);
-                document.getElementById('captionPreview').innerHTML = `<p style="white-space:pre-wrap; color:#fff;">${text}</p>`;
-                document.getElementById('copyCaptionBtn').style.display = 'inline-block';
-                addHistory('caption', { prompt: business, result: text });
-            } catch(e) { document.getElementById('captionPreview').innerHTML = '<p class="text-danger">Generation failed.</p>'; }
-        };
-
-        window.generateHashtags = async function() {
-            if (!requireLead()) { pendingGeneration = generateHashtags; return; }
-            const keywords = document.getElementById('hashtagKeywords').value.trim();
-            if (!keywords) return alert('Enter keywords');
-            const prompt = `Generate 20 relevant, high-engagement hashtags for: ${keywords}. Return as space-separated list with #.`;
-            document.getElementById('hashtagPreview').innerHTML = '<div class="spinner-border text-danger"></div>';
-            document.getElementById('copyHashtagBtn').style.display = 'none';
-            try {
-                const text = await fetchText(prompt);
-                document.getElementById('hashtagPreview').innerHTML = `<p style="white-space:pre-wrap; color:#fff;">${text}</p>`;
-                document.getElementById('copyHashtagBtn').style.display = 'inline-block';
-                addHistory('hashtag', { prompt: keywords, result: text });
-            } catch(e) { document.getElementById('hashtagPreview').innerHTML = '<p class="text-danger">Generation failed.</p>'; }
-        };
-
-        // Download / Copy
-        window.downloadResult = async function(tool) {
-            const img = document.querySelector(`#${tool}Preview img`);
-            if (!img) return;
-            const blob = await fetch(img.src).then(r => r.blob());
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = `samcreatives-${tool}-${Date.now()}.png`;
-            a.click(); URL.revokeObjectURL(url);
-        };
-        window.copyToClipboard = function(tool) {
-            const text = document.getElementById(`${tool}Preview`).innerText;
-            navigator.clipboard.writeText(text).then(() => alert('Copied!')).catch(() => alert('Failed to copy'));
-        };
-
-        // Calculator
-        window.appendCalc = function(v) {
-            const d = document.getElementById('calcDisplay');
-            if (d.value === '0' && v !== '.') d.value = '';
-            d.value += v;
-        };
-        window.clearCalc = function() { document.getElementById('calcDisplay').value = '0'; };
-        window.calculateResult = function() {
-            const d = document.getElementById('calcDisplay');
-            try { d.value = eval(d.value.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-')); }
-            catch { d.value = 'Error'; }
-        };
-
-        // Currency
-        window.convertCurrency = async function() {
-            const amount = document.getElementById('currencyAmount').value;
-            const from = document.getElementById('fromCurrency').value, to = document.getElementById('toCurrency').value;
-            if (!amount) return;
-            try {
-                const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
-                const data = await res.json();
-                document.getElementById('currencyPreview').innerHTML = `<h5 class="text-white">${amount} ${from} = <strong class="text-gradient">${(amount * data.rates[to]).toFixed(2)} ${to}</strong></h5>`;
-            } catch(e) { alert('Failed to fetch exchange rates.'); }
-        };
-
-        // PDF Tools
-        window.convertTextToPDF = function() {
-            const text = document.getElementById('wordToPdfText').value;
-            if (!text) return alert('Enter text.');
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const lines = doc.splitTextToSize(text, 180);
-            doc.text(lines, 10, 10);
-            doc.save('samcreatives-text-to-pdf.pdf');
-        };
-
-        window.extractPDFText = async function() {
-            const file = document.getElementById('pdfFileInput').files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                const typedarray = new Uint8Array(e.target.result);
-                try {
-                    const pdf = await pdfjsLib.getDocument(typedarray).promise;
-                    let fullText = '';
-                    for (let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const content = await page.getTextContent();
-                        const strings = content.items.map(item => item.str);
-                        fullText += strings.join(' ') + '\n\n';
-                    }
-                    document.getElementById('pdfExtractedText').innerHTML = `<p style="white-space:pre-wrap; color:#fff;">${fullText}</p>`;
-                } catch(e) { alert('Failed to extract text.'); }
-            };
-            reader.readAsArrayBuffer(file);
-        };
-
-        window.compressPDF = async function() {
-            const file = document.getElementById('pdfCompressInput').files[0];
-            if (!file) return;
-            document.getElementById('compressStatus').innerHTML = '<div class="spinner-border text-danger"></div><p>Compressing...</p>';
-            try {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    if (i > 1) doc.addPage();
-                    const page = await pdf.getPage(i);
-                    const viewport = page.getViewport({ scale: 1 });
-                    const canvas = document.createElement('canvas');
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    const ctx = canvas.getContext('2d');
-                    await page.render({ canvasContext: ctx, viewport }).promise;
-                    const imgData = canvas.toDataURL('image/jpeg', 0.5);
-                    doc.addImage(imgData, 'JPEG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
-                }
-                doc.save('compressed.pdf');
-                document.getElementById('compressStatus').innerHTML = '<p class="text-success">PDF compressed and downloaded.</p>';
-            } catch(e) { document.getElementById('compressStatus').innerHTML = '<p class="text-danger">Compression failed.</p>'; }
-        };
-
-        window.convertImageToPDF = function() {
-            const file = document.getElementById('imageToPdfInput').files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF();
-                    const width = doc.internal.pageSize.getWidth();
-                    const height = (img.height * width) / img.width;
-                    doc.addImage(img, 'JPEG', 0, 0, width, height);
-                    doc.save('image-to-pdf.pdf');
-                    document.getElementById('imageToPdfPreview').innerHTML = '<p class="text-success">PDF downloaded.</p>';
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        };
-
-        window.combineImagesToPDF = function() {
-            const files = document.getElementById('combineImagesInput').files;
-            if (files.length === 0) return;
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            let loaded = 0;
-            Array.from(files).forEach((file, index) => {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = new Image();
-                    img.onload = function() {
-                        if (index > 0) doc.addPage();
-                        const width = doc.internal.pageSize.getWidth();
-                        const height = (img.height * width) / img.width;
-                        doc.addImage(img, 'JPEG', 0, 0, width, height);
-                        loaded++;
-                        if (loaded === files.length) {
-                            doc.save('combined-images.pdf');
-                            document.getElementById('combineImagesPreview').innerHTML = '<p class="text-success">Combined PDF downloaded.</p>';
-                        }
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+        // Hover effect on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursorDot.classList.add('hovering');
+                cursorGlow.classList.add('hovering');
             });
-        };
+            
+            element.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('hovering');
+                cursorGlow.classList.remove('hovering');
+            });
+        });
 
-        // Initialize histories
-        ['logo','image','caption','hashtag'].forEach(t => renderHistory(t));
+        // Dynamic hover detection for all elements
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target;
+            if (
+                target.tagName === 'A' ||
+                target.tagName === 'BUTTON' ||
+                target.tagName === 'INPUT' ||
+                target.tagName === 'TEXTAREA' ||
+                target.closest('a') ||
+                target.closest('button') ||
+                target.closest('input') ||
+                target.closest('textarea')
+            ) {
+                cursorDot.classList.add('hovering');
+                cursorGlow.classList.add('hovering');
+            } else {
+                cursorDot.classList.remove('hovering');
+                cursorGlow.classList.remove('hovering');
+            }
+        });
     </script>
 </body>
 </html>
