@@ -3,513 +3,562 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAM Creatives AI - Premium AI Image Generator</title>
+    <title>SAM Creatives | AI Creative Suite - Free AI Tools</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #020617;
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* ============ CURSOR GLOW EFFECTS ============ */
+        :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; }
+        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
+        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         
-        /* Cursor Container */
-        .cursor-glow-container {
-            position: fixed;
-            pointer-events: none;
-            z-index: 99999;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Large Soft Glow */
-        .cursor-glow-large {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, 
-                rgba(239, 68, 68, 0.15) 0%, 
-                rgba(239, 68, 68, 0.08) 30%, 
-                rgba(239, 68, 68, 0.03) 60%, 
-                transparent 70%
-            );
-            filter: blur(40px);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
-        }
-
-        /* Medium Glow */
-        .cursor-glow-medium {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, 
-                rgba(239, 68, 68, 0.2) 0%, 
-                rgba(239, 68, 68, 0.1) 40%, 
-                transparent 70%
-            );
-            filter: blur(30px);
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-
-        /* Small Glow */
-        .cursor-glow-small {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: radial-gradient(circle, 
-                rgba(239, 68, 68, 0.3) 0%, 
-                rgba(239, 68, 68, 0.15) 50%, 
-                transparent 70%
-            );
-            filter: blur(20px);
-            transform: translate(-50%, -50%);
-            transition: width 0.2s ease, height 0.2s ease;
-        }
-
-        /* Core Glow */
-        .cursor-glow-core {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: radial-gradient(circle, 
-                rgba(239, 68, 68, 0.5) 0%, 
-                rgba(239, 68, 68, 0.2) 50%, 
-                transparent 70%
-            );
-            filter: blur(10px);
-            transform: translate(-50%, -50%);
-            transition: width 0.15s ease, height 0.15s ease;
-        }
-
-        /* Cursor Dot */
-        .cursor-dot {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: #ef4444;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 100000;
-            mix-blend-mode: difference;
-            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-        }
-
-        /* Hover States */
-        .cursor-glow-container.hovering .cursor-glow-large {
-            width: 500px;
-            height: 500px;
-        }
-
-        .cursor-glow-container.hovering .cursor-glow-medium {
-            width: 300px;
-            height: 300px;
-        }
-
-        .cursor-glow-container.hovering .cursor-glow-small {
-            width: 150px;
-            height: 150px;
-        }
-
-        .cursor-glow-container.hovering .cursor-glow-core {
-            width: 50px;
-            height: 50px;
-        }
-
-        .cursor-dot.hovering {
-            width: 20px;
-            height: 20px;
-            background: rgba(239, 68, 68, 0.5);
-            mix-blend-mode: normal;
-        }
-
-        /* Particles */
-        .cursor-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ef4444;
-            border-radius: 50%;
-            animation: particleFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes particleFloat {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.3;
-            }
-            25% {
-                transform: translate(20px, -30px) scale(1.5);
-                opacity: 0.6;
-            }
-            50% {
-                transform: translate(-10px, -60px) scale(1);
-                opacity: 0.3;
-            }
-            75% {
-                transform: translate(-25px, -30px) scale(1.5);
-                opacity: 0.6;
-            }
-        }
-
-        /* ============ PAGE STYLING ============ */
+        /* Navbar */
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; z-index:1000; }
+        .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
+        .navbar-brand .logo-icon { height:42px; width:auto; }
+        .navbar-brand .brand-text { display:flex; flex-direction:column; line-height:1.2; }
+        .navbar-brand .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; }
+        .navbar-brand .brand-name .sam { font-weight:800; color:#D90429; }
+        .navbar-brand .brand-name .creatives { font-weight:300; color:#888; }
+        .navbar-brand .brand-tagline { font-size:0.7rem; color:#666; letter-spacing:1px; text-transform:uppercase; }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
+        .nav-link:hover, .nav-link.active { color:#D90429 !important; }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s;
-            cursor: none;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: none;
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.3);
-        }
-
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 72px;
-            font-weight: bold;
-            background: linear-gradient(to right, #fff, #fecaca, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 24px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #94a3b8;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        .search-box {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 8px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .search-box input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 16px;
-            padding: 12px 16px;
-            outline: none;
-            cursor: none;
-        }
-
-        .search-box input::placeholder {
-            color: #64748b;
-        }
-
-        .search-box button {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: none;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .search-box button:hover {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-        }
-
-        .features {
-            padding: 80px 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .feature-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 32px;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(239, 68, 68, 0.5);
-            transform: translateY(-4px);
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(239, 68, 68, 0.2);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            font-size: 24px;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: #94a3b8;
-            line-height: 1.6;
-        }
-
-        a, button, input, textarea {
-            cursor: none;
-        }
+        .btn-primary-red { background:#D90429; border:2px solid #D90429; color:#fff; font-weight:600; padding:12px 28px; border-radius:50px; transition:0.3s; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem; }
+        .btn-primary-red:hover { background:transparent; color:#D90429; transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.3); }
+        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; font-weight:600; padding:12px 28px; border-radius:50px; transition:0.3s; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem; }
+        .btn-outline-white:hover { background:#fff; color:#000; transform:translateY(-3px); }
+        
+        /* Hero */
+        .page-hero { background:linear-gradient(135deg, #1a0000, #0a0a0a); padding:80px 0 60px; text-align:center; border-bottom:2px solid #D90429; }
+        
+        /* Tool Cards */
+        .tool-card { background:#1a1a1a; border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:30px; text-align:center; transition:0.3s; height:100%; cursor:pointer; }
+        .tool-card:hover { transform:translateY(-8px); border-color:#D90429; box-shadow:0 20px 40px rgba(217,4,41,0.2); }
+        .tool-icon { font-size:3rem; margin-bottom:15px; }
+        .tool-badge { background:rgba(217,4,41,0.2); color:#D90429; padding:4px 12px; border-radius:50px; font-size:0.7rem; font-weight:600; display:inline-block; margin-bottom:10px; }
+        
+        /* AI Copywriter Tool */
+        .copywriter-section { background:linear-gradient(135deg, #0a0a0a, #1a0000); padding:60px 0; }
+        .form-control, .form-select { background:#111; border:1px solid #333; color:#fff; padding:12px 16px; border-radius:12px; }
+        .form-control:focus, .form-select:focus { background:#111; border-color:#D90429; box-shadow:0 0 0 3px rgba(217,4,41,0.2); color:#fff; }
+        .form-label { color:#aaa; font-size:0.85rem; font-weight:500; margin-bottom:6px; }
+        .output-box { background:#111; border:1px solid #333; border-radius:16px; padding:24px; min-height:200px; white-space:pre-wrap; font-size:0.9rem; line-height:1.8; }
+        .tab-btn { background:transparent; border:1px solid #333; color:#aaa; padding:8px 16px; border-radius:50px; font-size:0.8rem; margin:3px; transition:0.3s; }
+        .tab-btn.active { background:#D90429; border-color:#D90429; color:#fff; }
+        .tab-btn:hover { border-color:#D90429; color:#fff; }
+        .copy-btn { background:#D90429; border:none; color:#fff; padding:8px 20px; border-radius:50px; font-size:0.8rem; cursor:pointer; transition:0.3s; }
+        .copy-btn:hover { background:#b50322; }
+        .hash-tag { display:inline-block; background:rgba(217,4,41,0.15); color:#D90429; padding:4px 10px; border-radius:50px; font-size:0.75rem; margin:3px; }
+        
+        footer { background:#050505; border-top:1px solid #222; }
+        footer .text-muted, footer a.text-muted { color:#aaa !important; }
+        
+        @media (max-width:768px) { body { padding-top:70px; } }
     </style>
 </head>
 <body>
-    <!-- Cursor Dot -->
-    <div class="cursor-dot" id="cursorDot"></div>
 
-    <!-- Cursor Glow Container -->
-    <div class="cursor-glow-container" id="cursorGlow">
-        <div class="cursor-glow-large"></div>
-        <div class="cursor-glow-medium"></div>
-        <div class="cursor-glow-small"></div>
-        <div class="cursor-glow-core"></div>
-        
-        <!-- Particles -->
-        <div class="cursor-particle" style="left: 100px; top: 80px; animation-delay: 0s;"></div>
-        <div class="cursor-particle" style="left: 200px; top: 120px; animation-delay: 0.3s;"></div>
-        <div class="cursor-particle" style="left: 150px; top: 200px; animation-delay: 0.6s;"></div>
-        <div class="cursor-particle" style="left: 250px; top: 150px; animation-delay: 0.9s;"></div>
-        <div class="cursor-particle" style="left: 180px; top: 250px; animation-delay: 1.2s;"></div>
-        <div class="cursor-particle" style="left: 220px; top: 180px; animation-delay: 1.5s;"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <div class="logo-icon">S</div>
-                    SAM Creatives AI
-                </div>
-                <div class="nav-links">
-                    <a href="#">Features</a>
-                    <a href="#">Pricing</a>
-                    <a href="#">Blog</a>
-                    <a href="#" class="btn-primary">Get Started</a>
-                </div>
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
+                <span class="brand-text">
+                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
+                    <span class="brand-tagline">Design. Market. Grow.</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="ai-tools.html">AI Tools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero -->
+    <section class="page-hero">
         <div class="container">
-            <h1>Create Amazing AI Images In Seconds</h1>
-            <p>Transform simple text into stunning artwork, realistic photos, social media graphics, logos, and marketing creatives using advanced AI technology.</p>
-            
-            <div class="search-box">
-                <input type="text" placeholder="Describe your image... e.g., A futuristic cyberpunk city at night with neon lights">
-                <button>
-                    <span>✨</span>
-                    Generate Free Images
-                </button>
+            <h1 class="display-4 fw-bold mb-3">🤖 AI <span class="text-gradient">Creative Suite</span></h1>
+            <p class="lead text-light mb-4">Free AI-powered tools to supercharge your marketing, content, and creativity.</p>
+            <a href="#copywriter" class="btn btn-primary-red btn-lg">🚀 Try AI Copywriter</a>
+        </div>
+    </section>
+
+    <!-- AI Tools Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="tool-card" onclick="scrollToTool('copywriter')">
+                        <div class="tool-icon">✍️</div>
+                        <span class="tool-badge">Most Popular</span>
+                        <h5>AI Caption Generator</h5>
+                        <p class="text-muted small">High-converting social media captions in seconds</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tool-card" onclick="scrollToTool('hashtag')">
+                        <div class="tool-icon">#️⃣</div>
+                        <span class="tool-badge">New</span>
+                        <h5>Hashtag Generator</h5>
+                        <p class="text-muted small">Trending hashtags for maximum reach</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tool-card" onclick="scrollToTool('hook')">
+                        <div class="tool-icon">🪝</div>
+                        <span class="tool-badge">Powerful</span>
+                        <h5>Hook Generator</h5>
+                        <p class="text-muted small">Attention-grabbing hooks that stop the scroll</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="container">
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🎨</div>
-                <h3>AI Text-to-Image</h3>
-                <p>Transform your ideas into stunning visuals with advanced AI technology.</p>
+    <!-- ═══════════ AI SOCIAL MEDIA COPYWRITER TOOL ═══════════ -->
+    <section id="copywriter" class="copywriter-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">✍️ AI <span class="text-gradient">Caption Generator</span></h2>
+                <p class="text-light">Generate high-converting captions, hooks, hashtags & more — instantly.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">✨</div>
-                <h3>Multiple Styles</h3>
-                <p>Choose from 12+ artistic styles including realistic, anime, cyberpunk, and more.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💎</div>
-                <h3>HD Quality</h3>
-                <p>Generate high-resolution images up to 1536x1536 pixels with premium quality.</p>
+
+            <div class="row g-4">
+                <!-- Input Panel -->
+                <div class="col-lg-5">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body p-4">
+                            <h5 class="text-gradient mb-4"><i class="bi bi-sliders me-2"></i>Configure Your Copy</h5>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">📱 Platform</label>
+                                <select class="form-select" id="platform">
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="LinkedIn">LinkedIn</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="Twitter">Twitter / X</option>
+                                    <option value="TikTok">TikTok</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">🏢 Business Type</label>
+                                <input type="text" class="form-control" id="businessType" placeholder="e.g., Digital Marketing Agency, Restaurant, E-commerce" value="Digital Marketing Agency">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">🎯 Target Audience</label>
+                                <input type="text" class="form-control" id="targetAudience" placeholder="e.g., Business owners, Startups, Entrepreneurs" value="Business owners, startups, entrepreneurs">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">🗣️ Tone of Voice</label>
+                                <select class="form-select" id="tone">
+                                    <option value="Bold & Professional">Bold & Professional</option>
+                                    <option value="Casual & Friendly">Casual & Friendly</option>
+                                    <option value="Inspirational">Inspirational</option>
+                                    <option value="Humorous">Humorous</option>
+                                    <option value="Luxury">Luxury / Premium</option>
+                                    <option value="Urgent">Urgent / FOMO</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">🎯 Goal</label>
+                                <select class="form-select" id="goal">
+                                    <option value="Lead Generation">Lead Generation</option>
+                                    <option value="Brand Awareness">Brand Awareness</option>
+                                    <option value="Sales / Conversion">Sales / Conversion</option>
+                                    <option value="Engagement">Engagement (Likes, Comments)</option>
+                                    <option value="Traffic">Website Traffic</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">📝 Post Description / Key Points</label>
+                                <textarea class="form-control" id="postDescription" rows="4" placeholder="Describe what you want to promote... e.g., AI-powered marketing that boosts sales & rankings. 250+ projects done, 50K+ leads generated.">AI-powered marketing that boosts sales & rankings. 250+ projects done, 50K+ leads generated, #1 Google rankings for clients.</textarea>
+                            </div>
+
+                            <button class="btn btn-primary-red w-100 btn-lg" onclick="generateCopy()">
+                                <i class="bi bi-stars me-2"></i>Generate AI Copy ✨
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Output Panel -->
+                <div class="col-lg-7">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="text-gradient mb-0"><i class="bi bi-magic me-2"></i>Generated Copy</h5>
+                                <button class="copy-btn" onclick="copyOutput()"><i class="bi bi-clipboard me-1"></i> Copy All</button>
+                            </div>
+
+                            <!-- Output Tabs -->
+                            <div class="mb-3" id="outputTabs">
+                                <button class="tab-btn active" onclick="switchTab('captions')">📝 Captions</button>
+                                <button class="tab-btn" onclick="switchTab('hooks')">🪝 Hooks</button>
+                                <button class="tab-btn" onclick="switchTab('cta')">📢 CTAs</button>
+                                <button class="tab-btn" onclick="switchTab('hashtags')">#️⃣ Hashtags</button>
+                                <button class="tab-btn" onclick="switchTab('emoji')">😀 Emoji Version</button>
+                                <button class="tab-btn" onclick="switchTab('professional')">💼 Professional</button>
+                            </div>
+
+                            <!-- Output Content -->
+                            <div class="output-box" id="outputContent">
+                                <p class="text-muted text-center" style="padding:40px 0;">
+                                    <i class="bi bi-arrow-left" style="font-size:2rem;"></i><br>
+                                    Configure your settings and click <strong>"Generate AI Copy"</strong><br>to see magic happen! ✨
+                                </p>
+                            </div>
+
+                            <!-- Hashtag Display -->
+                            <div class="mt-3" id="hashtagDisplay" style="display:none;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Hashtag Generator Mini Tool -->
+    <section id="hashtag" class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold">#️⃣ Quick <span class="text-gradient">Hashtag Generator</span></h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-body p-4 text-center">
+                            <input type="text" class="form-control mb-3" id="hashtagKeyword" placeholder="Enter keyword (e.g., marketing, fashion, food)">
+                            <button class="btn btn-primary-red" onclick="generateHashtags()">Generate Hashtags</button>
+                            <div class="mt-3" id="quickHashtags"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hook Generator Mini Tool -->
+    <section id="hook" class="py-5 bg-dark">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold">🪝 Instant <span class="text-gradient">Hook Generator</span></h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-body p-4 text-center">
+                            <input type="text" class="form-control mb-3" id="hookTopic" placeholder="Enter topic (e.g., business growth, SEO, sales)">
+                            <button class="btn btn-primary-red" onclick="generateHooks()">Generate Hooks</button>
+                            <div class="mt-3 text-start" id="quickHooks"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="small text-muted mb-0">© 2026 SAM Creatives. All Rights Reserved. | Design. Market. Grow.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Cursor Elements
-        const cursorDot = document.getElementById('cursorDot');
-        const cursorGlow = document.getElementById('cursorGlow');
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let currentX = 0;
-        let currentY = 0;
+        AOS.init({ duration: 800, once: true });
 
-        // Mouse move handler
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Update cursor dot immediately
-            cursorDot.style.left = (mouseX - 4) + 'px';
-            cursorDot.style.top = (mouseY - 4) + 'px';
-            cursorDot.style.opacity = '1';
-        });
-
-        // Smooth animation for glow
-        function animateGlow() {
-            // Smooth follow with easing
-            currentX += (mouseX - currentX) * 0.1;
-            currentY += (mouseY - currentY) * 0.1;
-            
-            cursorGlow.style.left = (currentX - 200) + 'px';
-            cursorGlow.style.top = (currentY - 200) + 'px';
-            cursorGlow.style.opacity = '1';
-            
-            requestAnimationFrame(animateGlow);
+        // Scroll to tool
+        function scrollToTool(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        animateGlow();
+        // Tab Switching
+        let currentTab = 'captions';
+        let generatedData = {};
 
-        // Mouse leave/enter handlers
-        document.addEventListener('mouseleave', () => {
-            cursorDot.style.opacity = '0';
-            cursorGlow.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursorDot.style.opacity = '1';
-            cursorGlow.style.opacity = '1';
-        });
-
-        // Hover effect on interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, input, textarea');
-        
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursorDot.classList.add('hovering');
-                cursorGlow.classList.add('hovering');
-            });
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
             
-            element.addEventListener('mouseleave', () => {
-                cursorDot.classList.remove('hovering');
-                cursorGlow.classList.remove('hovering');
-            });
-        });
-
-        // Dynamic hover detection for all elements
-        document.addEventListener('mouseover', (e) => {
-            const target = e.target;
-            if (
-                target.tagName === 'A' ||
-                target.tagName === 'BUTTON' ||
-                target.tagName === 'INPUT' ||
-                target.tagName === 'TEXTAREA' ||
-                target.closest('a') ||
-                target.closest('button') ||
-                target.closest('input') ||
-                target.closest('textarea')
-            ) {
-                cursorDot.classList.add('hovering');
-                cursorGlow.classList.add('hovering');
-            } else {
-                cursorDot.classList.remove('hovering');
-                cursorGlow.classList.remove('hovering');
+            if (generatedData[tab]) {
+                displayOutput(generatedData[tab], tab);
             }
+        }
+
+        function displayOutput(content, type) {
+            const outputDiv = document.getElementById('outputContent');
+            const hashtagDiv = document.getElementById('hashtagDisplay');
+            hashtagDiv.style.display = 'none';
+            
+            if (type === 'hashtags' && Array.isArray(content)) {
+                outputDiv.innerHTML = '<h6 class="text-gradient mb-3">🏷️ Recommended Hashtags</h6>';
+                outputDiv.innerHTML += content.map((h, i) => 
+                    `<span class="hash-tag">#${h.replace(/#/g, '')}</span>`
+                ).join(' ');
+            } else {
+                outputDiv.innerHTML = content;
+            }
+        }
+
+        // Main AI Copy Generator
+        function generateCopy() {
+            const platform = document.getElementById('platform').value;
+            const business = document.getElementById('businessType').value;
+            const audience = document.getElementById('targetAudience').value;
+            const tone = document.getElementById('tone').value;
+            const goal = document.getElementById('goal').value;
+            const description = document.getElementById('postDescription').value;
+
+            if (!business || !description) {
+                alert('Please fill in Business Type and Post Description at minimum.');
+                return;
+            }
+
+            // Generate Captions
+            const captions = generateCaptions(platform, business, audience, tone, goal, description);
+            const hooks = generateHooksList(tone, goal, business);
+            const ctas = generateCTAs(goal, platform);
+            const hashtags = generateHashtagList(business, platform, goal);
+            const emojiVersion = generateEmojiVersion(platform, business, tone, description);
+            const professionalVersion = generateProfessionalVersion(platform, business, goal, description);
+
+            // Store all data
+            generatedData = {
+                captions: captions,
+                hooks: hooks,
+                cta: ctas,
+                hashtags: hashtags,
+                emoji: emojiVersion,
+                professional: professionalVersion
+            };
+
+            // Display current tab
+            displayOutput(generatedData[currentTab], currentTab);
+            
+            // Scroll to output
+            document.getElementById('outputContent').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function generateCaptions(platform, business, audience, tone, goal, description) {
+            const isBold = tone.includes('Bold') || tone.includes('Professional');
+            
+            let html = '';
+            
+            // Caption 1 - Problem Solver
+            html += `<div class="mb-4 pb-3 border-bottom border-secondary">
+                <span class="tool-badge mb-2">Caption 1: The Problem-Solver</span>
+                <p style="line-height:2;">
+                <strong>${isBold ? 'Stop guessing. Start growing.' : 'Ready to level up?'} 🚀</strong><br><br>
+                Tired of marketing that doesn't convert? ${business} is here to change that.<br><br>
+                We help ${audience} achieve <strong>real, measurable growth</strong> through proven strategies and AI-powered tools.<br><br>
+                ${description}<br><br>
+                Your success story starts now. 👇<br><br>
+                <em>📞 Call: 0335 0231718 | 🔗 Link in bio</em>
+                </p>
+            </div>`;
+
+            // Caption 2 - Authority Builder
+            html += `<div class="mb-4 pb-3 border-bottom border-secondary">
+                <span class="tool-badge mb-2">Caption 2: The Authority Builder</span>
+                <p style="line-height:2;">
+                <strong>Most businesses don't fail — they stay invisible.</strong><br><br>
+                You have the product. You have the passion. But ${audience} needs to know you exist.<br><br>
+                That's where <strong>${business}</strong> comes in. We build your entire digital presence from the ground up.<br><br>
+                ${description}<br><br>
+                Drop a 🔥 if you're ready to dominate your market.
+                </p>
+            </div>`;
+
+            // Caption 3 - Social Proof
+            html += `<div class="mb-4">
+                <span class="tool-badge mb-2">Caption 3: The Social Proof Magnet</span>
+                <p style="line-height:2;">
+                <strong>Real results. Real growth. No fluff.</strong><br><br>
+                ${description}<br><br>
+                Our clients don't just get services — they get <strong>transformations</strong>.<br><br>
+                Your ${goal.toLowerCase()} journey starts with one click.<br><br>
+                <em>💬 DM us "GROW" to start your free consultation.</em>
+                </p>
+            </div>`;
+
+            return html;
+        }
+
+        function generateHooksList(tone, goal, business) {
+            const hooks = [
+                `"Stop guessing. Start growing."`,
+                `"Your business isn't failing — it's invisible."`,
+                `"Most marketing agencies talk. ${business} delivers."`,
+                `"What if your next customer came from Google today?"`,
+                `"The secret to ${goal}? It's simpler than you think."`,
+                `"Warning: Reading this may cause business growth."`,
+                `"Nobody: ... Me: Here's how to 10x your reach 👇"`
+            ];
+            
+            let html = '<h6 class="text-gradient mb-3">🪝 Powerful Hooks</h6><ol class="text-light">';
+            hooks.forEach(h => html += `<li class="mb-2">${h}</li>`);
+            html += '</ol>';
+            return html;
+        }
+
+        function generateCTAs(goal, platform) {
+            const allCTAs = [
+                '🚀 Free consultation — Link in bio',
+                '💬 DM us "GROW" to start',
+                '📞 Call now: 0335 0231718',
+                '🔗 Comment "STRATEGY" for a free audit',
+                '👇 Tap the link to get started',
+                '📩 Save this for later',
+                '⚡ Limited slots available — Act now'
+            ];
+            
+            let html = '<h6 class="text-gradient mb-3">📢 Call-to-Action Options</h6><ul class="text-light">';
+            allCTAs.forEach(cta => html += `<li class="mb-2">${cta}</li>`);
+            html += '</ul>';
+            return html;
+        }
+
+        function generateHashtagList(business, platform, goal) {
+            const baseTags = [
+                'DigitalMarketing', 'Marketing', 'BusinessGrowth', 'Entrepreneur',
+                'SocialMedia', 'Branding', 'MarketingStrategy', 'SmallBusiness',
+                'SEO', 'ContentMarketing', 'LeadGeneration', 'GrowthHacking',
+                'MarketingTips', 'OnlineMarketing', 'BusinessOwner',
+                'MarketingAgency', 'DigitalStrategy', 'BrandBuilding',
+                'MarketingDigital', 'SocialMediaMarketing', 'Marketing101',
+                'BusinessTips', 'Success', 'Motivation', 'MarketingExpert'
+            ];
+            
+            // Add platform-specific tags
+            const platformTags = {
+                'Instagram': ['InstagramMarketing', 'InstaGrowth', 'ReelsInstagram'],
+                'LinkedIn': ['LinkedInTips', 'B2BMarketing', 'LinkedInGrowth'],
+                'Facebook': ['FacebookAds', 'FacebookMarketing', 'MetaAds'],
+                'Twitter': ['TwitterMarketing', 'XGrowth', 'TweetTips'],
+                'TikTok': ['TikTokMarketing', 'TikTokGrowth', 'ViralVideo']
+            };
+            
+            let tags = [...baseTags];
+            if (platformTags[platform]) {
+                tags = [...platformTags[platform], ...tags];
+            }
+            
+            return tags.slice(0, 20);
+        }
+
+        function generateEmojiVersion(platform, business, tone, description) {
+            return `<p style="line-height:2.2;">
+            <strong>Stop guessing. Start growing. 🚀🎯</strong><br><br>
+            Your biz deserves BETTER 👇<br><br>
+            ✅ Proven strategies that work<br>
+            ✅ Real results, real fast 📈<br>
+            ✅ Trusted by 100+ businesses 💪<br><br>
+            <strong>${business}</strong> = AI power + human creativity 🔥<br><br>
+            ${description.split('.')[0]} ✨<br><br>
+            Ready to scale? 🚀<br>
+            👉 FREE consultation — LINK IN BIO<br><br>
+            Drop a 🔥 if you're serious about growth!<br><br>
+            <em>📞 0335 0231718</em>
+            </p>`;
+        }
+
+        function generateProfessionalVersion(platform, business, goal, description) {
+            return `<div style="line-height:2;">
+            <h6 class="text-gradient">Transform Your Digital Presence with ${business}</h6><br>
+            <p>In today's competitive digital landscape, visibility is everything.</p>
+            <p>${business} delivers comprehensive digital solutions engineered for <strong>${goal}</strong>.</p><br>
+            <h6 class="text-white">Our Approach:</h6>
+            <ul>
+                <li>📊 Data-Driven Strategy Development</li>
+                <li>🎯 Performance-Based Campaign Management</li>
+                <li>📱 Multi-Platform Content Optimization</li>
+                <li>📈 Transparent Reporting & Analytics</li>
+            </ul><br>
+            <p>${description}</p><br>
+            <p><strong>Schedule your complimentary strategy session:</strong></p>
+            <p>📞 0335 0231718<br>
+            📧 sam.creatives2010@gmail.com<br>
+            🌐 www.samcreatives.com</p><br>
+            <p><em>${business} — Design. Market. Grow.</em></p>
+            </div>`;
+        }
+
+        function copyOutput() {
+            const outputDiv = document.getElementById('outputContent');
+            const text = outputDiv.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Copied to clipboard!');
+            });
+        }
+
+        // Quick Hashtag Generator
+        function generateHashtags() {
+            const keyword = document.getElementById('hashtagKeyword').value.trim();
+            if (!keyword) { alert('Please enter a keyword'); return; }
+            
+            const tags = [
+                keyword.replace(/\s/g, ''),
+                keyword.replace(/\s/g, '') + 'Marketing',
+                keyword.replace(/\s/g, '') + 'Tips',
+                keyword.replace(/\s/g, '') + 'Growth',
+                'Digital' + keyword.replace(/\s/g, ''),
+                keyword.replace(/\s/g, '') + 'Strategy',
+                keyword.replace(/\s/g, '') + 'Expert',
+                keyword.replace(/\s/g, '') + '2026',
+                'Best' + keyword.replace(/\s/g, ''),
+                keyword.replace(/\s/g, '') + 'Success'
+            ];
+            
+            const div = document.getElementById('quickHashtags');
+            div.innerHTML = tags.map(t => `<span class="hash-tag">#${t}</span>`).join(' ');
+        }
+
+        // Quick Hook Generator
+        function generateHooks() {
+            const topic = document.getElementById('hookTopic').value.trim();
+            if (!topic) { alert('Please enter a topic'); return; }
+            
+            const hooks = [
+                `"Stop struggling with ${topic}. Here's the fix."`,
+                `"Most people get ${topic} wrong. Are you?"`,
+                `"The ${topic} secret nobody talks about 👇"`,
+                `"What if I told you ${topic} could be easy?"`,
+                `"3 ${topic} mistakes costing you money 💸"`,
+                `"How we mastered ${topic} in 30 days"`,
+                `"Warning: This ${topic} tip changes everything"`
+            ];
+            
+            const div = document.getElementById('quickHooks');
+            div.innerHTML = '<ul class="text-light">' + hooks.map(h => `<li class="mb-2">${h}</li>`).join('') + '</ul>';
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
     </script>
 </body>
