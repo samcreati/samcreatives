@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Free Keyword Research Tool - Find high-value keywords for SEO and content marketing.">
+    <meta name="keywords" content="keyword research, SEO keywords, keyword generator, content keywords">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    
+    <title>Keyword Research Tool | SAM Creatives AI</title>
+    
+    <style>
+        :root { --primary: #D90429; --dark: #0a0a0a; --card: #1a1a1a; --border: rgba(255,255,255,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:var(--dark); color:#e0e0e0; padding-top:80px; min-height:100vh; }
+        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
+        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:12px 0; position:fixed; top:0; width:100%; z-index:1000; }
+        .navbar-brand { font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem; color:#fff !important; text-decoration:none; }
+        .navbar-brand span { color:var(--primary); }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
+        .nav-link:hover, .nav-link.active { color:var(--primary) !important; }
+        .nav-item.dropdown .dropdown-menu { background:#1a1a1a !important; border:1px solid var(--border) !important; border-radius:15px !important; padding:10px !important; min-width:250px !important; }
+        .nav-item.dropdown .dropdown-item { color:#e0e0e0 !important; padding:10px 15px !important; border-radius:8px !important; font-size:0.9rem !important; }
+        .nav-item.dropdown .dropdown-item:hover { background:rgba(217,4,41,0.2) !important; color:var(--primary) !important; }
+        
+        .tool-container { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:50px 40px; max-width:900px; margin:30px auto; }
+        .tool-icon { font-size:4rem; text-align:center; margin-bottom:20px; animation:bounce 2s infinite; }
+        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+        
+        .input-group-custom { display:flex; gap:10px; margin:25px 0; flex-wrap:wrap; }
+        .keyword-input { flex:1; min-width:250px; padding:16px 20px; border-radius:50px; border:2px solid var(--border); background:var(--dark); color:#fff; font-size:1rem; outline:none; transition:0.3s; }
+        .keyword-input:focus { border-color:var(--primary); box-shadow:0 0 20px rgba(217,4,41,0.2); }
+        .btn-generate { background:var(--primary); border:none; color:#fff; padding:16px 35px; border-radius:50px; font-weight:600; cursor:pointer; transition:0.3s; font-size:1rem; white-space:nowrap; }
+        .btn-generate:hover { background:#b50322; transform:translateY(-2px); box-shadow:0 10px 25px rgba(217,4,41,0.3); }
+        
+        .loading-spinner { display:none; text-align:center; margin:20px 0; }
+        .loading-spinner.show { display:block; }
+        .spinner-border { color:var(--primary) !important; width:3rem; height:3rem; }
+        
+        .results-box { display:none; margin-top:25px; }
+        .results-box.show { display:block; animation:fadeIn 0.5s; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+        
+        .stats-bar { display:flex; gap:15px; justify-content:center; margin-bottom:25px; flex-wrap:wrap; }
+        .stat-item { background:var(--dark); border:1px solid var(--border); border-radius:12px; padding:15px 25px; text-align:center; }
+        .stat-number { font-size:1.5rem; font-weight:800; color:var(--primary); }
+        .stat-label { font-size:0.75rem; color:#888; }
+        
+        .keyword-row { display:flex; justify-content:space-between; align-items:center; padding:15px 20px; border-bottom:1px solid var(--border); transition:0.3s; cursor:pointer; }
+        .keyword-row:hover { background:rgba(217,4,41,0.05); }
+        .keyword-row:last-child { border-bottom:none; }
+        
+        .keyword-text { font-weight:500; color:#fff; font-size:0.95rem; }
+        .keyword-metrics { display:flex; gap:15px; align-items:center; }
+        
+        .volume-badge { font-size:0.8rem; color:#888; }
+        .difficulty-badge { padding:5px 12px; border-radius:50px; font-size:0.7rem; font-weight:600; }
+        .difficulty-low { background:rgba(0,255,0,0.1); color:#00ff00; }
+        .difficulty-medium { background:rgba(255,255,0,0.1); color:#ffff00; }
+        .difficulty-high { background:rgba(255,0,0,0.1); color:#ff4444; }
+        
+        .keyword-table { background:var(--dark); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+        .table-header { background:rgba(217,4,41,0.1); padding:15px 20px; font-weight:600; color:var(--primary); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; }
+        
+        .btn-copy { background:var(--primary); border:none; color:#fff; padding:12px 25px; border-radius:50px; font-weight:600; cursor:pointer; transition:0.3s; }
+        .btn-copy:hover { background:#b50322; }
+        
+        .filter-tabs { display:flex; gap:10px; justify-content:center; margin:20px 0; flex-wrap:wrap; }
+        .filter-tab { padding:10px 20px; border-radius:50px; border:1px solid var(--border); background:transparent; color:#ccc; cursor:pointer; transition:0.3s; font-size:0.8rem; }
+        .filter-tab:hover, .filter-tab.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+        
+        footer { background:#050505; border-top:1px solid #222; padding:30px 0; margin-top:50px; }
+        footer a { color:#aaa; text-decoration:none; }
+        footer a:hover { color:var(--primary); }
+        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
+        .btn-outline-white:hover { background:#fff; color:#000; }
+        
+        @media (max-width:768px) {
+            .tool-container { padding:30px 20px; }
+            .keyword-metrics { flex-direction:column; gap:5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><span>SAM</span> Creatives AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">🤖 AI Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="youtube-downloader.html">🎥 YouTube Downloader</a></li>
+                            <li><a class="dropdown-item" href="hashtag-generator.html">#️⃣ Hashtag Generator</a></li>
+                            <li><a class="dropdown-item" href="background-remover.html">🖼️ Background Remover</a></li>
+                            <li><a class="dropdown-item" href="social-post-generator.html">📝 Social Post Generator</a></li>
+                            <li><a class="dropdown-item" href="keyword-research.html">🔍 Keyword Research</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-2"><a href="../contact.html" class="btn btn-outline-white btn-sm">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Tool -->
+    <section class="container">
+        <div class="tool-container">
+            <div class="tool-icon">🔍</div>
+            <h1 class="text-center mb-2">Keyword <span class="text-gradient">Research Tool</span></h1>
+            <p class="text-center text-muted mb-4">Find high-value keywords for SEO and content marketing</p>
+            
+            <div class="input-group-custom">
+                <input type="text" class="keyword-input" id="keywordInput" placeholder="Enter seed keyword... (e.g., digital marketing)" />
+                <button class="btn-generate" onclick="generateKeywords()">
+                    <i class="bi bi-search me-2"></i>Find Keywords
+                </button>
+            </div>
+            
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border" role="status"></div>
+                <p class="mt-3 text-muted">Researching keywords...</p>
+            </div>
+            
+            <div class="results-box" id="resultsBox">
+                <!-- Stats -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalKeywords">0</div>
+                        <div class="stat-label">Total Keywords</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="lowDifficulty">0</div>
+                        <div class="stat-label">Low Difficulty</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="highVolume">0</div>
+                        <div class="stat-label">High Volume</div>
+                    </div>
+                </div>
+                
+                <!-- Filter Tabs -->
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterKeywords('all', this)">All Keywords</button>
+                    <button class="filter-tab" onclick="filterKeywords('low', this)">Low Difficulty</button>
+                    <button class="filter-tab" onclick="filterKeywords('medium', this)">Medium Difficulty</button>
+                    <button class="filter-tab" onclick="filterKeywords('high', this)">High Volume</button>
+                </div>
+                
+                <!-- Keywords Table -->
+                <div class="keyword-table">
+                    <div class="table-header">
+                        <div class="row">
+                            <div class="col-6">Keyword</div>
+                            <div class="col-3 text-center">Volume</div>
+                            <div class="col-3 text-center">Difficulty</div>
+                        </div>
+                    </div>
+                    <div id="keywordsList"></div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn-copy" onclick="copyAllKeywords()">
+                        <i class="bi bi-clipboard me-2"></i>Copy All Keywords
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2"><strong style="color:#fff;"><span style="color:#D90429;">SAM</span> Creatives AI</strong></p>
+            <p class="small text-muted mb-0">© 2026 SAM Creatives. All Rights Reserved.</p>
+            <div class="mt-3">
+                <a href="../terms.html" class="me-3 small">Terms</a>
+                <a href="../privacypolicy.html" class="me-3 small">Privacy</a>
+                <a href="../payment-guarantee.html" class="small">Payment Guarantee</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let allKeywords = [];
+        let currentFilter = 'all';
+
+        function generateKeywords() {
+            const seed = document.getElementById('keywordInput').value.trim().toLowerCase();
+            
+            if (!seed) {
+                alert('⚠️ Please enter a keyword first!');
+                return;
+            }
+            
+            document.getElementById('loadingSpinner').classList.add('show');
+            document.getElementById('resultsBox').classList.remove('show');
+            
+            setTimeout(() => {
+                allKeywords = [];
+                
+                const modifiers = [
+                    'best', 'top', 'guide', 'tips', 'strategies', 'tools',
+                    'how to', 'what is', 'why', 'benefits', 'examples',
+                    'for beginners', 'tutorial', 'review', 'comparison',
+                    'vs', 'alternatives', 'services', 'courses', 'certification',
+                    'ideas', 'checklist', 'template', 'software', 'apps',
+                    'agency', 'company', 'consultant', 'expert', 'services',
+                    'solutions', 'platform', 'website', 'blog', 'course'
+                ];
+                
+                const longTailModifiers = [
+                    'for small business', 'for beginners', 'step by step',
+                    'that actually work', 'for 2026', 'without experience',
+                    'on a budget', 'for startups', 'for professionals',
+                    'complete guide', 'ultimate guide', 'free tools',
+                    'best practices', 'common mistakes', 'success stories',
+                    'for ecommerce', 'for local business', 'for B2B',
+                    'for freelancers', 'for agencies'
+                ];
+                
+                const questionModifiers = [
+                    'how', 'what', 'why', 'when', 'where', 'which', 'who'
+                ];
+                
+                // Basic keywords
+                addKeyword(seed, 'High', 'Medium');
+                addKeyword(`best ${seed}`, 'High', 'High');
+                addKeyword(`${seed} tools`, 'Medium', 'Low');
+                addKeyword(`how to ${seed}`, 'High', 'Medium');
+                addKeyword(`${seed} services`, 'Medium', 'Low');
+                addKeyword(`${seed} agency`, 'Medium', 'Medium');
+                
+                // Modifier keywords
+                modifiers.forEach(mod => {
+                    const volume = ['best', 'top', 'guide', 'how to', 'what is'].includes(mod) ? 'High' : 'Medium';
+                    const difficulty = mod.length > 8 ? 'Low' : 'Medium';
+                    addKeyword(`${mod} ${seed}`, volume, difficulty);
+                });
+                
+                // Long tail keywords
+                longTailModifiers.forEach(mod => {
+                    addKeyword(`${seed} ${mod}`, 'Low', 'Low');
+                });
+                
+                // Question keywords
+                questionModifiers.forEach(q => {
+                    addKeyword(`${q} ${seed}`, 'Medium', 'Medium');
+                });
+                
+                renderKeywords(allKeywords);
+                updateStats();
+                
+                document.getElementById('loadingSpinner').classList.remove('show');
+                document.getElementById('resultsBox').classList.add('show');
+                document.getElementById('resultsBox').scrollIntoView({ behavior: 'smooth' });
+            }, 1200);
+        }
+
+        function addKeyword(keyword, volume, difficulty) {
+            if (!allKeywords.find(k => k.keyword === keyword)) {
+                allKeywords.push({ keyword, volume, difficulty });
+            }
+        }
+
+        function renderKeywords(keywords) {
+            const container = document.getElementById('keywordsList');
+            container.innerHTML = '';
+            
+            keywords.forEach(kw => {
+                const row = document.createElement('div');
+                row.className = 'keyword-row';
+                
+                const difficultyClass = kw.difficulty === 'Low' ? 'difficulty-low' : kw.difficulty === 'Medium' ? 'difficulty-medium' : 'difficulty-high';
+                
+                row.innerHTML = `
+                    <div class="row align-items-center w-100">
+                        <div class="col-6">
+                            <div class="keyword-text">${kw.keyword}</div>
+                        </div>
+                        <div class="col-3 text-center">
+                            <span class="volume-badge">📊 ${kw.volume}</span>
+                        </div>
+                        <div class="col-3 text-center">
+                            <span class="difficulty-badge ${difficultyClass}">${kw.difficulty}</span>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(row);
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('totalKeywords').textContent = allKeywords.length;
+            document.getElementById('lowDifficulty').textContent = allKeywords.filter(k => k.difficulty === 'Low').length;
+            document.getElementById('highVolume').textContent = allKeywords.filter(k => k.volume === 'High').length;
+        }
+
+        function filterKeywords(filter, btn) {
+            currentFilter = filter;
+            
+            document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            let filtered = [];
+            
+            switch(filter) {
+                case 'all':
+                    filtered = allKeywords;
+                    break;
+                case 'low':
+                    filtered = allKeywords.filter(k => k.difficulty === 'Low');
+                    break;
+                case 'medium':
+                    filtered = allKeywords.filter(k => k.difficulty === 'Medium');
+                    break;
+                case 'high':
+                    filtered = allKeywords.filter(k => k.volume === 'High');
+                    break;
+            }
+            
+            renderKeywords(filtered);
+        }
+
+        function copyAllKeywords() {
+            const keywordsToCopy = allKeywords.map(k => k.keyword).join('\n');
+            
+            navigator.clipboard.writeText(keywordsToCopy).then(() => {
+                alert(`✅ ${allKeywords.length} keywords copied to clipboard!`);
+            }).catch(() => {
+                const textarea = document.createElement('textarea');
+                textarea.value = keywordsToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('✅ Keywords copied!');
+            });
+        }
+
+        // Enter key support
+        document.getElementById('keywordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') generateKeywords();
+        });
+    </script>
+</body>
+</html>
