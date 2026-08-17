@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Free Instagram Hashtag Generator - Generate trending hashtags for maximum reach and engagement.">
+    <meta name="keywords" content="hashtag generator, Instagram hashtags, trending hashtags, social media hashtags">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    
+    <title>Instagram Hashtag Generator | SAM Creatives AI</title>
+    
+    <style>
+        :root { --primary: #D90429; --dark: #0a0a0a; --card: #1a1a1a; --border: rgba(255,255,255,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:var(--dark); color:#e0e0e0; padding-top:80px; min-height:100vh; }
+        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
+        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:12px 0; position:fixed; top:0; width:100%; z-index:1000; }
+        .navbar-brand { font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem; color:#fff !important; text-decoration:none; }
+        .navbar-brand span { color:var(--primary); }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
+        .nav-link:hover, .nav-link.active { color:var(--primary) !important; }
+        .nav-item.dropdown .dropdown-menu { background:#1a1a1a !important; border:1px solid var(--border) !important; border-radius:15px !important; padding:10px !important; min-width:250px !important; }
+        .nav-item.dropdown .dropdown-item { color:#e0e0e0 !important; padding:10px 15px !important; border-radius:8px !important; font-size:0.9rem !important; }
+        .nav-item.dropdown .dropdown-item:hover { background:rgba(217,4,41,0.2) !important; color:var(--primary) !important; }
+        
+        .tool-container { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:50px 40px; max-width:850px; margin:30px auto; }
+        .tool-icon { font-size:4rem; text-align:center; margin-bottom:20px; animation:bounce 2s infinite; }
+        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+        
+        .input-group-custom { display:flex; gap:10px; margin:25px 0; flex-wrap:wrap; }
+        .keyword-input { flex:1; min-width:250px; padding:16px 20px; border-radius:50px; border:2px solid var(--border); background:var(--dark); color:#fff; font-size:1rem; outline:none; transition:0.3s; }
+        .keyword-input:focus { border-color:var(--primary); box-shadow:0 0 20px rgba(217,4,41,0.2); }
+        .btn-generate { background:var(--primary); border:none; color:#fff; padding:16px 35px; border-radius:50px; font-weight:600; cursor:pointer; transition:0.3s; font-size:1rem; white-space:nowrap; }
+        .btn-generate:hover { background:#b50322; transform:translateY(-2px); box-shadow:0 10px 25px rgba(217,4,41,0.3); }
+        
+        .category-section { margin:30px 0; }
+        .category-title { font-weight:600; color:#fff; margin-bottom:12px; font-size:1.1rem; }
+        .category-tags { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:20px; }
+        .category-btn { padding:10px 20px; border-radius:50px; border:1px solid var(--border); background:transparent; color:#ccc; cursor:pointer; transition:0.3s; font-size:0.85rem; }
+        .category-btn:hover, .category-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+        
+        .loading-spinner { display:none; text-align:center; margin:20px 0; }
+        .loading-spinner.show { display:block; }
+        .spinner-border { color:var(--primary) !important; }
+        
+        .results-box { display:none; margin-top:25px; }
+        .results-box.show { display:block; animation:fadeIn 0.5s; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+        
+        .hashtag-group { margin-bottom:25px; background:var(--dark); border:1px solid var(--border); border-radius:16px; padding:20px; }
+        .hashtag-group-title { font-weight:600; color:var(--primary); margin-bottom:12px; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.5px; }
+        
+        .hashtags-container { display:flex; flex-wrap:wrap; gap:8px; }
+        .hashtag { padding:10px 16px; border-radius:50px; background:rgba(217,4,41,0.1); color:var(--primary); font-size:0.85rem; cursor:pointer; transition:0.3s; border:1px solid rgba(217,4,41,0.2); user-select:none; }
+        .hashtag:hover { background:rgba(217,4,41,0.2); transform:scale(1.05); }
+        .hashtag.selected { background:var(--primary); color:#fff; border-color:var(--primary); }
+        
+        .copy-section { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+        .copy-box { flex:1; min-width:250px; padding:15px; border-radius:12px; border:1px solid var(--border); background:var(--dark); color:#fff; font-size:0.85rem; resize:none; height:80px; }
+        .btn-copy { background:var(--primary); border:none; color:#fff; padding:12px 25px; border-radius:50px; font-weight:600; cursor:pointer; transition:0.3s; white-space:nowrap; }
+        .btn-copy:hover { background:#b50322; }
+        
+        .stats-bar { display:flex; gap:20px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+        .stat-item { background:var(--dark); border:1px solid var(--border); border-radius:12px; padding:15px 25px; text-align:center; }
+        .stat-number { font-size:1.5rem; font-weight:800; color:var(--primary); }
+        .stat-label { font-size:0.75rem; color:#888; }
+        
+        footer { background:#050505; border-top:1px solid #222; padding:30px 0; margin-top:50px; }
+        footer a { color:#aaa; text-decoration:none; }
+        footer a:hover { color:var(--primary); }
+        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
+        .btn-outline-white:hover { background:#fff; color:#000; }
+        
+        @media (max-width:768px) {
+            .tool-container { padding:30px 20px; }
+            .input-group-custom { flex-direction:column; }
+            .keyword-input { min-width:100%; }
+            .btn-generate { width:100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><span>SAM</span> Creatives AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">🤖 AI Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="youtube-downloader.html">🎥 YouTube Downloader</a></li>
+                            <li><a class="dropdown-item" href="hashtag-generator.html">#️⃣ Hashtag Generator</a></li>
+                            <li><a class="dropdown-item" href="background-remover.html">🖼️ Background Remover</a></li>
+                            <li><a class="dropdown-item" href="social-post-generator.html">📝 Social Post Generator</a></li>
+                            <li><a class="dropdown-item" href="keyword-research.html">🔍 Keyword Research</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-2"><a href="../contact.html" class="btn btn-outline-white btn-sm">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Tool -->
+    <section class="container">
+        <div class="tool-container">
+            <div class="tool-icon">#️⃣</div>
+            <h1 class="text-center mb-2">Instagram <span class="text-gradient">Hashtag Generator</span></h1>
+            <p class="text-center text-muted mb-4">Generate trending hashtags for maximum reach and engagement</p>
+            
+            <!-- Quick Categories -->
+            <div class="category-section">
+                <div class="category-title text-center">Quick Categories:</div>
+                <div class="category-tags" id="categoryTags">
+                    <button class="category-btn" onclick="setCategory('photography')">📸 Photography</button>
+                    <button class="category-btn" onclick="setCategory('food')">🍔 Food</button>
+                    <button class="category-btn" onclick="setCategory('travel')">✈️ Travel</button>
+                    <button class="category-btn" onclick="setCategory('fashion')">👗 Fashion</button>
+                    <button class="category-btn" onclick="setCategory('fitness')">💪 Fitness</button>
+                    <button class="category-btn" onclick="setCategory('business')">💼 Business</button>
+                    <button class="category-btn" onclick="setCategory('tech')">💻 Technology</button>
+                </div>
+            </div>
+            
+            <!-- Input -->
+            <div class="input-group-custom">
+                <input type="text" class="keyword-input" id="keywordInput" placeholder="Enter keyword... (e.g., digital marketing)" />
+                <button class="btn-generate" onclick="generateHashtags()">
+                    <i class="bi bi-magic me-2"></i>Generate
+                </button>
+            </div>
+            
+            <!-- Loading -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border" role="status"></div>
+                <p class="mt-3 text-muted">Generating hashtags...</p>
+            </div>
+            
+            <!-- Results -->
+            <div class="results-box" id="resultsBox">
+                <!-- Stats -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalCount">0</div>
+                        <div class="stat-label">Total Hashtags</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="selectedCount">0</div>
+                        <div class="stat-label">Selected</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30</div>
+                        <div class="stat-label">Max Recommended</div>
+                    </div>
+                </div>
+                
+                <!-- Hashtag Groups -->
+                <div id="hashtagGroups"></div>
+                
+                <!-- Copy Section -->
+                <div class="copy-section">
+                    <textarea class="copy-box" id="copyBox" readonly placeholder="Select hashtags to copy..."></textarea>
+                    <button class="btn-copy" onclick="copySelected()">
+                        <i class="bi bi-clipboard me-2"></i>Copy All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2"><strong style="color:#fff;"><span style="color:#D90429;">SAM</span> Creatives AI</strong></p>
+            <p class="small text-muted mb-0">© 2026 SAM Creatives. All Rights Reserved.</p>
+            <div class="mt-3">
+                <a href="../terms.html" class="me-3 small">Terms</a>
+                <a href="../privacypolicy.html" class="me-3 small">Privacy</a>
+                <a href="../payment-guarantee.html" class="small">Payment Guarantee</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const hashtagDatabase = {
+            general: ['instagood','instagram','instadaily','love','photooftheday','beautiful','fashion','happy','follow','picoftheday','like4like','art','style','life','viral','trending','explore','explorepage'],
+            photography: ['photography','photographer','photo','camera','canon','nikon','photoshoot','portrait','landscape','naturephotography','streetphotography','bnw','photographylovers','shutterbug','capture','visual','lens','exposure'],
+            food: ['food','foodie','foodporn','instafood','yummy','delicious','foodstagram','homemade','cooking','baking','foodphotography','foodlover','tasty','foodblogger','eat','chef','recipe','foodgasm'],
+            travel: ['travel','travelgram','wanderlust','adventure','explore','vacation','trip','travelphotography','world','journey','discover','traveling','nature','beautifuldestinations','travelblogger','globetrotter','passport','destination'],
+            fashion: ['fashion','style','ootd','fashionista','outfit','shopping','streetstyle','fashionblogger','stylish','lookbook','trendy','model','styleinspiration','fashionable','whatiwore','fashiongram','designer','clothing'],
+            fitness: ['fitness','gym','workout','fitfam','fitnessmotivation','bodybuilding','health','healthy','exercise','training','muscle','cardio','fit','gymlife','strong','fitnessjourney','noexcuses','active'],
+            business: ['business','entrepreneur','success','motivation','money','marketing','startup','hustle','goals','businessowner','digitalmarketing','branding','leadership','growth','successful','mindset','wealth','investment'],
+            tech: ['technology','tech','innovation','gadgets','future','ai','software','coding','developer','programming','cybersecurity','digital','startup','engineering','science','robotics','machinelearning','data']
+        };
+
+        let allHashtags = [];
+        let selectedHashtags = new Set();
+        let currentCategory = '';
+
+        function setCategory(category) {
+            currentCategory = category;
+            document.getElementById('keywordInput').value = category;
+            
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function generateHashtags() {
+            const keyword = document.getElementById('keywordInput').value.trim().toLowerCase();
+            
+            if (!keyword) {
+                alert('⚠️ Please enter a keyword first!');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loadingSpinner').classList.add('show');
+            document.getElementById('resultsBox').classList.remove('show');
+            
+            setTimeout(() => {
+                allHashtags = [];
+                selectedHashtags.clear();
+                
+                // Generate keyword variations
+                const keywordNoSpace = keyword.replace(/\s+/g, '');
+                const variations = [
+                    keywordNoSpace,
+                    keywordNoSpace + 'life',
+                    keywordNoSpace + 'love',
+                    keywordNoSpace + 'daily',
+                    keywordNoSpace + 'community',
+                    keywordNoSpace + 'world',
+                    keywordNoSpace + 'style',
+                    keywordNoSpace + 'addict'
+                ];
+                
+                // Add variations
+                variations.forEach(v => {
+                    if (!allHashtags.includes(v)) allHashtags.push(v);
+                });
+                
+                // Add category hashtags
+                const categoryTags = hashtagDatabase[currentCategory] || hashtagDatabase.general;
+                categoryTags.forEach(tag => {
+                    if (!allHashtags.includes(tag)) allHashtags.push(tag);
+                });
+                
+                // Add general hashtags
+                hashtagDatabase.general.forEach(tag => {
+                    if (!allHashtags.includes(tag)) allHashtags.push(tag);
+                });
+                
+                renderHashtags();
+                
+                document.getElementById('loadingSpinner').classList.remove('show');
+                document.getElementById('resultsBox').classList.add('show');
+                document.getElementById('resultsBox').scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        }
+
+        function renderHashtags() {
+            const container = document.getElementById('hashtagGroups');
+            container.innerHTML = '';
+            
+            // Group hashtags
+            const groups = {
+                'Keyword Based': allHashtags.filter(t => t.includes(document.getElementById('keywordInput').value.replace(/\s+/g, '').toLowerCase())),
+                'Trending': allHashtags.filter(t => ['viral','trending','explore','instagood','instagram','love','photooftheday','beautiful','fashion','happy','follow','picoftheday','like4like','art','style','life'].includes(t)),
+                'All Hashtags': allHashtags
+            };
+            
+            for (let groupName in groups) {
+                if (groups[groupName].length === 0) continue;
+                
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'hashtag-group';
+                
+                const title = document.createElement('div');
+                title.className = 'hashtag-group-title';
+                title.textContent = groupName + ' (' + groups[groupName].length + ')';
+                
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'hashtags-container';
+                
+                groups[groupName].forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'hashtag';
+                    span.textContent = '#' + tag;
+                    span.onclick = function() {
+                        this.classList.toggle('selected');
+                        if (this.classList.contains('selected')) {
+                            selectedHashtags.add(tag);
+                        } else {
+                            selectedHashtags.delete(tag);
+                        }
+                        updateCopyBox();
+                    };
+                    tagsDiv.appendChild(span);
+                });
+                
+                groupDiv.appendChild(title);
+                groupDiv.appendChild(tagsDiv);
+                container.appendChild(groupDiv);
+            }
+            
+            updateStats();
+            updateCopyBox();
+        }
+
+        function updateStats() {
+            document.getElementById('totalCount').textContent = allHashtags.length;
+            document.getElementById('selectedCount').textContent = selectedHashtags.size;
+        }
+
+        function updateCopyBox() {
+            const hashtagsToShow = selectedHashtags.size > 0 ? 
+                Array.from(selectedHashtags) : 
+                allHashtags.slice(0, 30);
+            
+            const text = hashtagsToShow.map(t => '#' + t).join(' ');
+            document.getElementById('copyBox').value = text;
+            updateStats();
+        }
+
+        function copySelected() {
+            const copyBox = document.getElementById('copyBox');
+            
+            if (!copyBox.value) {
+                alert('⚠️ No hashtags to copy!');
+                return;
+            }
+            
+            copyBox.select();
+            document.execCommand('copy');
+            
+            // Also try clipboard API
+            navigator.clipboard.writeText(copyBox.value).then(() => {
+                alert('✅ ' + (selectedHashtags.size > 0 ? selectedHashtags.size : 30) + ' hashtags copied to clipboard!');
+            }).catch(() => {
+                alert('✅ Hashtags copied!');
+            });
+        }
+
+        // Enter key support
+        document.getElementById('keywordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') generateHashtags();
+        });
+    </script>
+</body>
+</html>
