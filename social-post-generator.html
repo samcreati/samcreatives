@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Free Social Media Post Generator - Generate engaging posts for Instagram, Facebook, LinkedIn, and Twitter.">
+    <meta name="keywords" content="social media post generator, Instagram captions, Facebook posts, LinkedIn posts, Twitter posts">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    
+    <title>Social Media Post Generator | SAM Creatives AI</title>
+    
+    <style>
+        :root { --primary: #D90429; --dark: #0a0a0a; --card: #1a1a1a; --border: rgba(255,255,255,0.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:var(--dark); color:#e0e0e0; padding-top:80px; min-height:100vh; }
+        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
+        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:12px 0; position:fixed; top:0; width:100%; z-index:1000; }
+        .navbar-brand { font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem; color:#fff !important; text-decoration:none; }
+        .navbar-brand span { color:var(--primary); }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
+        .nav-link:hover, .nav-link.active { color:var(--primary) !important; }
+        .nav-item.dropdown .dropdown-menu { background:#1a1a1a !important; border:1px solid var(--border) !important; border-radius:15px !important; padding:10px !important; min-width:250px !important; }
+        .nav-item.dropdown .dropdown-item { color:#e0e0e0 !important; padding:10px 15px !important; border-radius:8px !important; font-size:0.9rem !important; }
+        .nav-item.dropdown .dropdown-item:hover { background:rgba(217,4,41,0.2) !important; color:var(--primary) !important; }
+        
+        .tool-container { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:50px 40px; max-width:850px; margin:30px auto; }
+        .tool-icon { font-size:4rem; text-align:center; margin-bottom:20px; animation:bounce 2s infinite; }
+        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+        
+        .form-label { color:#fff; font-weight:500; margin-bottom:8px; font-size:0.9rem; }
+        .form-control, .form-select { background:var(--dark) !important; border:1px solid var(--border) !important; color:#fff !important; padding:14px 18px; border-radius:12px; font-size:0.95rem; }
+        .form-control:focus, .form-select:focus { border-color:var(--primary) !important; box-shadow:0 0 20px rgba(217,4,41,0.15) !important; }
+        .form-select option { background:var(--dark); color:#fff; }
+        
+        .btn-generate { background:var(--primary); border:none; color:#fff; padding:16px 40px; border-radius:50px; font-weight:600; cursor:pointer; transition:0.3s; font-size:1rem; width:100%; }
+        .btn-generate:hover { background:#b50322; transform:translateY(-2px); box-shadow:0 10px 25px rgba(217,4,41,0.3); }
+        
+        .platform-selector { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; justify-content:center; }
+        .platform-btn { padding:12px 22px; border-radius:50px; border:1px solid var(--border); background:transparent; color:#ccc; cursor:pointer; transition:0.3s; font-size:0.85rem; font-weight:500; }
+        .platform-btn:hover, .platform-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+        
+        .tone-selector { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; justify-content:center; }
+        .tone-btn { padding:10px 18px; border-radius:50px; border:1px solid var(--border); background:transparent; color:#ccc; cursor:pointer; transition:0.3s; font-size:0.8rem; }
+        .tone-btn:hover, .tone-btn.active { background:rgba(217,4,41,0.2); color:var(--primary); border-color:var(--primary); }
+        
+        .loading-spinner { display:none; text-align:center; margin:20px 0; }
+        .loading-spinner.show { display:block; }
+        .spinner-border { color:var(--primary) !important; width:3rem; height:3rem; }
+        
+        .results-box { display:none; margin-top:25px; }
+        .results-box.show { display:block; animation:fadeIn 0.5s; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+        
+        .result-card { background:var(--dark); border:1px solid var(--border); border-radius:16px; padding:25px; margin-bottom:15px; }
+        .result-platform { font-weight:600; color:var(--primary); margin-bottom:10px; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.5px; }
+        .result-text { white-space:pre-wrap; color:#e0e0e0; font-size:0.95rem; line-height:1.6; }
+        .btn-copy { background:transparent; border:1px solid var(--border); color:#ccc; padding:8px 16px; border-radius:50px; cursor:pointer; transition:0.3s; font-size:0.8rem; }
+        .btn-copy:hover { border-color:var(--primary); color:var(--primary); }
+        
+        footer { background:#050505; border-top:1px solid #222; padding:30px 0; margin-top:50px; }
+        footer a { color:#aaa; text-decoration:none; }
+        footer a:hover { color:var(--primary); }
+        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
+        .btn-outline-white:hover { background:#fff; color:#000; }
+        
+        @media (max-width:768px) {
+            .tool-container { padding:30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><span>SAM</span> Creatives AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">🤖 AI Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="youtube-downloader.html">🎥 YouTube Downloader</a></li>
+                            <li><a class="dropdown-item" href="hashtag-generator.html">#️⃣ Hashtag Generator</a></li>
+                            <li><a class="dropdown-item" href="background-remover.html">🖼️ Background Remover</a></li>
+                            <li><a class="dropdown-item" href="social-post-generator.html">📝 Social Post Generator</a></li>
+                            <li><a class="dropdown-item" href="keyword-research.html">🔍 Keyword Research</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-2"><a href="../contact.html" class="btn btn-outline-white btn-sm">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Tool -->
+    <section class="container">
+        <div class="tool-container">
+            <div class="tool-icon">📝</div>
+            <h1 class="text-center mb-2">Social Media <span class="text-gradient">Post Generator</span></h1>
+            <p class="text-center text-muted mb-4">Generate engaging posts for all social media platforms</p>
+            
+            <!-- Platform Selection -->
+            <div class="text-center mb-3"><strong class="text-white">Select Platform:</strong></div>
+            <div class="platform-selector">
+                <button class="platform-btn active" onclick="selectPlatform('instagram', this)">📸 Instagram</button>
+                <button class="platform-btn" onclick="selectPlatform('facebook', this)">👍 Facebook</button>
+                <button class="platform-btn" onclick="selectPlatform('linkedin', this)">💼 LinkedIn</button>
+                <button class="platform-btn" onclick="selectPlatform('twitter', this)">🐦 Twitter/X</button>
+                <button class="platform-btn" onclick="selectPlatform('tiktok', this)">🎵 TikTok</button>
+                <button class="platform-btn" onclick="selectPlatform('all', this)">🌟 All Platforms</button>
+            </div>
+            
+            <!-- Tone Selection -->
+            <div class="text-center mb-3"><strong class="text-white">Select Tone:</strong></div>
+            <div class="tone-selector">
+                <button class="tone-btn active" onclick="selectTone('professional', this)">💼 Professional</button>
+                <button class="tone-btn" onclick="selectTone('casual', this)">😊 Casual</button>
+                <button class="tone-btn" onclick="selectTone('funny', this)">😂 Funny</button>
+                <button class="tone-btn" onclick="selectTone('inspirational', this)">🌟 Inspirational</button>
+                <button class="tone-btn" onclick="selectTone('promotional', this)">🔥 Promotional</button>
+            </div>
+            
+            <!-- Input -->
+            <div class="mb-3">
+                <label class="form-label">Topic / Description *</label>
+                <textarea class="form-control" id="topicInput" rows="4" placeholder="Describe what you want to post about...&#10;Example: Our new digital marketing services for small businesses"></textarea>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Keywords (optional)</label>
+                    <input type="text" class="form-control" id="keywordsInput" placeholder="e.g., marketing, growth, business" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Target Audience (optional)</label>
+                    <input type="text" class="form-control" id="audienceInput" placeholder="e.g., small business owners" />
+                </div>
+            </div>
+            
+            <button class="btn-generate" onclick="generatePosts()">
+                <i class="bi bi-magic me-2"></i>Generate Posts
+            </button>
+            
+            <!-- Loading -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border" role="status"></div>
+                <p class="mt-3 text-muted">Generating engaging posts...</p>
+            </div>
+            
+            <!-- Results -->
+            <div class="results-box" id="resultsBox">
+                <div id="postsContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2"><strong style="color:#fff;"><span style="color:#D90429;">SAM</span> Creatives AI</strong></p>
+            <p class="small text-muted mb-0">© 2026 SAM Creatives. All Rights Reserved.</p>
+            <div class="mt-3">
+                <a href="../terms.html" class="me-3 small">Terms</a>
+                <a href="../privacypolicy.html" class="me-3 small">Privacy</a>
+                <a href="../payment-guarantee.html" class="small">Payment Guarantee</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let selectedPlatform = 'instagram';
+        let selectedTone = 'professional';
+
+        function selectPlatform(platform, btn) {
+            selectedPlatform = platform;
+            document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function selectTone(tone, btn) {
+            selectedTone = tone;
+            document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function generatePosts() {
+            const topic = document.getElementById('topicInput').value.trim();
+            
+            if (!topic) {
+                alert('⚠️ Please enter a topic first!');
+                return;
+            }
+            
+            const keywords = document.getElementById('keywordsInput').value.trim();
+            const audience = document.getElementById('audienceInput').value.trim();
+            const hashtags = generateHashtags(topic, keywords);
+            
+            // Show loading
+            document.getElementById('loadingSpinner').classList.add('show');
+            document.getElementById('resultsBox').classList.remove('show');
+            
+            setTimeout(() => {
+                let platforms = [];
+                
+                if (selectedPlatform === 'all') {
+                    platforms = ['instagram', 'facebook', 'linkedin', 'twitter', 'tiktok'];
+                } else {
+                    platforms = [selectedPlatform];
+                }
+                
+                const posts = platforms.map(platform => {
+                    return {
+                        platform: platform,
+                        text: generatePostForPlatform(platform, topic, keywords, audience, hashtags)
+                    };
+                });
+                
+                renderPosts(posts);
+                
+                document.getElementById('loadingSpinner').classList.remove('show');
+                document.getElementById('resultsBox').classList.add('show');
+                document.getElementById('resultsBox').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
+        }
+
+        function generatePostForPlatform(platform, topic, keywords, audience, hashtags) {
+            const tone = selectedTone;
+            const audienceText = audience ? ` for ${audience}` : '';
+            
+            const templates = {
+                instagram: {
+                    professional: `📊 ${topic}\n\nDiscover how we're transforming the game${audienceText}.\n\nKey highlights:\n✅ Proven strategies\n✅ Expert team\n✅ Measurable results\n\nDM us to learn more! 📩\n\n${hashtags.instagram}`,
+                    casual: `✨ ${topic}\n\nWe're so excited to share this with you all! 🎉\n\nDrop a ❤️ if you're as excited as we are!\n\n${hashtags.instagram}`,
+                    funny: `😂 ${topic}\n\nMe: I'll just post one thing today\nAlso me: *spends 3 hours perfecting this*\n\nTag someone who can relate! 👇\n\n${hashtags.instagram}`,
+                    inspirational: `🌟 ${topic}\n\nEvery big achievement starts with a single step. We're here to help you take that step${audienceText}.\n\nBelieve. Achieve. Succeed. 💪\n\n${hashtags.instagram}`,
+                    promotional: `🔥 ${topic}\n\nLIMITED TIME OFFER! Don't miss out!\n\nDM us now for exclusive deals 🎯\n\n${hashtags.instagram}`
+                },
+                facebook: {
+                    professional: `📢 ${topic}\n\nWe're excited to announce our latest updates${audienceText}!\n\nWhat you get:\n• Quality service\n• Expert support\n• Guaranteed results\n\nLike & Share if you find this helpful! 👍\n\n${hashtags.facebook}`,
+                    casual: `Hey everyone! 👋\n\n${topic}\n\nWe'd love to hear your thoughts! Drop a comment below 💬\n\n${hashtags.facebook}`,
+                    funny: `😅 ${topic}\n\nWhen you finally find the perfect solution...\n\nShare with someone who needs this today!\n\n${hashtags.facebook}`,
+                    inspirational: `✨ ${topic}\n\nRemember: Success is not final, failure is not fatal. It's the courage to continue that counts.\n\nStay motivated! 💪\n\n${hashtags.facebook}`,
+                    promotional: `🎉 ${topic}\n\nSpecial offer for our Facebook family!\n\nVisit our website for details 👇\n\n${hashtags.facebook}`
+                },
+                linkedin: {
+                    professional: `📈 ${topic}\n\nAfter extensive research and hands-on experience${audienceText ? ' working with ' + audience : ''}, I'm sharing key insights that can transform your approach.\n\nThree critical takeaways:\n1. Strategy alignment\n2. Consistent execution\n3. Measurable results\n\nWhat's your experience with this? Share below! 💬\n\n${hashtags.linkedin}`,
+                    casual: `Sharing something valuable today! 🌟\n\n${topic}\n\nGrateful for the journey and all the connections here. Let's grow together!\n\n${hashtags.linkedin}`,
+                    funny: `They said ${topic} would be easy...\n\nThey were wrong 😅\n\nBut seriously, persistence pays off. Keep pushing!\n\n${hashtags.linkedin}`,
+                    inspirational: `🌟 ${topic}\n\nSuccess isn't about perfection - it's about progress.\n\nEvery challenge is an opportunity to grow stronger${audienceText}.\n\nWhat's motivating you today?\n\n${hashtags.linkedin}`,
+                    promotional: `🚀 ${topic}\n\nWe're thrilled to share this exciting news!\n\nContact us to learn how we can help your business grow.\n\n${hashtags.linkedin}`
+                },
+                twitter: {
+                    professional: `📊 ${topic}\n\nKey insights:\n• Strategy matters\n• Consistency wins\n• Data drives decisions\n\n${hashtags.twitter}`,
+                    casual: `Just thinking about ${topic} 🤔\n\nRT if you agree! 🔁\n\n${hashtags.twitter}`,
+                    funny: `${topic} be like: 💀\n\nCan't make this stuff up 😂\n\n${hashtags.twitter}`,
+                    inspirational: `Your future self is watching. Make them proud. 💪\n\n${topic}\n\n${hashtags.twitter}`,
+                    promotional: `🔥 HOT: ${topic}\n\nLimited time! Don't wait ⏰\n\n${hashtags.twitter}`
+                },
+                tiktok: {
+                    professional: `📊 ${topic}\n\nPOV: You finally found the solution you've been looking for 🤯\n\nFollow for more! ✨\n\n${hashtags.tiktok}`,
+                    casual: `✨ ${topic}\n\nWait for it... 🤯\n\nLike & Follow for daily content!\n\n${hashtags.tiktok}`,
+                    funny: `😂 ${topic}\n\nNobody:\nMe: *does this*\n\n#fyp #viral\n\n${hashtags.tiktok}`,
+                    inspirational: `🌟 ${topic}\n\nWatch till the end for motivation 💪\n\n${hashtags.tiktok}`,
+                    promotional: `🔥 ${topic}\n\nDon't miss this! Link in bio 🎯\n\n${hashtags.tiktok}`
+                }
+            };
+            
+            return templates[platform][tone] || templates[platform].professional;
+        }
+
+        function generateHashtags(topic, keywords) {
+            const topicTag = topic.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(' ').slice(0, 3).join('');
+            const kwTags = keywords ? keywords.split(',').map(k => k.trim().replace(/\s+/g, '')).slice(0, 3) : [];
+            
+            const allTags = [topicTag, ...kwTags].filter(Boolean);
+            
+            return {
+                instagram: allTags.map(t => '#' + t).join(' ') + ' #instagram #instagood #viral #trending #explore',
+                facebook: allTags.map(t => '#' + t).join(' ') + ' #facebook #community #share',
+                linkedin: allTags.map(t => '#' + t).join(' ') + ' #leadership #business #growth #professional',
+                twitter: allTags.map(t => '#' + t).join(' ') + ' #trending #news',
+                tiktok: allTags.map(t => '#' + t).join(' ') + ' #fyp #viral #foryou #tiktok'
+            };
+        }
+
+        function renderPosts(posts) {
+            const container = document.getElementById('postsContainer');
+            container.innerHTML = '';
+            
+            posts.forEach((post, index) => {
+                const card = document.createElement('div');
+                card.className = 'result-card';
+                
+                const platformNames = {
+                    instagram: '📸 Instagram Post',
+                    facebook: '👍 Facebook Post',
+                    linkedin: '💼 LinkedIn Post',
+                    twitter: '🐦 Twitter/X Post',
+                    tiktok: '🎵 TikTok Post'
+                };
+                
+                card.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="result-platform">${platformNames[post.platform]}</div>
+                        <button class="btn-copy" onclick="copyPost(${index})">📋 Copy</button>
+                    </div>
+                    <div class="result-text" id="post-${index}">${post.text}</div>
+                `;
+                
+                container.appendChild(card);
+            });
+            
+            // Store posts for copy function
+            window.generatedPosts = posts;
+        }
+
+        function copyPost(index) {
+            const post = window.generatedPosts[index];
+            if (!post) return;
+            
+            navigator.clipboard.writeText(post.text).then(() => {
+                alert('✅ Post copied to clipboard!');
+            }).catch(() => {
+                const textarea = document.createElement('textarea');
+                textarea.value = post.text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('✅ Post copied!');
+            });
+        }
+    </script>
+</body>
+</html>
