@@ -31,7 +31,6 @@
         
         .watermark-logo { position:fixed; top:0; left:0; width:100%; height:100%; background-image:url('images/logo-icon.png'); background-repeat:no-repeat; background-position:center center; background-size:300px auto; opacity:0.03; pointer-events:none; z-index:0; }
         
-        /* Navbar */
         .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; z-index:1000; position:relative; }
         .navbar.scrolled { box-shadow:0 5px 30px rgba(0,0,0,0.5); }
         .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
@@ -44,7 +43,6 @@
         .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
         .nav-link:hover, .nav-link.active { color:#D90429 !important; }
         
-        /* AI Tools Dropdown */
         .nav-item.dropdown .dropdown-menu { background:#1a1a1a !important; border:1px solid rgba(255,255,255,0.1) !important; border-radius:15px !important; padding:10px !important; margin-top:10px !important; box-shadow:0 20px 40px rgba(0,0,0,0.5) !important; min-width:250px !important; }
         .nav-item.dropdown .dropdown-item { color:#e0e0e0 !important; padding:10px 15px !important; border-radius:8px !important; transition:0.3s !important; font-size:0.9rem !important; }
         .nav-item.dropdown .dropdown-item:hover { background:rgba(217,4,41,0.2) !important; color:#D90429 !important; transform:translateX(5px); }
@@ -59,7 +57,6 @@
         .btn-glow { animation:glow 2s ease-in-out infinite alternate; }
         @keyframes glow { from { box-shadow:0 0 10px rgba(217,4,41,0.5); } to { box-shadow:0 0 30px rgba(217,4,41,0.8); } }
         
-        /* Hero Section */
         .hero-section { min-height:100vh; display:flex; align-items:center; position:relative; z-index:1; background: radial-gradient(ellipse at 30% 50%, rgba(217,4,41,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 20%, rgba(217,4,41,0.08) 0%, transparent 50%); overflow:hidden; }
         .hero-bg-animation { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
         .hero-particle { position:absolute; border-radius:50%; background:rgba(217,4,41,0.4); box-shadow:0 0 20px rgba(217,4,41,0.6); animation:floatParticle 8s infinite ease-in-out; }
@@ -90,7 +87,6 @@
         .pulse-ring-3 { top: 45%; left: 30%; animation-delay: 1.4s; }
         @keyframes pulseRing { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
 
-        /* Cursor Glow */
         .cursor-glow-container { position: fixed; pointer-events: none; z-index: 99999; transition: opacity 0.3s ease; }
         .cursor-glow-large { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(217, 4, 41, 0.15) 0%, rgba(217, 4, 41, 0.08) 30%, rgba(217, 4, 41, 0.03) 60%, transparent 70%); filter: blur(40px); transform: translate(-50%, -50%); transition: width 0.5s ease, height 0.5s ease; }
         .cursor-glow-medium { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(217, 4, 41, 0.2) 0%, rgba(217, 4, 41, 0.1) 40%, transparent 70%); filter: blur(30px); transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease; }
@@ -156,7 +152,6 @@
     <div class="watermark-logo"></div>
     <div class="toast-notification" id="toast"></div>
 
-    <!-- CURSOR GLOW ELEMENTS -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-glow-container" id="cursorGlow">
         <div class="cursor-glow-large"></div>
@@ -187,12 +182,8 @@
                     <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
                     <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                    
-                    <!-- AI Tools Dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="aiToolsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            🤖 AI Tools
-                        </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="aiToolsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">🤖 AI Tools</a>
                         <ul class="dropdown-menu" aria-labelledby="aiToolsDropdown">
                             <li><a class="dropdown-item" href="tools/youtube-downloader.html">🎥 YouTube Downloader</a></li>
                             <li><a class="dropdown-item" href="tools/hashtag-generator.html">#️⃣ Hashtag Generator</a></li>
@@ -203,7 +194,6 @@
                             <li><a class="dropdown-item" href="ai-tools.html" style="color:#D90429 !important; font-weight:600;">📊 All AI Tools →</a></li>
                         </ul>
                     </li>
-                    
                     <li class="nav-item"><a class="nav-link" href="videos.html">Videos</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item ms-2" id="accountNavItem">
@@ -216,7 +206,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section id="home" class="hero-section">
         <div class="hero-bg-animation">
             <div class="hero-particle"></div>
@@ -225,7 +215,6 @@
             <div class="hero-particle"></div>
             <div class="hero-particle"></div>
         </div>
-
         <div class="container hero-content">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1200">
@@ -247,26 +236,18 @@
                         </small>
                     </div>
                 </div>
-                
                 <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left" data-aos-duration="1200">
                     <div class="animated-dashboard">
                         <div class="dashboard-container">
                             <svg class="dashboard-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="40" y="40" width="420" height="420" rx="30" fill="rgba(26,26,26,0.9)" stroke="rgba(217,4,41,0.2)" stroke-width="2"/>
                                 <line x1="80" y1="400" x2="440" y2="400" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                                <line x1="80" y1="340" x2="440" y2="340" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5,5"/>
-                                <line x1="80" y1="280" x2="440" y2="280" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5,5"/>
-                                <line x1="80" y1="220" x2="440" y2="220" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5,5"/>
-                                <line x1="80" y1="160" x2="440" y2="160" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5,5"/>
                                 <defs>
                                     <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                         <stop offset="0%" stop-color="#D90429" stop-opacity="0.8"/>
                                         <stop offset="100%" stop-color="#D90429" stop-opacity="0.1"/>
                                     </linearGradient>
-                                    <filter id="glow">
-                                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                    </filter>
+                                    <filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                                 </defs>
                                 <path d="M80,380 L140,340 L200,300 L260,250 L320,200 L380,180 L440,160 L440,400 L80,400 Z" fill="url(#lineGradient)" opacity="0.5">
                                     <animate attributeName="d" values="M80,380 L140,340 L200,300 L260,250 L320,200 L380,180 L440,160 L440,400 L80,400 Z;M80,380 L140,350 L200,320 L260,280 L320,220 L380,200 L440,180 L440,400 L80,400 Z;M80,380 L140,340 L200,300 L260,250 L320,200 L380,180 L440,160 L440,400 L80,400 Z" dur="4s" repeatCount="indefinite"/>
@@ -291,22 +272,9 @@
                                 <text x="250" y="75" fill="#fff" font-size="18" font-weight="bold" text-anchor="middle" font-family="Montserrat">📊 Revenue Growth 2026<animate attributeName="opacity" values="0;1" dur="1s" fill="freeze"/></text>
                                 <text x="250" y="100" fill="#22c55e" font-size="13" text-anchor="middle" font-family="Poppins" font-weight="600">▲ +42% vs Last Year<animate attributeName="opacity" values="0;1" dur="1s" begin="0.5s" fill="freeze"/></text>
                             </svg>
-                            
-                            <div class="float-card float-card-1">
-                                <div class="card-icon">📈</div>
-                                <div class="card-value">+156%</div>
-                                <div class="card-label">Sales Growth</div>
-                            </div>
-                            <div class="float-card float-card-2">
-                                <div class="card-icon">🎯</div>
-                                <div class="card-value">50K+</div>
-                                <div class="card-label">Leads Generated</div>
-                            </div>
-                            <div class="float-card float-card-3">
-                                <div class="card-icon">⭐</div>
-                                <div class="card-value">4.9/5</div>
-                                <div class="card-label">Client Rating</div>
-                            </div>
+                            <div class="float-card float-card-1"><div class="card-icon">📈</div><div class="card-value">+156%</div><div class="card-label">Sales Growth</div></div>
+                            <div class="float-card float-card-2"><div class="card-icon">🎯</div><div class="card-value">50K+</div><div class="card-label">Leads Generated</div></div>
+                            <div class="float-card float-card-3"><div class="card-icon">⭐</div><div class="card-value">4.9/5</div><div class="card-label">Client Rating</div></div>
                             <div class="pulse-ring pulse-ring-1"></div>
                             <div class="pulse-ring pulse-ring-2"></div>
                             <div class="pulse-ring pulse-ring-3"></div>
@@ -317,7 +285,7 @@
         </div>
     </section>
 
-    <!-- Stats Counter -->
+    <!-- Stats -->
     <section class="py-4 border-top border-secondary border-opacity-10" style="position:relative; z-index:1;">
         <div class="container">
             <div class="row text-center">
@@ -392,7 +360,6 @@
                 <div class="col-md-4" data-aos="fade-up"><div class="package-card popular"><span class="badge-popular">🔥 Popular</span><h4>Growth</h4><h2 style="color:#D90429;">Rs.74,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 20 Posts + Reels</li><li>✅ Strategy</li><li>✅ Detailed Reports</li></ul><a href="contact.html?service=Growth" class="btn btn-primary-red w-100 mt-3">Get Started</a></div></div>
                 <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Premium</h4><h2 style="color:#D90429;">Rs.149,999<small>/mo</small></h2><ul class="list-unstyled mt-3"><li>✅ 30 Posts + Reels</li><li>✅ Lead Gen</li><li>✅ Priority Support</li></ul><a href="contact.html?service=Premium" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
             </div>
-            
             <div class="text-center mb-5 pt-4"><h2 class="display-5 fw-bold">Website <span class="text-gradient">Packages</span></h2></div>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up"><div class="package-card"><h4>Basic Website</h4><h2 style="color:#D90429;">Rs.25,000</h2><ul class="list-unstyled mt-3"><li>✅ 5 Pages</li><li>✅ Responsive</li><li>✅ WhatsApp</li></ul><a href="contact.html?service=Basic%20Website" class="btn btn-outline-white w-100 mt-3">Get Started</a></div></div>
@@ -421,7 +388,7 @@
             <div class="row"><div class="col-lg-8 mx-auto">
                 <div class="accordion" id="faqAccordion">
                     <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq1">🔍 How quickly can I see results?</button></h2><div id="faq1" class="accordion-collapse collapse"><div class="accordion-body text-muted">30-60 days initial results. <a href="contact.html" class="btn btn-sm btn-primary-red mt-2">Get Timeline</a></div></div></div>
-                    <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq2">💰 What's the payment structure?</button></h2><div id="faq2" class="accordion-collapse collapse"><div class="accordion-body text-muted">50% advance, 50% on completion. <a href="#" data-bs-toggle="modal" data-bs-target="#paymentModal" class="btn btn-sm btn-primary-red mt-2">View Policy</a></div></div></div>
+                    <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3"><h2 class="accordion-header"><button class="accordion-button collapsed rounded-3" data-bs-toggle="collapse" data-bs-target="#faq2">💰 What's the payment structure?</button></h2><div id="faq2" class="accordion-collapse collapse"><div class="accordion-body text-muted">50% advance, 50% on completion. <a href="payment-guarantee.html" class="btn btn-sm btn-primary-red mt-2">View Policy</a></div></div></div>
                 </div>
             </div></div>
         </div>
@@ -434,7 +401,7 @@
         </div>
     </section>
 
-    <!-- Contact Form -->
+    <!-- Contact -->
     <section id="contact" class="py-5" style="position:relative; z-index:1;">
         <div class="container">
             <div class="text-center mb-5"><h2 class="display-5 fw-bold">Contact <span class="text-gradient">Us</span></h2></div>
@@ -473,9 +440,9 @@
                 <div class="col-lg-4 text-center text-lg-end">
                     <h5 class="text-white mb-3">Legal & Policies</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-muted text-decoration-none">Terms & Conditions</a></li>
-                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-muted text-decoration-none">Privacy Policy</a></li>
-                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#paymentModal" class="text-muted text-decoration-none">Payment Guarantee</a></li>
+                        <li><a href="terms.html" class="text-muted text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="privacypolicy.html" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="payment-guarantee.html" class="text-muted text-decoration-none">Payment Guarantee</a></li>
                     </ul>
                     <div class="d-flex gap-3 justify-content-center justify-content-lg-end mt-3">
                         <a href="https://www.facebook.com/samcreativess/" target="_blank" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
@@ -491,13 +458,6 @@
         </div>
     </footer>
 
-    <!-- Modals -->
-    <div class="modal fade" id="termsModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content bg-dark text-white border-secondary"><div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Terms & Conditions</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><p><strong>Welcome to SAM Creatives</strong></p><p>By using our website or purchasing any of our digital marketing services, you agree to the following Terms & Conditions.</p><h6 class="text-gradient mt-4">Payment Terms</h6><p>All projects require advance payment unless otherwise agreed.</p></div></div></div></div>
-
-    <div class="modal fade" id="privacyModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content bg-dark text-white border-secondary"><div class="modal-header border-secondary"><h5 class="modal-title text-gradient">Privacy Policy</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><p>Your privacy is important to us. We never sell your personal information.</p></div></div></div></div>
-
-    <div class="modal fade" id="paymentModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content bg-dark text-white border-secondary"><div class="modal-header border-secondary"><h5 class="modal-title text-gradient">💰 Payment Guarantee</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><p>Transparency and quality are at the heart of everything we do.</p></div></div></div></div>
-
     <!-- Account Modal -->
     <div class="modal fade" id="accountModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content bg-dark text-white border-secondary"><div class="modal-header border-secondary"><h5 class="modal-title"><i class="bi bi-person-badge text-gradient me-2"></i>Client Portal</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><ul class="nav nav-pills mb-4 justify-content-center"><li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#login">Login</button></li><li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#register">Register</button></li></ul><div class="tab-content"><div class="tab-pane fade show active" id="login"><form onsubmit="return handleLogin(event)"><div class="mb-3"><input type="email" class="form-control" id="loginEmail" placeholder="Email" required></div><div class="mb-3"><input type="password" class="form-control" id="loginPassword" placeholder="Password" required></div><button type="submit" class="btn btn-primary-red w-100">Login</button></form></div><div class="tab-pane fade" id="register"><form onsubmit="return handleRegister(event)"><div class="mb-3"><input type="text" class="form-control" id="regName" placeholder="Full Name" required></div><div class="mb-3"><input type="email" class="form-control" id="regEmail" placeholder="Email" required></div><div class="mb-3"><input type="tel" class="form-control" id="regPhone" placeholder="Phone" required></div><div class="mb-3"><input type="password" class="form-control" id="regPassword" placeholder="Password" minlength="6" required></div><div class="mb-3"><input type="password" class="form-control" id="regConfirmPassword" placeholder="Confirm Password" required></div><button type="submit" class="btn btn-primary-red w-100">Create Account</button></form></div></div></div></div></div></div>
 
@@ -508,45 +468,22 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
-        // Cursor Glow
         (function() {
             const cursorDot = document.getElementById('cursorDot');
             const cursorGlow = document.getElementById('cursorGlow');
             if (window.innerWidth <= 768) return;
             let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX; mouseY = e.clientY;
-                if (cursorDot) { cursorDot.style.left = (mouseX - 4) + 'px'; cursorDot.style.top = (mouseY - 4) + 'px'; cursorDot.style.opacity = '1'; }
-            });
-            function animateGlow() {
-                if (!cursorGlow) return;
-                currentX += (mouseX - currentX) * 0.1;
-                currentY += (mouseY - currentY) * 0.1;
-                cursorGlow.style.left = (currentX - 200) + 'px';
-                cursorGlow.style.top = (currentY - 200) + 'px';
-                cursorGlow.style.opacity = '1';
-                requestAnimationFrame(animateGlow);
-            }
+            document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; if (cursorDot) { cursorDot.style.left = (mouseX - 4) + 'px'; cursorDot.style.top = (mouseY - 4) + 'px'; cursorDot.style.opacity = '1'; } });
+            function animateGlow() { if (!cursorGlow) return; currentX += (mouseX - currentX) * 0.1; currentY += (mouseY - currentY) * 0.1; cursorGlow.style.left = (currentX - 200) + 'px'; cursorGlow.style.top = (currentY - 200) + 'px'; cursorGlow.style.opacity = '1'; requestAnimationFrame(animateGlow); }
             animateGlow();
             document.addEventListener('mouseleave', () => { if (cursorDot) cursorDot.style.opacity = '0'; if (cursorGlow) cursorGlow.style.opacity = '0'; });
             document.addEventListener('mouseenter', () => { if (cursorDot) cursorDot.style.opacity = '1'; if (cursorGlow) cursorGlow.style.opacity = '1'; });
-            document.addEventListener('mouseover', (e) => {
-                const target = e.target;
-                if (target.closest('a, button, input, textarea, select')) { if (cursorDot) cursorDot.classList.add('hovering'); if (cursorGlow) cursorGlow.classList.add('hovering'); }
-                else { if (cursorDot) cursorDot.classList.remove('hovering'); if (cursorGlow) cursorGlow.classList.remove('hovering'); }
-            });
+            document.addEventListener('mouseover', (e) => { const target = e.target; if (target.closest('a, button, input, textarea, select')) { if (cursorDot) cursorDot.classList.add('hovering'); if (cursorGlow) cursorGlow.classList.add('hovering'); } else { if (cursorDot) cursorDot.classList.remove('hovering'); if (cursorGlow) cursorGlow.classList.remove('hovering'); } });
         })();
-
-        // Image loader
         function imgOk(url) { return new Promise(r => { let i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; }); }
         async function loadImages() {
             let pfHTML = ''; const pfNames = ['Restaurant','Solar','Corporate','Social Media','Website','Branding'];
-            for (let i=1; i<=6; i++) {
-                let loaded = false;
-                for (let p of [`images/portfolio-${i}.jpg`,`images/portfolio-${i}.png`]) { if (await imgOk(p)) { pfHTML += `<div class="col-md-4" data-aos="fade-up"><div class="portfolio-item"><img src="${p}" alt="${pfNames[i-1]}"><div class="portfolio-overlay"><h5>${pfNames[i-1]}</h5><a href="contact.html" class="btn btn-sm btn-light mt-2">View</a></div></div></div>`; loaded = true; break; } }
-                if (!loaded) pfHTML += `<div class="col-md-4"><div class="img-placeholder" style="height:280px;"><i class="bi bi-image fs-1"></i><p>${pfNames[i-1]}</p></div></div>`;
-            }
+            for (let i=1; i<=6; i++) { let loaded = false; for (let p of [`images/portfolio-${i}.jpg`,`images/portfolio-${i}.png`]) { if (await imgOk(p)) { pfHTML += `<div class="col-md-4" data-aos="fade-up"><div class="portfolio-item"><img src="${p}" alt="${pfNames[i-1]}"><div class="portfolio-overlay"><h5>${pfNames[i-1]}</h5><a href="contact.html" class="btn btn-sm btn-light mt-2">View</a></div></div></div>`; loaded = true; break; } } if (!loaded) pfHTML += `<div class="col-md-4"><div class="img-placeholder" style="height:280px;"><i class="bi bi-image fs-1"></i><p>${pfNames[i-1]}</p></div></div>`; }
             document.getElementById('portfolioContainer').innerHTML = pfHTML;
             let tHTML = ''; const tData = [{n:'Ahmed Khan',c:'Green Wave Solar',t:'"Transformed our online presence!"'},{n:'Sarah Ali',c:'Palm Restaurant',t:'"Professional team, excellent!"'},{n:'Usman Riaz',c:'Core Tech Solar',t:'"3 years of consistent growth."'}];
             for (let i=1; i<=3; i++) { let src = `https://randomuser.me/api/portraits/${i===2?'women':'men'}/${i*20+10}.jpg`; for (let p of [`images/testimonial-${i}.jpg`,`images/testimonial-${i}.png`]) { if (await imgOk(p)) { src = p; break; } } tHTML += `<div class="carousel-item${i===1?' active':''}"><div class="text-center"><img src="${src}" class="testimonial-img"><p class="lead fst-italic">${tData[i-1].t}</p><h6 class="text-gradient">— ${tData[i-1].n}, ${tData[i-1].c}</h6></div></div>`; }
@@ -556,12 +493,8 @@
             document.getElementById('clientLogosContainer').innerHTML = cHTML;
             AOS.refresh();
         }
-
-        // Counter
         const obs = new IntersectionObserver((e) => { e.forEach(en => { if (en.isIntersecting) { const c = en.target, t = +c.dataset.target, up = () => { let v = +c.innerText.replace(/,/g,''); if (v < t) { c.innerText = Math.ceil(v + t/200).toLocaleString(); setTimeout(up,20); } else c.innerText = t.toLocaleString(); }; up(); obs.unobserve(c); } }); }, { threshold:0.5 });
         document.querySelectorAll('.counter').forEach(c => obs.observe(c));
-
-        // User account
         const USERS_KEY = 'sam_users', CURRENT_USER_KEY = 'sam_current_user';
         function getUsers() { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); }
         function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
@@ -570,11 +503,9 @@
         function updateUI() { const user = getCurrentUser(); const btnText = document.getElementById('accountBtnText'); if(user) { btnText.innerHTML = `<i class="bi bi-person-check me-1"></i> ${user.name}`; } else { btnText.innerHTML = '<i class="bi bi-person-circle me-1"></i> Login / Register'; } }
         function handleRegister(e) { e.preventDefault(); const name = document.getElementById('regName').value.trim(), email = document.getElementById('regEmail').value.trim(), phone = document.getElementById('regPhone').value.trim(), pass = document.getElementById('regPassword').value, confirm = document.getElementById('regConfirmPassword').value; if(pass !== confirm) { alert('Passwords do not match!'); return false; } const users = getUsers(); if(users.find(u => u.email === email)) { alert('Email already registered.'); return false; } users.push({ name, email, phone, password: pass }); saveUsers(users); setCurrentUser({ name, email, phone }); bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide(); showToast('Account created! Welcome, ' + name); return false; }
         function handleLogin(e) { e.preventDefault(); const email = document.getElementById('loginEmail').value.trim(), pass = document.getElementById('loginPassword').value; const user = getUsers().find(u => u.email === email && u.password === pass); if(!user) { alert('Invalid credentials.'); return false; } setCurrentUser({ name: user.name, email: user.email, phone: user.phone }); bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide(); showToast('Welcome back, ' + user.name + '!'); return false; }
-
         function goToContact(s) { window.location.href = 'contact.html?service=' + encodeURIComponent(s); }
         function handleSubmit(e) { e.preventDefault(); let n = document.getElementById('name').value, em = document.getElementById('email').value, ph = document.getElementById('phone').value, s = document.getElementById('service').value, msg = document.getElementById('message').value; window.open(`https://wa.me/923350231718?text=${encodeURIComponent('🔔 New Lead!\n\n👤 '+n+'\n📧 '+em+'\n📱 '+ph+'\n🎯 '+s+'\n💬 '+msg)}`, '_blank'); showToast('✅ Message sent!'); e.target.reset(); return false; }
         function showToast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 4000); }
-
         updateUI();
         loadImages();
         window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500); });
