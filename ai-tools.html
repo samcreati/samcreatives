@@ -3,109 +3,522 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing | SAM Creatives AI</title>
+    <title>AI Tools | SAM Creatives AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <style>
-        :root { --primary: #D90429; --dark: #0a0a0a; --card: #1a1a1a; }
-        body { font-family:'Poppins',sans-serif; background:var(--dark); color:#e0e0e0; padding-top:80px; }
-        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:15px 0; position:fixed; top:0; width:100%; z-index:1000; }
+        :root {
+            --primary: #D90429;
+            --primary-dark: #b50322;
+            --dark: #0a0a0a;
+            --card: #1a1a1a;
+            --card-hover: #222222;
+            --text: #e0e0e0;
+            --text-muted: #888;
+            --border: rgba(255,255,255,0.08);
+        }
         
-        .pricing-card { background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:40px 30px; text-align:center; transition:0.3s; position:relative; }
-        .pricing-card:hover { transform:translateY(-8px); }
-        .pricing-card.popular { border:2px solid #D90429; transform:scale(1.05); box-shadow:0 20px 40px rgba(217,4,41,0.2); }
-        .popular-badge { position:absolute; top:-15px; left:50%; transform:translateX(-50%); background:#D90429; color:#fff; padding:8px 20px; border-radius:50px; font-weight:700; font-size:0.8rem; }
-        .price { font-size:3rem; font-weight:900; font-family:'Montserrat',sans-serif; }
-        .btn-primary-red { background:#D90429; border:none; color:#fff; padding:14px 32px; border-radius:50px; font-weight:600; width:100%; cursor:pointer; transition:0.3s; }
-        .btn-primary-red:hover { background:#b50322; }
-        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; padding:14px 32px; border-radius:50px; font-weight:600; width:100%; cursor:pointer; }
-        .feature-list { list-style:none; padding:0; text-align:left; }
-        .feature-list li { padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #D90429, #ff4757);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(10,10,10,0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #fff !important;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-brand span { color: var(--primary); }
+        
+        /* Hero Section */
+        .hero-section {
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(217,4,41,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 16px 50px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+        
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(217,4,41,0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+        
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0 40px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        
+        /* Tool Cards */
+        .tool-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            height: 100%;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .tool-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-5px);
+            border-color: rgba(217,4,41,0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .tool-card:hover .tool-icon {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: rgba(217,4,41,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        
+        .tool-card:hover .tool-icon {
+            background: var(--primary);
+            color: #fff;
+        }
+        
+        .tool-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .tool-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .tool-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .tool-tag {
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(217,4,41,0.1);
+            color: var(--primary);
+        }
+        
+        .tool-arrow {
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+        
+        .tool-card:hover .tool-arrow {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        /* Premium Badge */
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(217,4,41,0.1), rgba(217,4,41,0.05));
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 40px 0;
+            border: 1px solid rgba(217,4,41,0.2);
+        }
+        
+        .cta-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary-red {
+            background: var(--primary);
+            border: none;
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary-red:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .tool-card { padding: 20px; }
+            .stat-number { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg"><div class="container">
-        <a class="navbar-brand text-white fw-bold fs-4 text-decoration-none" href="../index.html"><span style="color:#D90429;">SAM</span> Creatives AI</a>
-        <div class="ms-auto"><a href="../dashboard/" class="btn btn-outline-light btn-sm">Dashboard</a></div>
-    </div></nav>
-
-    <section class="py-5">
-        <div class="container text-center mb-5">
-            <h1 class="display-4 fw-bold">Simple <span class="text-gradient">Pricing</span></h1>
-            <p class="lead text-light">Choose the plan that fits your needs</p>
-        </div>
-
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <div class="row g-4 justify-content-center">
-                <!-- Free -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="pricing-card">
-                        <h4>Free</h4>
-                        <div class="price">$0<span class="fs-6 text-muted">/mo</span></div>
-                        <ul class="feature-list my-4">
-                            <li>✅ 5 Generations Daily</li>
-                            <li>✅ Basic Captions & Hashtags</li>
-                            <li>✅ Copy to Clipboard</li>
-                            <li>❌ No History Save</li>
-                            <li>❌ Limited Features</li>
-                        </ul>
-                        <button class="btn btn-outline-white">Get Started</button>
-                    </div>
-                </div>
+            <a class="navbar-brand" href="../index.html"><span>SAM</span> Creatives AI</a>
+            <div class="ms-auto d-flex gap-2">
+                <a href="../pricing/" class="btn btn-outline-light btn-sm">Pricing</a>
+                <a href="../dashboard/" class="btn btn-outline-light btn-sm">Dashboard</a>
+            </div>
+        </div>
+    </nav>
 
-                <!-- Pro -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="pricing-card popular">
-                        <div class="popular-badge">Most Popular</div>
-                        <h4>Pro</h4>
-                        <div class="price">$9.99<span class="fs-6 text-muted">/mo</span></div>
-                        <ul class="feature-list my-4">
-                            <li>✅ Unlimited Generations</li>
-                            <li>✅ All AI Tools Access</li>
-                            <li>✅ Save History</li>
-                            <li>✅ Priority Support</li>
-                            <li>✅ Commercial License</li>
-                        </ul>
-                        <button class="btn btn-primary-red" onclick="upgrade('pro')">Upgrade to Pro 🚀</button>
-                    </div>
-                </div>
-
-                <!-- Agency -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="pricing-card">
-                        <h4>Agency</h4>
-                        <div class="price">$29.99<span class="fs-6 text-muted">/mo</span></div>
-                        <ul class="feature-list my-4">
-                            <li>✅ Everything in Pro</li>
-                            <li>✅ Team Access (5 users)</li>
-                            <li>✅ API Access</li>
-                            <li>✅ White Label Reports</li>
-                            <li>✅ Dedicated Support</li>
-                        </ul>
-                        <button class="btn btn-outline-white" onclick="upgrade('agency')">Upgrade to Agency</button>
-                    </div>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">AI <span class="text-gradient">Tools</span></h1>
+            <p class="hero-subtitle">Supercharge your content creation with our powerful AI tools</p>
+            
+            <!-- Search -->
+            <div class="search-container">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search tools..." onkeyup="filterTools()">
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="category-filter" id="categoryFilter">
+                <button class="filter-btn active" onclick="filterCategory('all', this)">All Tools</button>
+                <button class="filter-btn" onclick="filterCategory('social', this)">Social Media</button>
+                <button class="filter-btn" onclick="filterCategory('content', this)">Content Writing</button>
+                <button class="filter-btn" onclick="filterCategory('seo', this)">SEO</button>
+                <button class="filter-btn" onclick="filterCategory('image', this)">Image Tools</button>
+                <button class="filter-btn" onclick="filterCategory('video', this)">Video</button>
             </div>
         </div>
     </section>
 
+    <!-- Tools Grid -->
+    <section class="container pb-5">
+        <div class="row g-4" id="toolsGrid">
+            <!-- Tools will be loaded here -->
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-section">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">AI Tools</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">100K+</div>
+                        <div class="stat-label">Users</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Generations</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">4.9★</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to <span class="text-gradient">Create Amazing Content?</span></h2>
+            <p class="mb-4" style="color: var(--text-muted);">Join thousands of creators using our AI tools daily</p>
+            <a href="../pricing/" class="btn btn-primary-red">Get Started Free 🚀</a>
+        </div>
+    </section>
+
     <script>
-        function upgrade(plan) {
-            const user = JSON.parse(localStorage.getItem('sam_ai_user'));
-            if (!user) { window.location.href = '../auth/login.html'; return; }
+        // Tools Data
+        const tools = [
+            // Social Media Tools
+            { id:1, name:'Instagram Caption Generator', description:'Generate engaging Instagram captions with hashtags in seconds', icon:'bi-instagram', category:'social', premium:false, tag:'Popular' },
+            { id:2, name:'Hashtag Generator', description:'Find trending hashtags for maximum reach and engagement', icon:'bi-hash', category:'social', premium:false, tag:'Free' },
+            { id:3, name:'Social Media Bio Generator', description:'Create professional bios for all your social profiles', icon:'bi-person-badge', category:'social', premium:false, tag:'Free' },
+            { id:4, name:'Tweet Generator', description:'Generate viral tweets that get likes and retweets', icon:'bi-twitter-x', category:'social', premium:true, tag:'Pro' },
+            { id:5, name:'LinkedIn Post Generator', description:'Professional LinkedIn posts for B2B engagement', icon:'bi-linkedin', category:'social', premium:false, tag:'Popular' },
+            { id:6, name:'YouTube Title Generator', description:'Click-worthy YouTube titles that drive views', icon:'bi-youtube', category:'social', premium:true, tag:'Pro' },
+            { id:7, name:'Facebook Ad Copy Generator', description:'High-converting ad copy for Facebook campaigns', icon:'bi-facebook', category:'social', premium:true, tag:'Pro' },
+            { id:8, name:'Pinterest Pin Description', description:'SEO-optimized Pinterest descriptions for more saves', icon:'bi-pinterest', category:'social', premium:false, tag:'Free' },
             
-            // Simulate payment
-            if (confirm(`Upgrade to ${plan.toUpperCase()} plan? This is a demo.`)) {
-                user.plan = plan;
-                localStorage.setItem('sam_ai_user', JSON.stringify(user));
-                alert('✅ Upgraded successfully! Redirecting to dashboard...');
-                window.location.href = '../dashboard/';
+            // Content Writing Tools
+            { id:9, name:'Blog Title Generator', description:'Attention-grabbing blog titles that increase CTR', icon:'bi-pencil-square', category:'content', premium:false, tag:'Popular' },
+            { id:10, name:'Article Rewriter', description:'Rewrite articles while maintaining original meaning', icon:'bi-arrow-repeat', category:'content', premium:true, tag:'Pro' },
+            { id:11, name:'Paragraph Generator', description:'Generate well-structured paragraphs on any topic', icon:'bi-text-paragraph', category:'content', premium:false, tag:'Free' },
+            { id:12, name:'Email Subject Line Generator', description:'Increase email open rates with compelling subject lines', icon:'bi-envelope', category:'content', premium:false, tag:'Free' },
+            { id:13, name:'Product Description Generator', description:'Persuasive product descriptions that sell', icon:'bi-box-seam', category:'content', premium:true, tag:'Pro' },
+            { id:14, name:'Story Generator', description:'Creative story ideas and plot generators', icon:'bi-book', category:'content', premium:false, tag:'Free' },
+            { id:15, name:'Slogan Generator', description:'Memorable slogans for your brand', icon:'bi-megaphone', category:'content', premium:false, tag:'Free' },
+            { id:16, name:'Script Writer', description:'Video scripts for YouTube, TikTok, and Reels', icon:'bi-film', category:'content', premium:true, tag:'Pro' },
+            
+            // SEO Tools
+            { id:17, name:'Meta Description Generator', description:'SEO-optimized meta descriptions for better rankings', icon:'bi-search', category:'seo', premium:false, tag:'Free' },
+            { id:18, name:'Keyword Generator', description:'Find high-volume keywords for your niche', icon:'bi-key', category:'seo', premium:true, tag:'Pro' },
+            { id:19, name:'SEO Title Generator', description:'Optimized titles that rank on Google', icon:'bi-graph-up', category:'seo', premium:false, tag:'Free' },
+            { id:20, name:'Content Brief Generator', description:'Detailed content briefs for writers', icon:'bi-clipboard-check', category:'seo', premium:true, tag:'Pro' },
+            { id:21, name:'FAQ Generator', description:'Generate FAQ sections for better SEO', icon:'bi-question-circle', category:'seo', premium:false, tag:'Free' },
+            { id:22, name:'Alt Text Generator', description:'Image alt text for better accessibility and SEO', icon:'bi-image-alt', category:'seo', premium:false, tag:'Free' },
+            
+            // Image Tools
+            { id:23, name:'AI Image Prompt Generator', description:'Create perfect prompts for AI image generators', icon:'bi-image', category:'image', premium:false, tag:'Popular' },
+            { id:24, name:'Logo Design Brief Generator', description:'Detailed logo design briefs for designers', icon:'bi-vector-pen', category:'image', premium:true, tag:'Pro' },
+            { id:25, name:'Color Palette Generator', description:'Generate beautiful color palettes for your brand', icon:'bi-palette', category:'image', premium:false, tag:'Free' },
+            { id:26, name:'Thumbnail Text Generator', description:'Eye-catching thumbnail text for videos', icon:'bi-card-image', category:'image', premium:false, tag:'Free' },
+            
+            // Video Tools
+            { id:27, name:'Video Script Generator', description:'Engaging video scripts for any platform', icon:'bi-camera-video', category:'video', premium:false, tag:'Popular' },
+            { id:28, name:'YouTube Description Generator', description:'SEO-optimized YouTube descriptions', icon:'bi-youtube', category:'video', premium:false, tag:'Free' },
+            { id:29, name:'TikTok Hook Generator', description:'Viral TikTok hooks that stop the scroll', icon:'bi-tiktok', category:'video', premium:true, tag:'Pro' },
+            { id:30, name:'Reels Ideas Generator', description:'Creative Instagram Reels ideas for growth', icon:'bi-instagram', category:'video', premium:false, tag:'Free' },
+        ];
+        
+        // Render Tools
+        function renderTools(toolsList) {
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = '';
+            
+            toolsList.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'col-lg-3 col-md-4 col-sm-6';
+                card.innerHTML = `
+                    <div class="tool-card" onclick="openTool(${tool.id})">
+                        ${tool.premium ? '<div class="premium-badge">PRO</div>' : ''}
+                        <div class="tool-icon"><i class="bi ${tool.icon}"></i></div>
+                        <h3 class="tool-name">${tool.name}</h3>
+                        <p class="tool-description">${tool.description}</p>
+                        <div class="tool-meta">
+                            <span class="tool-tag">${tool.tag}</span>
+                            <span class="tool-arrow"><i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        // Filter by Category
+        function filterCategory(category, btn) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Filter tools
+            if (category === 'all') {
+                renderTools(tools);
+            } else {
+                const filtered = tools.filter(t => t.category === category);
+                renderTools(filtered);
             }
         }
+        
+        // Search Tools
+        function filterTools() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = tools.filter(tool => 
+                tool.name.toLowerCase().includes(searchTerm) ||
+                tool.description.toLowerCase().includes(searchTerm)
+            );
+            renderTools(filtered);
+        }
+        
+        // Open Tool
+        function openTool(id) {
+            const user = JSON.parse(localStorage.getItem('sam_ai_user'));
+            
+            // Check if tool is premium and user is not pro
+            const tool = tools.find(t => t.id === id);
+            if (tool && tool.premium) {
+                if (!user || user.plan === 'free') {
+                    if (confirm('This is a PRO tool. Upgrade to access all tools?')) {
+                        window.location.href = '../pricing/';
+                    }
+                    return;
+                }
+            }
+            
+            // Open tool page
+            window.location.href = `../tools/tool.html?id=${id}`;
+        }
+        
+        // Initial render
+        renderTools(tools);
     </script>
 </body>
 </html>
