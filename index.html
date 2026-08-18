@@ -44,7 +44,7 @@
         .nav-link:hover, .nav-link.active { color:#D90429 !important; }
         
         .nav-item.dropdown .dropdown-menu { background:#1a1a1a !important; border:1px solid rgba(255,255,255,0.1) !important; border-radius:15px !important; padding:10px !important; margin-top:10px !important; box-shadow:0 20px 40px rgba(0,0,0,0.5) !important; min-width:250px !important; }
-        .nav-item.dropdown .dropdown-item { color:#e0e0e0 !important; padding:10px 15px !important; border-radius:8px !important; transition:0.3s !important; font-size:0.9rem !important; }
+        .nav-item.dropdown .dropdown-item { color:#e0e0e0 !important; padding:10px 15px !important; border-radius:8px !important; transition:0.3s !important; font-size:0.9rem !important; cursor:pointer !important; }
         .nav-item.dropdown .dropdown-item:hover { background:rgba(217,4,41,0.2) !important; color:#D90429 !important; transform:translateX(5px); }
         .nav-item.dropdown .dropdown-divider { border-color:rgba(255,255,255,0.1) !important; }
         .nav-link.dropdown-toggle::after { margin-left:5px !important; }
@@ -185,11 +185,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="aiToolsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">🤖 AI Tools</a>
                         <ul class="dropdown-menu" aria-labelledby="aiToolsDropdown">
-                            <li><a class="dropdown-item" href="tools/youtube-downloader.html">🎥 YouTube Downloader</a></li>
-                            <li><a class="dropdown-item" href="tools/hashtag-generator.html">#️⃣ Hashtag Generator</a></li>
-                            <li><a class="dropdown-item" href="tools/background-remover.html">🖼️ Background Remover</a></li>
-                            <li><a class="dropdown-item" href="tools/social-post-generator.html">📝 Social Post Generator</a></li>
-                            <li><a class="dropdown-item" href="tools/keyword-research.html">🔍 Keyword Research</a></li>
+                            <li><a class="dropdown-item" href="youtube-downloader.html">🎥 YouTube Downloader</a></li>
+                            <li><a class="dropdown-item" href="hashtag-generator.html">#️⃣ Hashtag Generator</a></li>
+                            <li><a class="dropdown-item" href="background-remover.html">🖼️ Background Remover</a></li>
+                            <li><a class="dropdown-item" href="social-post-generator.html">📝 Social Post Generator</a></li>
+                            <li><a class="dropdown-item" href="keyword-research.html">🔍 Keyword Research</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="ai-tools.html" style="color:#D90429 !important; font-weight:600;">📊 All AI Tools →</a></li>
                         </ul>
@@ -468,6 +468,19 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
+        
+        // Dropdown links fix - ensure they navigate properly
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#' && !href.startsWith('javascript:')) {
+                        window.location.href = href;
+                    }
+                });
+            });
+        });
+        
         (function() {
             const cursorDot = document.getElementById('cursorDot');
             const cursorGlow = document.getElementById('cursorGlow');
@@ -480,21 +493,27 @@
             document.addEventListener('mouseenter', () => { if (cursorDot) cursorDot.style.opacity = '1'; if (cursorGlow) cursorGlow.style.opacity = '1'; });
             document.addEventListener('mouseover', (e) => { const target = e.target; if (target.closest('a, button, input, textarea, select')) { if (cursorDot) cursorDot.classList.add('hovering'); if (cursorGlow) cursorGlow.classList.add('hovering'); } else { if (cursorDot) cursorDot.classList.remove('hovering'); if (cursorGlow) cursorGlow.classList.remove('hovering'); } });
         })();
+        
         function imgOk(url) { return new Promise(r => { let i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; }); }
+        
         async function loadImages() {
             let pfHTML = ''; const pfNames = ['Restaurant','Solar','Corporate','Social Media','Website','Branding'];
             for (let i=1; i<=6; i++) { let loaded = false; for (let p of [`images/portfolio-${i}.jpg`,`images/portfolio-${i}.png`]) { if (await imgOk(p)) { pfHTML += `<div class="col-md-4" data-aos="fade-up"><div class="portfolio-item"><img src="${p}" alt="${pfNames[i-1]}"><div class="portfolio-overlay"><h5>${pfNames[i-1]}</h5><a href="contact.html" class="btn btn-sm btn-light mt-2">View</a></div></div></div>`; loaded = true; break; } } if (!loaded) pfHTML += `<div class="col-md-4"><div class="img-placeholder" style="height:280px;"><i class="bi bi-image fs-1"></i><p>${pfNames[i-1]}</p></div></div>`; }
             document.getElementById('portfolioContainer').innerHTML = pfHTML;
+            
             let tHTML = ''; const tData = [{n:'Ahmed Khan',c:'Green Wave Solar',t:'"Transformed our online presence!"'},{n:'Sarah Ali',c:'Palm Restaurant',t:'"Professional team, excellent!"'},{n:'Usman Riaz',c:'Core Tech Solar',t:'"3 years of consistent growth."'}];
             for (let i=1; i<=3; i++) { let src = `https://randomuser.me/api/portraits/${i===2?'women':'men'}/${i*20+10}.jpg`; for (let p of [`images/testimonial-${i}.jpg`,`images/testimonial-${i}.png`]) { if (await imgOk(p)) { src = p; break; } } tHTML += `<div class="carousel-item${i===1?' active':''}"><div class="text-center"><img src="${src}" class="testimonial-img"><p class="lead fst-italic">${tData[i-1].t}</p><h6 class="text-gradient">— ${tData[i-1].n}, ${tData[i-1].c}</h6></div></div>`; }
             document.getElementById('testimonialContainer').innerHTML = tHTML;
+            
             let cHTML = ''; const cNames = ['Nexus Pulse','Green Wave','Zamzam Solar','Hanoi','Core Tech Solar','Oligarch'];
             for (let i=1; i<=6; i++) { let loaded = false; for (let p of [`images/client-${i}.png`,`images/client-${i}.jpg`]) { if (await imgOk(p)) { cHTML += `<div class="col-4 col-md-2 text-center"><img src="${p}" alt="${cNames[i-1]}" class="client-logo-img"></div>`; loaded = true; break; } } if (!loaded) cHTML += `<div class="col-4 col-md-2 text-center"><h6 style="color:#888;">${cNames[i-1].toUpperCase()}</h6></div>`; }
             document.getElementById('clientLogosContainer').innerHTML = cHTML;
             AOS.refresh();
         }
+        
         const obs = new IntersectionObserver((e) => { e.forEach(en => { if (en.isIntersecting) { const c = en.target, t = +c.dataset.target, up = () => { let v = +c.innerText.replace(/,/g,''); if (v < t) { c.innerText = Math.ceil(v + t/200).toLocaleString(); setTimeout(up,20); } else c.innerText = t.toLocaleString(); }; up(); obs.unobserve(c); } }); }, { threshold:0.5 });
         document.querySelectorAll('.counter').forEach(c => obs.observe(c));
+        
         const USERS_KEY = 'sam_users', CURRENT_USER_KEY = 'sam_current_user';
         function getUsers() { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); }
         function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
@@ -506,8 +525,10 @@
         function goToContact(s) { window.location.href = 'contact.html?service=' + encodeURIComponent(s); }
         function handleSubmit(e) { e.preventDefault(); let n = document.getElementById('name').value, em = document.getElementById('email').value, ph = document.getElementById('phone').value, s = document.getElementById('service').value, msg = document.getElementById('message').value; window.open(`https://wa.me/923350231718?text=${encodeURIComponent('🔔 New Lead!\n\n👤 '+n+'\n📧 '+em+'\n📱 '+ph+'\n🎯 '+s+'\n💬 '+msg)}`, '_blank'); showToast('✅ Message sent!'); e.target.reset(); return false; }
         function showToast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 4000); }
+        
         updateUI();
         loadImages();
+        
         window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500); });
     </script>
 </body>
