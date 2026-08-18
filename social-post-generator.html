@@ -2,346 +2,426 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Free Social Media Post Generator - Generate engaging posts for Instagram, Facebook, LinkedIn, and Twitter.">
-    <meta name="keywords" content="social media post generator, Instagram captions, Facebook posts, LinkedIn posts, Twitter posts">
-    <meta name="robots" content="index, follow">
-    <link rel="icon" type="image/png" href="../images/favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Social Media Post Generator - SAM Creatives</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    
-    <title>Social Media Post Generator | SAM Creatives AI</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #D90429; --dark: #0a0a0a; --card: #1a1a1a; --border: rgba(255,255,255,0.08); }
+        :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins',sans-serif; background:var(--dark); color:#e0e0e0; padding-top:80px; min-height:100vh; }
+        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; min-height:100vh; }
         h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
         .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         
-        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:12px 0; position:fixed; top:0; width:100%; z-index:1000; }
-        .navbar-brand { font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem; color:#fff !important; text-decoration:none; }
-        .navbar-brand span { color:var(--primary); }
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; }
+        .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
+        .navbar-brand .logo-icon { height:42px; width:auto; }
+        .navbar-brand .brand-text { display:flex; flex-direction:column; line-height:1.2; }
+        .navbar-brand .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; letter-spacing:-0.5px; }
+        .navbar-brand .brand-name .sam { font-weight:800; color:#D90429; }
+        .navbar-brand .brand-name .creatives { font-weight:300; color:#888; }
+        .navbar-brand .brand-tagline { font-size:0.7rem; font-family:'Poppins',sans-serif; color:#666; letter-spacing:1px; text-transform:uppercase; }
         .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
-        .nav-link:hover, .nav-link.active { color:var(--primary) !important; }
-        .nav-item.dropdown .dropdown-menu { background:#1a1a1a !important; border:1px solid var(--border) !important; border-radius:15px !important; padding:10px !important; min-width:250px !important; }
-        .nav-item.dropdown .dropdown-item { color:#e0e0e0 !important; padding:10px 15px !important; border-radius:8px !important; font-size:0.9rem !important; }
-        .nav-item.dropdown .dropdown-item:hover { background:rgba(217,4,41,0.2) !important; color:var(--primary) !important; }
+        .nav-link:hover, .nav-link.active { color:#D90429 !important; }
         
-        .tool-container { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:50px 40px; max-width:850px; margin:30px auto; }
-        .tool-icon { font-size:4rem; text-align:center; margin-bottom:20px; animation:bounce 2s infinite; }
-        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-        
-        .form-label { color:#fff; font-weight:500; margin-bottom:8px; font-size:0.9rem; }
-        .form-control, .form-select { background:var(--dark) !important; border:1px solid var(--border) !important; color:#fff !important; padding:14px 18px; border-radius:12px; font-size:0.95rem; }
-        .form-control:focus, .form-select:focus { border-color:var(--primary) !important; box-shadow:0 0 20px rgba(217,4,41,0.15) !important; }
-        .form-select option { background:var(--dark); color:#fff; }
-        
-        .btn-generate { background:var(--primary); border:none; color:#fff; padding:16px 40px; border-radius:50px; font-weight:600; cursor:pointer; transition:0.3s; font-size:1rem; width:100%; }
-        .btn-generate:hover { background:#b50322; transform:translateY(-2px); box-shadow:0 10px 25px rgba(217,4,41,0.3); }
-        
-        .platform-selector { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; justify-content:center; }
-        .platform-btn { padding:12px 22px; border-radius:50px; border:1px solid var(--border); background:transparent; color:#ccc; cursor:pointer; transition:0.3s; font-size:0.85rem; font-weight:500; }
-        .platform-btn:hover, .platform-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
-        
-        .tone-selector { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; justify-content:center; }
-        .tone-btn { padding:10px 18px; border-radius:50px; border:1px solid var(--border); background:transparent; color:#ccc; cursor:pointer; transition:0.3s; font-size:0.8rem; }
-        .tone-btn:hover, .tone-btn.active { background:rgba(217,4,41,0.2); color:var(--primary); border-color:var(--primary); }
-        
-        .loading-spinner { display:none; text-align:center; margin:20px 0; }
-        .loading-spinner.show { display:block; }
-        .spinner-border { color:var(--primary) !important; width:3rem; height:3rem; }
-        
-        .results-box { display:none; margin-top:25px; }
-        .results-box.show { display:block; animation:fadeIn 0.5s; }
-        @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
-        
-        .result-card { background:var(--dark); border:1px solid var(--border); border-radius:16px; padding:25px; margin-bottom:15px; }
-        .result-platform { font-weight:600; color:var(--primary); margin-bottom:10px; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.5px; }
-        .result-text { white-space:pre-wrap; color:#e0e0e0; font-size:0.95rem; line-height:1.6; }
-        .btn-copy { background:transparent; border:1px solid var(--border); color:#ccc; padding:8px 16px; border-radius:50px; cursor:pointer; transition:0.3s; font-size:0.8rem; }
-        .btn-copy:hover { border-color:var(--primary); color:var(--primary); }
-        
-        footer { background:#050505; border-top:1px solid #222; padding:30px 0; margin-top:50px; }
-        footer a { color:#aaa; text-decoration:none; }
-        footer a:hover { color:var(--primary); }
-        .btn-outline-white { border:2px solid #fff; color:#fff; background:transparent; }
-        .btn-outline-white:hover { background:#fff; color:#000; }
-        
-        @media (max-width:768px) {
-            .tool-container { padding:30px 20px; }
+        .tool-card {
+            background:#1a1a1a;
+            border:1px solid rgba(255,255,255,0.1);
+            border-radius:20px;
+            padding:30px;
+            margin-top:30px;
+        }
+        .form-control, .form-select {
+            background:#0a0a0a;
+            border:1px solid #333;
+            color:#fff;
+            padding:14px 20px;
+            border-radius:12px;
+        }
+        .form-control:focus, .form-select:focus {
+            background:#0a0a0a;
+            border-color:#D90429;
+            box-shadow:0 0 0 3px rgba(217,4,41,0.2);
+            color:#fff;
+        }
+        .btn-primary-red {
+            background:#D90429;
+            border:2px solid #D90429;
+            color:#fff;
+            padding:12px 28px;
+            border-radius:50px;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            font-size:0.8rem;
+            transition:0.3s;
+        }
+        .btn-primary-red:hover {
+            background:transparent;
+            color:#D90429;
+            transform:translateY(-3px);
+            box-shadow:0 15px 30px rgba(217,4,41,0.3);
+        }
+        .btn-outline-light {
+            border:2px solid #fff;
+            color:#fff;
+            background:transparent;
+            padding:12px 28px;
+            border-radius:50px;
+            font-weight:600;
+            transition:0.3s;
+        }
+        .btn-outline-light:hover {
+            background:#fff;
+            color:#000;
+            transform:translateY(-3px);
+        }
+        .generated-post {
+            background:#0a0a0a;
+            border:1px solid #D90429;
+            border-radius:15px;
+            padding:20px;
+            margin-top:20px;
+        }
+        .post-preview {
+            background:#fff;
+            color:#000;
+            border-radius:15px;
+            padding:20px;
+            max-width:400px;
+            margin:0 auto;
+        }
+        .post-preview img {
+            width:100%;
+            height:300px;
+            object-fit:cover;
+            border-radius:10px;
+            margin-bottom:15px;
+        }
+        .hashtag {
+            color:#D90429;
+            font-weight:600;
+            margin-right:8px;
+            cursor:pointer;
+        }
+        .loading-spinner {
+            display:none;
+            text-align:center;
+            padding:30px;
+        }
+        .spinner-border {
+            color:#D90429;
+            width:3rem;
+            height:3rem;
+        }
+        .platform-tabs .nav-link {
+            color:#ccc;
+            background:transparent;
+            border:none;
+            padding:10px 20px;
+            cursor:pointer;
+        }
+        .platform-tabs .nav-link.active {
+            color:#D90429;
+            border-bottom:3px solid #D90429;
+        }
+        .platform-tabs .nav-link:hover {
+            color:#D90429;
         }
     </style>
 </head>
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="../index.html"><span>SAM</span> Creatives AI</a>
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
+                <span class="brand-text">
+                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
+                    <span class="brand-tagline">Design. Market. Grow.</span>
+                </span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">🤖 AI Tools</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="youtube-downloader.html">🎥 YouTube Downloader</a></li>
-                            <li><a class="dropdown-item" href="hashtag-generator.html">#️⃣ Hashtag Generator</a></li>
-                            <li><a class="dropdown-item" href="background-remover.html">🖼️ Background Remover</a></li>
-                            <li><a class="dropdown-item" href="social-post-generator.html">📝 Social Post Generator</a></li>
-                            <li><a class="dropdown-item" href="keyword-research.html">🔍 Keyword Research</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item ms-2"><a href="../contact.html" class="btn btn-outline-white btn-sm">Contact</a></li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="ai-tools.html">AI Tools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Tool -->
-    <section class="container">
-        <div class="tool-container">
-            <div class="tool-icon">📝</div>
-            <h1 class="text-center mb-2">Social Media <span class="text-gradient">Post Generator</span></h1>
-            <p class="text-center text-muted mb-4">Generate engaging posts for all social media platforms</p>
-            
-            <!-- Platform Selection -->
-            <div class="text-center mb-3"><strong class="text-white">Select Platform:</strong></div>
-            <div class="platform-selector">
-                <button class="platform-btn active" onclick="selectPlatform('instagram', this)">📸 Instagram</button>
-                <button class="platform-btn" onclick="selectPlatform('facebook', this)">👍 Facebook</button>
-                <button class="platform-btn" onclick="selectPlatform('linkedin', this)">💼 LinkedIn</button>
-                <button class="platform-btn" onclick="selectPlatform('twitter', this)">🐦 Twitter/X</button>
-                <button class="platform-btn" onclick="selectPlatform('tiktok', this)">🎵 TikTok</button>
-                <button class="platform-btn" onclick="selectPlatform('all', this)">🌟 All Platforms</button>
-            </div>
-            
-            <!-- Tone Selection -->
-            <div class="text-center mb-3"><strong class="text-white">Select Tone:</strong></div>
-            <div class="tone-selector">
-                <button class="tone-btn active" onclick="selectTone('professional', this)">💼 Professional</button>
-                <button class="tone-btn" onclick="selectTone('casual', this)">😊 Casual</button>
-                <button class="tone-btn" onclick="selectTone('funny', this)">😂 Funny</button>
-                <button class="tone-btn" onclick="selectTone('inspirational', this)">🌟 Inspirational</button>
-                <button class="tone-btn" onclick="selectTone('promotional', this)">🔥 Promotional</button>
-            </div>
-            
-            <!-- Input -->
-            <div class="mb-3">
-                <label class="form-label">Topic / Description *</label>
-                <textarea class="form-control" id="topicInput" rows="4" placeholder="Describe what you want to post about...&#10;Example: Our new digital marketing services for small businesses"></textarea>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Keywords (optional)</label>
-                    <input type="text" class="form-control" id="keywordsInput" placeholder="e.g., marketing, growth, business" />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Target Audience (optional)</label>
-                    <input type="text" class="form-control" id="audienceInput" placeholder="e.g., small business owners" />
-                </div>
-            </div>
-            
-            <button class="btn-generate" onclick="generatePosts()">
-                <i class="bi bi-magic me-2"></i>Generate Posts
-            </button>
-            
-            <!-- Loading -->
-            <div class="loading-spinner" id="loadingSpinner">
-                <div class="spinner-border" role="status"></div>
-                <p class="mt-3 text-muted">Generating engaging posts...</p>
-            </div>
-            
-            <!-- Results -->
-            <div class="results-box" id="resultsBox">
-                <div id="postsContainer"></div>
-            </div>
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4 fw-bold">📝 Social Media <span class="text-gradient">Post Generator</span></h1>
+            <p class="lead" style="color:#aaa;">Generate engaging posts with AI images - 100% Free & Unlimited!</p>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p class="mb-2"><strong style="color:#fff;"><span style="color:#D90429;">SAM</span> Creatives AI</strong></p>
-            <p class="small text-muted mb-0">© 2026 SAM Creatives. All Rights Reserved.</p>
-            <div class="mt-3">
-                <a href="../terms.html" class="me-3 small">Terms</a>
-                <a href="../privacypolicy.html" class="me-3 small">Privacy</a>
-                <a href="../payment-guarantee.html" class="small">Payment Guarantee</a>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="tool-card">
+                    <!-- Platform Tabs -->
+                    <ul class="nav platform-tabs mb-4 justify-content-center" id="platformTabs">
+                        <li class="nav-item">
+                            <button class="nav-link active" data-platform="instagram">📸 Instagram</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-platform="facebook">👥 Facebook</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-platform="linkedin">💼 LinkedIn</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-platform="twitter">🐦 Twitter/X</button>
+                        </li>
+                    </ul>
+
+                    <form id="postForm">
+                        <div class="mb-3">
+                            <label class="form-label text-white fw-bold">Topic / Business Type:</label>
+                            <input type="text" class="form-control" id="topic" placeholder="Example: Online clothing store, Restaurant, Digital Marketing Agency" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label text-white fw-bold">Key Message (Optional):</label>
+                            <textarea class="form-control" id="message" rows="3" placeholder="Example: Summer sale up to 50% off, New menu launch, Free consultation"></textarea>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-white fw-bold">Tone:</label>
+                                <select class="form-select" id="tone">
+                                    <option value="professional">Professional</option>
+                                    <option value="casual">Casual</option>
+                                    <option value="funny">Funny</option>
+                                    <option value="inspirational">Inspirational</option>
+                                    <option value="urgent">Urgent</option>
+                                    <option value="luxury">Luxury</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white fw-bold">Include Image:</label>
+                                <select class="form-select" id="includeImage">
+                                    <option value="yes">Yes - Generate AI Image</option>
+                                    <option value="no">No - Text Only</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3" id="imageStyleContainer">
+                            <label class="form-label text-white fw-bold">Image Style:</label>
+                            <select class="form-select" id="imageStyle">
+                                <option value="professional product photography">Professional Product Photography</option>
+                                <option value="lifestyle photography">Lifestyle Photography</option>
+                                <option value="minimalist flat lay">Minimalist Flat Lay</option>
+                                <option value="vibrant colorful">Vibrant & Colorful</option>
+                                <option value="elegant luxury">Elegant Luxury</option>
+                                <option value="modern corporate">Modern Corporate</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-red w-100 btn-lg">
+                            <i class="bi bi-stars me-2"></i>Generate Post
+                        </button>
+                    </form>
+
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner-border mb-3" role="status"></div>
+                        <p class="text-white">✨ Creating your post...</p>
+                        <p class="text-muted small">Generating content and image</p>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div id="resultsContainer" style="display:none;">
+                    <div class="tool-card">
+                        <h4 class="text-gradient mb-3">📱 Post Preview</h4>
+                        <div class="post-preview" id="postPreview">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h5 class="text-white mb-3">📋 Caption:</h5>
+                            <div class="generated-post" id="captionText"></div>
+                            
+                            <h5 class="text-white mb-3 mt-3">#️⃣ Hashtags:</h5>
+                            <div class="generated-post" id="hashtagsText"></div>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-4 justify-content-center">
+                            <button class="btn btn-primary-red" onclick="copyCaption()">
+                                <i class="bi bi-clipboard me-2"></i>Copy Caption
+                            </button>
+                            <button class="btn btn-outline-light" onclick="copyHashtags()">
+                                <i class="bi bi-hash me-2"></i>Copy Hashtags
+                            </button>
+                            <button class="btn btn-success" onclick="downloadPost()">
+                                <i class="bi bi-download me-2"></i>Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let selectedPlatform = 'instagram';
-        let selectedTone = 'professional';
+        let currentPlatform = 'instagram';
+        let currentImageUrl = '';
+        let currentCaption = '';
+        let currentHashtags = '';
 
-        function selectPlatform(platform, btn) {
-            selectedPlatform = platform;
-            document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
+        // Platform tabs
+        document.querySelectorAll('#platformTabs .nav-link').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('#platformTabs .nav-link').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                currentPlatform = this.dataset.platform;
+            });
+        });
 
-        function selectTone(tone, btn) {
-            selectedTone = tone;
-            document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
+        // Toggle image style visibility
+        document.getElementById('includeImage').addEventListener('change', function() {
+            document.getElementById('imageStyleContainer').style.display = this.value === 'yes' ? 'block' : 'none';
+        });
 
-        function generatePosts() {
-            const topic = document.getElementById('topicInput').value.trim();
+        document.getElementById('postForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            if (!topic) {
-                alert('⚠️ Please enter a topic first!');
-                return;
-            }
-            
-            const keywords = document.getElementById('keywordsInput').value.trim();
-            const audience = document.getElementById('audienceInput').value.trim();
-            const hashtags = generateHashtags(topic, keywords);
+            const topic = document.getElementById('topic').value;
+            const message = document.getElementById('message').value;
+            const tone = document.getElementById('tone').value;
+            const includeImage = document.getElementById('includeImage').value;
+            const imageStyle = document.getElementById('imageStyle').value;
             
             // Show loading
-            document.getElementById('loadingSpinner').classList.add('show');
-            document.getElementById('resultsBox').classList.remove('show');
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('resultsContainer').style.display = 'none';
             
-            setTimeout(() => {
-                let platforms = [];
+            // Generate content
+            const content = generateContent(topic, message, tone, currentPlatform);
+            currentCaption = content.caption;
+            currentHashtags = content.hashtags;
+            
+            if (includeImage === 'yes') {
+                // Generate AI image
+                const imagePrompt = `${topic} ${message} ${imageStyle}`;
+                const encodedPrompt = encodeURIComponent(imagePrompt);
+                currentImageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=800&height=600&nologo=true`;
                 
-                if (selectedPlatform === 'all') {
-                    platforms = ['instagram', 'facebook', 'linkedin', 'twitter', 'tiktok'];
-                } else {
-                    platforms = [selectedPlatform];
-                }
-                
-                const posts = platforms.map(platform => {
-                    return {
-                        platform: platform,
-                        text: generatePostForPlatform(platform, topic, keywords, audience, hashtags)
-                    };
-                });
-                
-                renderPosts(posts);
-                
-                document.getElementById('loadingSpinner').classList.remove('show');
-                document.getElementById('resultsBox').classList.add('show');
-                document.getElementById('resultsBox').scrollIntoView({ behavior: 'smooth' });
-            }, 1000);
-        }
-
-        function generatePostForPlatform(platform, topic, keywords, audience, hashtags) {
-            const tone = selectedTone;
-            const audienceText = audience ? ` for ${audience}` : '';
-            
-            const templates = {
-                instagram: {
-                    professional: `📊 ${topic}\n\nDiscover how we're transforming the game${audienceText}.\n\nKey highlights:\n✅ Proven strategies\n✅ Expert team\n✅ Measurable results\n\nDM us to learn more! 📩\n\n${hashtags.instagram}`,
-                    casual: `✨ ${topic}\n\nWe're so excited to share this with you all! 🎉\n\nDrop a ❤️ if you're as excited as we are!\n\n${hashtags.instagram}`,
-                    funny: `😂 ${topic}\n\nMe: I'll just post one thing today\nAlso me: *spends 3 hours perfecting this*\n\nTag someone who can relate! 👇\n\n${hashtags.instagram}`,
-                    inspirational: `🌟 ${topic}\n\nEvery big achievement starts with a single step. We're here to help you take that step${audienceText}.\n\nBelieve. Achieve. Succeed. 💪\n\n${hashtags.instagram}`,
-                    promotional: `🔥 ${topic}\n\nLIMITED TIME OFFER! Don't miss out!\n\nDM us now for exclusive deals 🎯\n\n${hashtags.instagram}`
-                },
-                facebook: {
-                    professional: `📢 ${topic}\n\nWe're excited to announce our latest updates${audienceText}!\n\nWhat you get:\n• Quality service\n• Expert support\n• Guaranteed results\n\nLike & Share if you find this helpful! 👍\n\n${hashtags.facebook}`,
-                    casual: `Hey everyone! 👋\n\n${topic}\n\nWe'd love to hear your thoughts! Drop a comment below 💬\n\n${hashtags.facebook}`,
-                    funny: `😅 ${topic}\n\nWhen you finally find the perfect solution...\n\nShare with someone who needs this today!\n\n${hashtags.facebook}`,
-                    inspirational: `✨ ${topic}\n\nRemember: Success is not final, failure is not fatal. It's the courage to continue that counts.\n\nStay motivated! 💪\n\n${hashtags.facebook}`,
-                    promotional: `🎉 ${topic}\n\nSpecial offer for our Facebook family!\n\nVisit our website for details 👇\n\n${hashtags.facebook}`
-                },
-                linkedin: {
-                    professional: `📈 ${topic}\n\nAfter extensive research and hands-on experience${audienceText ? ' working with ' + audience : ''}, I'm sharing key insights that can transform your approach.\n\nThree critical takeaways:\n1. Strategy alignment\n2. Consistent execution\n3. Measurable results\n\nWhat's your experience with this? Share below! 💬\n\n${hashtags.linkedin}`,
-                    casual: `Sharing something valuable today! 🌟\n\n${topic}\n\nGrateful for the journey and all the connections here. Let's grow together!\n\n${hashtags.linkedin}`,
-                    funny: `They said ${topic} would be easy...\n\nThey were wrong 😅\n\nBut seriously, persistence pays off. Keep pushing!\n\n${hashtags.linkedin}`,
-                    inspirational: `🌟 ${topic}\n\nSuccess isn't about perfection - it's about progress.\n\nEvery challenge is an opportunity to grow stronger${audienceText}.\n\nWhat's motivating you today?\n\n${hashtags.linkedin}`,
-                    promotional: `🚀 ${topic}\n\nWe're thrilled to share this exciting news!\n\nContact us to learn how we can help your business grow.\n\n${hashtags.linkedin}`
-                },
-                twitter: {
-                    professional: `📊 ${topic}\n\nKey insights:\n• Strategy matters\n• Consistency wins\n• Data drives decisions\n\n${hashtags.twitter}`,
-                    casual: `Just thinking about ${topic} 🤔\n\nRT if you agree! 🔁\n\n${hashtags.twitter}`,
-                    funny: `${topic} be like: 💀\n\nCan't make this stuff up 😂\n\n${hashtags.twitter}`,
-                    inspirational: `Your future self is watching. Make them proud. 💪\n\n${topic}\n\n${hashtags.twitter}`,
-                    promotional: `🔥 HOT: ${topic}\n\nLimited time! Don't wait ⏰\n\n${hashtags.twitter}`
-                },
-                tiktok: {
-                    professional: `📊 ${topic}\n\nPOV: You finally found the solution you've been looking for 🤯\n\nFollow for more! ✨\n\n${hashtags.tiktok}`,
-                    casual: `✨ ${topic}\n\nWait for it... 🤯\n\nLike & Follow for daily content!\n\n${hashtags.tiktok}`,
-                    funny: `😂 ${topic}\n\nNobody:\nMe: *does this*\n\n#fyp #viral\n\n${hashtags.tiktok}`,
-                    inspirational: `🌟 ${topic}\n\nWatch till the end for motivation 💪\n\n${hashtags.tiktok}`,
-                    promotional: `🔥 ${topic}\n\nDon't miss this! Link in bio 🎯\n\n${hashtags.tiktok}`
-                }
-            };
-            
-            return templates[platform][tone] || templates[platform].professional;
-        }
-
-        function generateHashtags(topic, keywords) {
-            const topicTag = topic.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(' ').slice(0, 3).join('');
-            const kwTags = keywords ? keywords.split(',').map(k => k.trim().replace(/\s+/g, '')).slice(0, 3) : [];
-            
-            const allTags = [topicTag, ...kwTags].filter(Boolean);
-            
-            return {
-                instagram: allTags.map(t => '#' + t).join(' ') + ' #instagram #instagood #viral #trending #explore',
-                facebook: allTags.map(t => '#' + t).join(' ') + ' #facebook #community #share',
-                linkedin: allTags.map(t => '#' + t).join(' ') + ' #leadership #business #growth #professional',
-                twitter: allTags.map(t => '#' + t).join(' ') + ' #trending #news',
-                tiktok: allTags.map(t => '#' + t).join(' ') + ' #fyp #viral #foryou #tiktok'
-            };
-        }
-
-        function renderPosts(posts) {
-            const container = document.getElementById('postsContainer');
-            container.innerHTML = '';
-            
-            posts.forEach((post, index) => {
-                const card = document.createElement('div');
-                card.className = 'result-card';
-                
-                const platformNames = {
-                    instagram: '📸 Instagram Post',
-                    facebook: '👍 Facebook Post',
-                    linkedin: '💼 LinkedIn Post',
-                    twitter: '🐦 Twitter/X Post',
-                    tiktok: '🎵 TikTok Post'
+                // Preload image
+                const img = new Image();
+                img.onload = function() {
+                    showResults();
                 };
-                
-                card.innerHTML = `
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="result-platform">${platformNames[post.platform]}</div>
-                        <button class="btn-copy" onclick="copyPost(${index})">📋 Copy</button>
-                    </div>
-                    <div class="result-text" id="post-${index}">${post.text}</div>
-                `;
-                
-                container.appendChild(card);
-            });
+                img.onerror = function() {
+                    // If image fails, show without image
+                    currentImageUrl = '';
+                    showResults();
+                };
+                img.src = currentImageUrl;
+            } else {
+                currentImageUrl = '';
+                showResults();
+            }
+        });
+        
+        function generateContent(topic, message, tone, platform) {
+            let caption = '';
+            let hashtags = [];
             
-            // Store posts for copy function
-            window.generatedPosts = posts;
+            const toneEmojis = {
+                professional: '💼',
+                casual: '😊',
+                funny: '😄',
+                inspirational: '✨',
+                urgent: '⚡',
+                luxury: '💎'
+            };
+            
+            const emoji = toneEmojis[tone] || '✨';
+            
+            // Generate caption based on platform
+            if (platform === 'instagram') {
+                caption = `${emoji} ${message || 'Check out our amazing ' + topic + '!'}\n\n`;
+                caption += `We're excited to share something special with you! ${topic} is here to make your life better.\n\n`;
+                caption += `✨ Why choose us:\n`;
+                caption += `✅ Premium quality\n✅ Affordable prices\n✅ Customer satisfaction\n\n`;
+                caption += `Don't miss out! Link in bio 🔗\n\n`;
+                hashtags = ['#instagram', '#instagood', '#trending', '#viral', '#explore', '#business', '#quality', '#instadaily', '#follow', '#like'];
+            } else if (platform === 'facebook') {
+                caption = `${emoji} ${message || 'Discover ' + topic + ' today!'}\n\n`;
+                caption += `We're thrilled to announce our latest updates! ${topic} is now available with exclusive offers.\n\n`;
+                caption += `Visit our page or contact us for more details!\n`;
+                caption += `📞 Call now or message us today!\n\n`;
+                hashtags = ['#facebook', '#business', '#community', '#local', '#deals', '#offer', '#quality', '#service', '#support', '#follow'];
+            } else if (platform === 'linkedin') {
+                caption = `${emoji} Exciting update from ${topic}!\n\n`;
+                caption += `We're proud to share our latest achievement. ${message || 'Our team has been working hard to deliver exceptional results.'}\n\n`;
+                caption += `Key highlights:\n`;
+                caption += `📈 Proven results\n🎯 Strategic approach\n🤝 Client satisfaction\n\n`;
+                caption += `Let's connect and grow together!\n\n`;
+                hashtags = ['#linkedin', '#business', '#networking', '#professional', '#growth', '#success', '#leadership', '#innovation', '#career', '#opportunity'];
+            } else if (platform === 'twitter') {
+                caption = `${emoji} ${message || 'Big things coming with ' + topic + '!'}\n\n`;
+                caption += `Don't miss out on this opportunity. Limited time only!\n\n`;
+                caption += `👉 Follow us for more updates\n\n`;
+                hashtags = ['#twitter', '#trending', '#viral', '#news', '#update', '#follow', '#socialmedia', '#digital', '#marketing', '#growth'];
+            }
+            
+            // Add topic-specific hashtags
+            const topicHashtags = topic.toLowerCase().split(' ').filter(w => w.length > 3).map(w => '#' + w.replace(/[^a-z0-9]/g, ''));
+            hashtags = [...hashtags, ...topicHashtags].slice(0, 15);
+            
+            return { caption, hashtags: hashtags.join(' ') };
         }
-
-        function copyPost(index) {
-            const post = window.generatedPosts[index];
-            if (!post) return;
+        
+        function showResults() {
+            document.getElementById('loadingSpinner').style.display = 'none';
             
-            navigator.clipboard.writeText(post.text).then(() => {
-                alert('✅ Post copied to clipboard!');
-            }).catch(() => {
-                const textarea = document.createElement('textarea');
-                textarea.value = post.text;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                alert('✅ Post copied!');
+            // Build preview
+            let previewHTML = '';
+            if (currentImageUrl) {
+                previewHTML += `<img src="${currentImageUrl}" alt="Generated Image">`;
+            }
+            previewHTML += `<p style="font-size:0.9rem; margin-bottom:10px;">${currentCaption.replace(/\n/g, '<br>')}</p>`;
+            previewHTML += `<p style="font-size:0.8rem; color:#D90429;">${currentHashtags}</p>`;
+            
+            document.getElementById('postPreview').innerHTML = previewHTML;
+            document.getElementById('captionText').innerHTML = currentCaption.replace(/\n/g, '<br>');
+            document.getElementById('hashtagsText').innerHTML = currentHashtags;
+            
+            document.getElementById('resultsContainer').style.display = 'block';
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function copyCaption() {
+            navigator.clipboard.writeText(currentCaption).then(() => {
+                alert('✅ Caption copied to clipboard!');
             });
+        }
+        
+        function copyHashtags() {
+            navigator.clipboard.writeText(currentHashtags).then(() => {
+                alert('✅ Hashtags copied to clipboard!');
+            });
+        }
+        
+        function downloadPost() {
+            if (currentImageUrl) {
+                const link = document.createElement('a');
+                link.download = 'sam-creatives-post-' + Date.now() + '.jpg';
+                link.href = currentImageUrl;
+                link.target = '_blank';
+                link.click();
+            } else {
+                alert('No image to download. Generate with image first.');
+            }
         }
     </script>
 </body>
