@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Reels & Facebook Video Downloader - SamCreatives</title>
+    <meta name="description" content="Download Instagram Reels and Facebook Videos in HD Quality for free. Fast, easy and no registration required.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        /* Navigation (Match with your existing style) */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2a2a2a;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffa500;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #1a1a1a;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            border-radius: 10px;
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            padding: 10px 0;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffa500;
+            padding-left: 25px;
+        }
+        
+        .dropdown-header {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #ffa500;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #2a2a2a;
+            margin-bottom: 5px;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .tool-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tool-header p {
+            color: #aaaaaa;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        /* Platform Tabs */
+        .platform-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .platform-tab {
+            flex: 1;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #ffffff;
+            font-size: 15px;
+        }
+        
+        .platform-tab:hover {
+            border-color: #ffa500;
+            transform: translateY(-2px);
+        }
+        
+        .platform-tab.active {
+            border-color: #ffa500;
+            background: rgba(255, 165, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
+        }
+        
+        .platform-tab.instagram.active {
+            border-color: #e4405f;
+            background: rgba(228, 64, 95, 0.1);
+            box-shadow: 0 0 20px rgba(228, 64, 95, 0.2);
+        }
+        
+        .platform-tab.facebook.active {
+            border-color: #1877f2;
+            background: rgba(24, 119, 242, 0.1);
+            box-shadow: 0 0 20px rgba(24, 119, 242, 0.2);
+        }
+        
+        /* Input Section */
+        .input-section {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #2a2a2a;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .url-input {
+            flex: 1;
+            padding: 15px 20px;
+            background: #0a0a0a;
+            border: 2px solid #2a2a2a;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .url-input:focus {
+            border-color: #ffa500;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
+        }
+        
+        .url-input::placeholder {
+            color: #666666;
+        }
+        
+        .download-btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .download-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #2a2a2a;
+            border-top: 4px solid #ffa500;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading p {
+            color: #aaaaaa;
+        }
+        
+        /* Result */
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .result.active {
+            display: block;
+        }
+        
+        .video-preview {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: #0a0a0a;
+        }
+        
+        .video-info {
+            margin-bottom: 20px;
+        }
+        
+        .video-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .video-meta {
+            color: #aaaaaa;
+            font-size: 13px;
+        }
+        
+        .download-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .download-link {
+            flex: 1;
+            padding: 15px;
+            background: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .download-link:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Error */
+        .error {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid #dc3545;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .error.active {
+            display: block;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-text {
+            font-size: 13px;
+            color: #aaaaaa;
+        }
+        
+        /* How to use */
+        .how-to-use {
+            margin-top: 40px;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .how-to-use h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #ffa500;
+        }
+        
+        .step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: #cccccc;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .main-container {
+                margin: 30px auto;
+                padding: 15px;
+            }
+            
+            .tool-header h1 {
+                font-size: 28px;
+            }
+            
+            .platform-tabs {
+                flex-direction: column;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            .download-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎬 SamCreatives</a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">🏠 Home</a></li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">📥 Video Downloader ▾</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-header">Video Tools</div>
+                        <a href="youtube-downloader.html">▶️ YouTube Downloader</a>
+                        <a href="youtube-thumbnail.html">🖼️ YouTube Thumbnail</a>
+                        <a href="facebook-instagram-downloader.html">📸 FB & Insta Downloader</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">🛠️ Tools ▾</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-header">More Tools</div>
+                        <a href="#">📄 PDF Tools</a>
+                        <a href="#">🖼️ Image Tools</a>
+                        <a href="#">✍️ Text Tools</a>
+                        <a href="#">🧮 Calculators</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="tool-header">
+            <h1>📥 Instagram & Facebook Downloader</h1>
+            <p>Download Instagram Reels and Facebook Videos in HD Quality - Free, Fast & Easy</p>
+        </div>
+        
+        <!-- Platform Tabs -->
+        <div class="platform-tabs">
+            <div class="platform-tab instagram active" onclick="selectPlatform('instagram')">
+                📸 Instagram Reels
+            </div>
+            <div class="platform-tab facebook" onclick="selectPlatform('facebook')">
+                👍 Facebook Video
+            </div>
+        </div>
+        
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <input type="url" id="videoUrl" class="url-input" placeholder="Paste video URL here..." />
+                <button class="download-btn" onclick="downloadVideo()">⬇️ Download</button>
+            </div>
+        </div>
+        
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Fetching video... Please wait</p>
+        </div>
+        
+        <!-- Error -->
+        <div class="error" id="error"></div>
+        
+        <!-- Result -->
+        <div class="result" id="result">
+            <video class="video-preview" id="videoPreview" controls></video>
+            <div class="video-info">
+                <div class="video-title" id="videoTitle"></div>
+                <div class="video-meta" id="videoMeta"></div>
+            </div>
+            <div class="download-actions">
+                <a href="#" class="download-link" id="downloadLink" download>⬇️ Download Video</a>
+            </div>
+        </div>
+        
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-text">Fast Download</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-text">HD Quality</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">100% Free</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div class="feature-text">No Sign Up</div>
+            </div>
+        </div>
+        
+        <!-- How to Use -->
+        <div class="how-to-use">
+            <h2>📖 How to Download</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">Open Instagram or Facebook app and find the video/reel you want to download</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">Copy the video link (Share > Copy Link)</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">Paste the link in the box above and click Download</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-text">Your video will be ready to download in HD quality!</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentPlatform = 'instagram';
+        
+        function selectPlatform(platform) {
+            currentPlatform = platform;
+            
+            // Update tabs
+            document.querySelectorAll('.platform-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            if (platform === 'instagram') {
+                document.querySelector('.platform-tab.instagram').classList.add('active');
+                document.getElementById('videoUrl').placeholder = 'Paste Instagram Reel URL here...';
+            } else {
+                document.querySelector('.platform-tab.facebook').classList.add('active');
+                document.getElementById('videoUrl').placeholder = 'Paste Facebook Video URL here...';
+            }
+            
+            // Hide previous results
+            document.getElementById('result').classList.remove('active');
+            document.getElementById('error').classList.remove('active');
+        }
+        
+        async function downloadVideo() {
+            const url = document.getElementById('videoUrl').value.trim();
+            
+            if (!url) {
+                showError('⚠️ Please paste a video URL first');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('result').classList.remove('active');
+            document.getElementById('error').classList.remove('active');
+            
+            const btn = document.querySelector('.download-btn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Fetching...';
+            
+            try {
+                // For demo - replace with actual API call
+                // This is where you'll integrate your backend API
+                
+                // Example API endpoints you can use:
+                // 1. https://api.instagram.com/oembed/?url=YOUR_URL
+                // 2. https://graph.facebook.com/v18.0/instagram_oembed?url=YOUR_URL
+                
+                // For now, showing demo response
+                const data = await fetchVideoData(url, currentPlatform);
+                
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    showResult(data);
+                }
+            } catch (error) {
+                showError('❌ Something went wrong. Please try again.');
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+                btn.disabled = false;
+                btn.textContent = '⬇️ Download';
+            }
+        }
+        
+        async function fetchVideoData(url, platform) {
+            // You need to integrate with a backend API here
+            // Options:
+            // 1. Your own PHP/Python backend
+            // 2. Third-party APIs like:
+            //    - RapidAPI Instagram Downloader
+            //    - AllOrigins API for CORS bypass
+            
+            // Example using AllOrigins to fetch Instagram data
+            if (platform === 'instagram') {
+                try {
+                    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.instagram.com/reel/' + extractShortcode(url) + '/')}`;
+                    const response = await fetch(apiUrl);
+                    const html = await response.text();
+                    
+                    // Parse video URL from HTML
+                    const videoMatch = html.match(/"video_url":"([^"]+)"/);
+                    if (videoMatch) {
+                        return {
+                            success: true,
+                            video_url: videoMatch[1].replace(/\\\//g, '/'),
+                            title: 'Instagram Reel',
+                            platform: 'Instagram'
+                        };
+                    }
+                } catch (error) {
+                    console.error('Instagram fetch error:', error);
+                }
+            }
+            
+            // For Facebook
+            if (platform === 'facebook') {
+                try {
+                    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const html = await response.text();
+                    
+                    const hdMatch = html.match(/"browser_native_hd_url":"([^"]+)"/);
+                    const sdMatch = html.match(/"browser_native_sd_url":"([^"]+)"/);
+                    
+                    const videoUrl = hdMatch ? hdMatch[1] : (sdMatch ? sdMatch[1] : null);
+                    
+                    if (videoUrl) {
+                        return {
+                            success: true,
+                            video_url: videoUrl.replace(/\\\//g, '/'),
+                            title: 'Facebook Video',
+                            platform: 'Facebook'
+                        };
+                    }
+                } catch (error) {
+                    console.error('Facebook fetch error:', error);
+                }
+            }
+            
+            return { error: 'Unable to fetch video. Please check the URL and try again.' };
+        }
+        
+        function extractShortcode(url) {
+            const match = url.match(/reel[s]?\/([A-Za-z0-9_-]+)/) || url.match(/p\/([A-Za-z0-9_-]+)/);
+            return match ? match[1] : '';
+        }
+        
+        function showResult(data) {
+            const result = document.getElementById('result');
+            const video = document.getElementById('videoPreview');
+            const downloadLink = document.getElementById('downloadLink');
+            const videoTitle = document.getElementById('videoTitle');
+            const videoMeta = document.getElementById('videoMeta');
+            
+            video.src = data.video_url;
+            downloadLink.href = data.video_url;
+            
+            videoTitle.textContent = data.title || 'Video Ready to Download';
+            videoMeta.textContent = `${data.platform || currentPlatform} Video • HD Quality`;
+            
+            const filename = `${currentPlatform}_video_${Date.now()}.mp4`;
+            downloadLink.setAttribute('download', filename);
+            
+            result.classList.add('active');
+        }
+        
+        function showError(message) {
+            const error = document.getElementById('error');
+            error.textContent = message;
+            error.classList.add('active');
+        }
+        
+        // Enter key to trigger download
+        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                downloadVideo();
+            }
+        });
+        
+        // Auto-detect platform based on URL
+        document.getElementById('videoUrl').addEventListener('input', function() {
+            const url = this.value;
+            if (url.includes('facebook.com') || url.includes('fb.watch')) {
+                selectPlatform('facebook');
+            } else if (url.includes('instagram.com')) {
+                selectPlatform('instagram');
+            }
+        });
+    </script>
+</body>
+</html>
