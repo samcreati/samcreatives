@@ -20,7 +20,6 @@
             min-height: 100vh;
         }
         
-        /* Navigation (Match with your existing style) */
         .navbar {
             background: rgba(10, 10, 10, 0.95);
             padding: 15px 20px;
@@ -120,7 +119,6 @@
             margin-bottom: 5px;
         }
         
-        /* Main Container */
         .main-container {
             max-width: 700px;
             margin: 50px auto;
@@ -147,7 +145,6 @@
             line-height: 1.6;
         }
         
-        /* Platform Tabs */
         .platform-tabs {
             display: flex;
             gap: 15px;
@@ -191,7 +188,6 @@
             box-shadow: 0 0 20px rgba(24, 119, 242, 0.2);
         }
         
-        /* Input Section */
         .input-section {
             background: #1a1a1a;
             padding: 30px;
@@ -250,7 +246,6 @@
             transform: none;
         }
         
-        /* Loading */
         .loading {
             text-align: center;
             padding: 30px;
@@ -280,7 +275,6 @@
             color: #aaaaaa;
         }
         
-        /* Result */
         .result {
             display: none;
             margin-top: 20px;
@@ -339,7 +333,6 @@
             box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
         }
         
-        /* Error */
         .error {
             display: none;
             margin-top: 20px;
@@ -355,7 +348,6 @@
             display: block;
         }
         
-        /* Features */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -381,7 +373,6 @@
             color: #aaaaaa;
         }
         
-        /* How to use */
         .how-to-use {
             margin-top: 40px;
             background: #1a1a1a;
@@ -421,7 +412,6 @@
             line-height: 1.6;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -451,7 +441,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">🎬 SamCreatives</a>
@@ -468,29 +457,16 @@
                         <a href="facebook-instagram-downloader.html">📸 FB & Insta Downloader</a>
                     </div>
                 </li>
-                
-                <li class="nav-item">
-                    <a href="#" class="nav-link">🛠️ Tools ▾</a>
-                    <div class="dropdown-content">
-                        <div class="dropdown-header">More Tools</div>
-                        <a href="#">📄 PDF Tools</a>
-                        <a href="#">🖼️ Image Tools</a>
-                        <a href="#">✍️ Text Tools</a>
-                        <a href="#">🧮 Calculators</a>
-                    </div>
-                </li>
             </ul>
         </div>
     </nav>
     
-    <!-- Main Content -->
     <div class="main-container">
         <div class="tool-header">
             <h1>📥 Instagram & Facebook Downloader</h1>
             <p>Download Instagram Reels and Facebook Videos in HD Quality - Free, Fast & Easy</p>
         </div>
         
-        <!-- Platform Tabs -->
         <div class="platform-tabs">
             <div class="platform-tab instagram active" onclick="selectPlatform('instagram')">
                 📸 Instagram Reels
@@ -500,7 +476,6 @@
             </div>
         </div>
         
-        <!-- Input Section -->
         <div class="input-section">
             <div class="input-group">
                 <input type="url" id="videoUrl" class="url-input" placeholder="Paste video URL here..." />
@@ -508,16 +483,13 @@
             </div>
         </div>
         
-        <!-- Loading -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
             <p>Fetching video... Please wait</p>
         </div>
         
-        <!-- Error -->
         <div class="error" id="error"></div>
         
-        <!-- Result -->
         <div class="result" id="result">
             <video class="video-preview" id="videoPreview" controls></video>
             <div class="video-info">
@@ -529,7 +501,6 @@
             </div>
         </div>
         
-        <!-- Features -->
         <div class="features">
             <div class="feature">
                 <div class="feature-icon">⚡</div>
@@ -549,7 +520,6 @@
             </div>
         </div>
         
-        <!-- How to Use -->
         <div class="how-to-use">
             <h2>📖 How to Download</h2>
             <div class="step">
@@ -577,7 +547,6 @@
         function selectPlatform(platform) {
             currentPlatform = platform;
             
-            // Update tabs
             document.querySelectorAll('.platform-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -590,7 +559,6 @@
                 document.getElementById('videoUrl').placeholder = 'Paste Facebook Video URL here...';
             }
             
-            // Hide previous results
             document.getElementById('result').classList.remove('active');
             document.getElementById('error').classList.remove('active');
         }
@@ -603,7 +571,6 @@
                 return;
             }
             
-            // Show loading
             document.getElementById('loading').classList.add('active');
             document.getElementById('result').classList.remove('active');
             document.getElementById('error').classList.remove('active');
@@ -613,22 +580,21 @@
             btn.textContent = '⏳ Fetching...';
             
             try {
-                // For demo - replace with actual API call
-                // This is where you'll integrate your backend API
+                let videoData = null;
                 
-                // Example API endpoints you can use:
-                // 1. https://api.instagram.com/oembed/?url=YOUR_URL
-                // 2. https://graph.facebook.com/v18.0/instagram_oembed?url=YOUR_URL
-                
-                // For now, showing demo response
-                const data = await fetchVideoData(url, currentPlatform);
-                
-                if (data.error) {
-                    showError(data.error);
+                if (currentPlatform === 'instagram') {
+                    videoData = await fetchInstagramVideo(url);
                 } else {
-                    showResult(data);
+                    videoData = await fetchFacebookVideo(url);
+                }
+                
+                if (videoData && videoData.video_url) {
+                    showResult(videoData);
+                } else {
+                    showError('❌ Unable to fetch video. Please check the URL and try again.');
                 }
             } catch (error) {
+                console.error('Error:', error);
                 showError('❌ Something went wrong. Please try again.');
             } finally {
                 document.getElementById('loading').classList.remove('active');
@@ -637,67 +603,113 @@
             }
         }
         
-        async function fetchVideoData(url, platform) {
-            // You need to integrate with a backend API here
-            // Options:
-            // 1. Your own PHP/Python backend
-            // 2. Third-party APIs like:
-            //    - RapidAPI Instagram Downloader
-            //    - AllOrigins API for CORS bypass
-            
-            // Example using AllOrigins to fetch Instagram data
-            if (platform === 'instagram') {
-                try {
-                    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.instagram.com/reel/' + extractShortcode(url) + '/')}`;
-                    const response = await fetch(apiUrl);
-                    const html = await response.text();
+        async function fetchInstagramVideo(url) {
+            try {
+                // Method 1: Using Instagram oEmbed API
+                const oembedUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.instagram.com/oembed/?url=' + encodeURIComponent(url))}`;
+                const response = await fetch(oembedUrl);
+                const data = await response.json();
+                
+                if (data.thumbnail_url) {
+                    // For Instagram, we get thumbnail first
+                    // Try to extract video from the page
+                    const pageUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                    const pageResponse = await fetch(pageUrl);
+                    const html = await pageResponse.text();
                     
-                    // Parse video URL from HTML
+                    // Extract video URL from HTML
                     const videoMatch = html.match(/"video_url":"([^"]+)"/);
-                    if (videoMatch) {
-                        return {
-                            success: true,
-                            video_url: videoMatch[1].replace(/\\\//g, '/'),
-                            title: 'Instagram Reel',
-                            platform: 'Instagram'
-                        };
-                    }
-                } catch (error) {
-                    console.error('Instagram fetch error:', error);
-                }
-            }
-            
-            // For Facebook
-            if (platform === 'facebook') {
-                try {
-                    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                    const response = await fetch(apiUrl);
-                    const html = await response.text();
-                    
-                    const hdMatch = html.match(/"browser_native_hd_url":"([^"]+)"/);
-                    const sdMatch = html.match(/"browser_native_sd_url":"([^"]+)"/);
-                    
-                    const videoUrl = hdMatch ? hdMatch[1] : (sdMatch ? sdMatch[1] : null);
+                    const videoUrl = videoMatch ? videoMatch[1].replace(/\\\//g, '/') : null;
                     
                     if (videoUrl) {
                         return {
-                            success: true,
-                            video_url: videoUrl.replace(/\\\//g, '/'),
-                            title: 'Facebook Video',
-                            platform: 'Facebook'
+                            video_url: videoUrl,
+                            title: data.title || 'Instagram Reel',
+                            platform: 'Instagram',
+                            thumbnail: data.thumbnail_url
                         };
                     }
-                } catch (error) {
-                    console.error('Facebook fetch error:', error);
                 }
+                
+                // Method 2: Using instagram-post-downloader API
+                const shortcode = extractInstagramShortcode(url);
+                if (shortcode) {
+                    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.instagram.com/reel/' + shortcode + '/?__a=1&__d=dis')}`;
+                    const apiResponse = await fetch(apiUrl);
+                    const apiData = await apiResponse.json();
+                    
+                    if (apiData.items && apiData.items[0]) {
+                        const item = apiData.items[0];
+                        const videoUrl = item.video_versions?.[0]?.url || item.carousel_media?.[0]?.video_versions?.[0]?.url;
+                        
+                        if (videoUrl) {
+                            return {
+                                video_url: videoUrl,
+                                title: item.caption?.text || 'Instagram Reel',
+                                platform: 'Instagram',
+                                thumbnail: item.image_versions2?.candidates?.[0]?.url
+                            };
+                        }
+                    }
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Instagram fetch error:', error);
+                return null;
             }
-            
-            return { error: 'Unable to fetch video. Please check the URL and try again.' };
         }
         
-        function extractShortcode(url) {
+        async function fetchFacebookVideo(url) {
+            try {
+                // Using AllOrigins to bypass CORS
+                const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl);
+                const html = await response.text();
+                
+                // Extract video URLs
+                const hdMatch = html.match(/"browser_native_hd_url":"([^"]+)"/);
+                const sdMatch = html.match(/"browser_native_sd_url":"([^"]+)"/);
+                const playableMatch = html.match(/"playable_url":"([^"]+)"/);
+                
+                let videoUrl = null;
+                let quality = '';
+                
+                if (hdMatch && hdMatch[1]) {
+                    videoUrl = hdMatch[1].replace(/\\\//g, '/');
+                    quality = 'HD';
+                } else if (sdMatch && sdMatch[1]) {
+                    videoUrl = sdMatch[1].replace(/\\\//g, '/');
+                    quality = 'SD';
+                } else if (playableMatch && playableMatch[1]) {
+                    videoUrl = playableMatch[1].replace(/\\\//g, '/');
+                    quality = 'SD';
+                }
+                
+                if (videoUrl) {
+                    // Get video title
+                    const titleMatch = html.match(/"og:title" content="([^"]+)"/);
+                    const imageMatch = html.match(/"og:image" content="([^"]+)"/);
+                    
+                    return {
+                        video_url: videoUrl,
+                        title: titleMatch ? titleMatch[1] : 'Facebook Video',
+                        platform: 'Facebook',
+                        quality: quality,
+                        thumbnail: imageMatch ? imageMatch[1] : ''
+                    };
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Facebook fetch error:', error);
+                return null;
+            }
+        }
+        
+        function extractInstagramShortcode(url) {
             const match = url.match(/reel[s]?\/([A-Za-z0-9_-]+)/) || url.match(/p\/([A-Za-z0-9_-]+)/);
-            return match ? match[1] : '';
+            return match ? match[1] : null;
         }
         
         function showResult(data) {
@@ -711,12 +723,20 @@
             downloadLink.href = data.video_url;
             
             videoTitle.textContent = data.title || 'Video Ready to Download';
-            videoMeta.textContent = `${data.platform || currentPlatform} Video • HD Quality`;
+            
+            let metaText = `${data.platform || currentPlatform} Video`;
+            if (data.quality) {
+                metaText += ` • ${data.quality} Quality`;
+            }
+            videoMeta.textContent = metaText;
             
             const filename = `${currentPlatform}_video_${Date.now()}.mp4`;
             downloadLink.setAttribute('download', filename);
             
             result.classList.add('active');
+            
+            // Scroll to result
+            result.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
         
         function showError(message) {
@@ -725,14 +745,13 @@
             error.classList.add('active');
         }
         
-        // Enter key to trigger download
+        // Event listeners
         document.getElementById('videoUrl').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 downloadVideo();
             }
         });
         
-        // Auto-detect platform based on URL
         document.getElementById('videoUrl').addEventListener('input', function() {
             const url = this.value;
             if (url.includes('facebook.com') || url.includes('fb.watch')) {
