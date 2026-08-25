@@ -2,762 +2,544 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Reels & Facebook Video Downloader - SamCreatives</title>
-    <meta name="description" content="Download Instagram Reels and Facebook Videos in HD Quality for free. Fast, easy and no registration required.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <title>Word to PDF & PDF to Word Converter - Free Online | SAM Creatives</title>
+    <meta name="description" content="Convert Word to PDF and PDF to Word online for free. Fast, secure and easy to use.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Libraries - CORRECT ORDER -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- DOCX Library - Correct CDN -->
+    <script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root { 
+            --primary: #D90429; 
+            --secondary: #1877f2;
+            --dark-bg: #0a0a0a; 
+            --card-bg: #1a1a1a;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family:'Poppins',sans-serif; 
+            background:#0a0a0a; 
+            color:#e0e0e0; 
+            padding-top:80px; 
         }
+        h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
+        .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         
-        .navbar {
-            background: rgba(10, 10, 10, 0.95);
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #2a2a2a;
-            backdrop-filter: blur(10px);
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; }
+        .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
+        .navbar-brand .logo-icon { height:42px; width:auto; }
+        .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; }
+        .brand-name .sam { font-weight:800; color:#D90429; }
+        .brand-name .creatives { font-weight:300; color:#888; }
+        .brand-tagline { font-size:0.7rem; color:#666; letter-spacing:1px; text-transform:uppercase; }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; }
+        .nav-link:hover, .nav-link.active { color:#D90429 !important; }
+        
+        .main-container { max-width:800px; margin:50px auto; padding:20px; }
+        .tool-header { text-align:center; margin-bottom:40px; }
+        .tool-badge {
+            display:inline-block; background:rgba(217,4,41,0.15); color:#D90429; 
+            padding:8px 20px; border-radius:50px; font-size:0.8rem; font-weight:600; 
+            text-transform:uppercase; letter-spacing:2px; margin-bottom:20px;
+            border:1px solid rgba(217,4,41,0.3);
         }
+        .tool-header h1 { font-size:36px; margin-bottom:15px; }
+        .tool-header p { color:#aaa; font-size:16px; }
         
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .converter-tabs {
+            display:flex; gap:0; margin-bottom:40px; background:#1a1a1a; 
+            border-radius:20px; padding:8px; border:1px solid #2a2a2a;
         }
-        
-        .logo {
-            color: #ffffff;
-            font-size: 22px;
-            font-weight: bold;
-            text-decoration: none;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .converter-tab {
+            flex:1; padding:20px; cursor:pointer; text-align:center; 
+            font-weight:600; transition:all 0.3s; color:#aaa; font-size:16px; 
+            border-radius:15px; display:flex; align-items:center; justify-content:center; gap:10px;
         }
+        .converter-tab .tab-icon { font-size:28px; }
+        .converter-tab:hover { color:#fff; }
+        .converter-tab.active { color:#fff; }
+        .converter-tab.active.word-to-pdf { background:linear-gradient(135deg,#D90429,#ff4757); box-shadow:0 10px 30px rgba(217,4,41,0.4); }
+        .converter-tab.active.pdf-to-word { background:linear-gradient(135deg,#1877f2,#00a8ff); box-shadow:0 10px 30px rgba(24,119,242,0.4); }
         
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-            align-items: center;
+        .upload-area {
+            background:#1a1a1a;
+            border:2px dashed #D90429;
+            border-radius:20px;
+            padding:60px 30px;
+            text-align:center;
+            cursor:pointer;
+            transition:all 0.3s;
+            margin-bottom:30px;
         }
+        .upload-area:hover { border-color:#ff4757; transform:translateY(-3px); }
+        .upload-area.dragover { border-color:#ff4757; background:rgba(217,4,41,0.1); transform:scale(1.02); }
+        .upload-area.pdf-mode { border-color:#1877f2; }
+        .upload-area.pdf-mode:hover { border-color:#00a8ff; }
+        .upload-area.pdf-mode.dragover { border-color:#00a8ff; background:rgba(24,119,242,0.1); }
         
-        .nav-item {
-            position: relative;
+        .upload-icon { font-size:70px; color:#D90429; margin-bottom:20px; display:inline-block; }
+        .pdf-mode .upload-icon { color:#1877f2; }
+        .upload-text { font-size:22px; font-weight:600; color:#fff; margin-bottom:10px; }
+        .upload-subtext { color:#888; font-size:14px; }
+        .file-input { display:none; }
+        
+        .file-info {
+            background:#1a1a1a; border:1px solid #2a2a2a; border-radius:15px;
+            padding:20px; margin-bottom:20px; display:none;
         }
+        .file-info.active { display:flex; align-items:center; justify-content:space-between; }
+        .file-name { color:#fff; font-weight:600; }
+        .file-size { color:#888; font-size:12px; }
         
-        .nav-link {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: all 0.3s;
-            font-size: 14px;
-            cursor: pointer;
+        .convert-btn {
+            width:100%; padding:18px; background:linear-gradient(45deg,#D90429,#ff4757);
+            color:#fff; border:none; border-radius:15px; font-weight:700; font-size:16px;
+            cursor:pointer; transition:all 0.3s; display:none; text-transform:uppercase; letter-spacing:1px;
         }
+        .convert-btn.active { display:block; }
+        .convert-btn.pdf-mode { background:linear-gradient(45deg,#1877f2,#00a8ff); }
+        .convert-btn:hover { transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.4); }
+        .convert-btn:disabled { opacity:0.5; cursor:not-allowed; }
         
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffa500;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: #1a1a1a;
-            min-width: 280px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-            border-radius: 10px;
-            z-index: 1000;
-            top: 100%;
-            left: 0;
-            padding: 10px 0;
-            border: 1px solid #2a2a2a;
-        }
-        
-        .nav-item:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown-content a {
-            color: #ffffff;
-            padding: 10px 20px;
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        
-        .dropdown-content a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffa500;
-            padding-left: 25px;
-        }
-        
-        .dropdown-header {
-            padding: 10px 20px;
-            font-weight: bold;
-            color: #ffa500;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #2a2a2a;
-            margin-bottom: 5px;
-        }
-        
-        .main-container {
-            max-width: 700px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-        
-        .tool-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .tool-header h1 {
-            font-size: 36px;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .tool-header p {
-            color: #aaaaaa;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        .platform-tabs {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .platform-tab {
-            flex: 1;
-            padding: 15px;
-            background: #1a1a1a;
-            border: 2px solid #2a2a2a;
-            border-radius: 10px;
-            cursor: pointer;
-            text-align: center;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #ffffff;
-            font-size: 15px;
-        }
-        
-        .platform-tab:hover {
-            border-color: #ffa500;
-            transform: translateY(-2px);
-        }
-        
-        .platform-tab.active {
-            border-color: #ffa500;
-            background: rgba(255, 165, 0, 0.1);
-            box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
-        }
-        
-        .platform-tab.instagram.active {
-            border-color: #e4405f;
-            background: rgba(228, 64, 95, 0.1);
-            box-shadow: 0 0 20px rgba(228, 64, 95, 0.2);
-        }
-        
-        .platform-tab.facebook.active {
-            border-color: #1877f2;
-            background: rgba(24, 119, 242, 0.1);
-            box-shadow: 0 0 20px rgba(24, 119, 242, 0.2);
-        }
-        
-        .input-section {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2a2a2a;
-            margin-bottom: 30px;
-        }
-        
-        .input-group {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .url-input {
-            flex: 1;
-            padding: 15px 20px;
-            background: #0a0a0a;
-            border: 2px solid #2a2a2a;
-            border-radius: 10px;
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s;
-        }
-        
-        .url-input:focus {
-            border-color: #ffa500;
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
-        }
-        
-        .url-input::placeholder {
-            color: #666666;
-        }
-        
-        .download-btn {
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: #ffffff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
-        }
-        
-        .download-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 30px;
-            display: none;
-        }
-        
-        .loading.active {
-            display: block;
-        }
-        
+        .loading { text-align:center; padding:30px; display:none; }
+        .loading.active { display:block; }
         .spinner {
-            border: 4px solid #2a2a2a;
-            border-top: 4px solid #ffa500;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            border:4px solid #2a2a2a; border-top:4px solid #D90429; border-radius:50%;
+            width:50px; height:50px; animation:spin 1s linear infinite; margin:0 auto 15px;
         }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .loading p {
-            color: #aaaaaa;
-        }
+        .spinner.pdf-mode { border-top-color:#1877f2; }
+        @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
         
         .result {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: #1a1a1a;
-            border-radius: 15px;
-            border: 1px solid #2a2a2a;
+            display:none; margin-top:20px; padding:30px; background:#1a1a1a;
+            border:1px solid #28a745; border-radius:15px; text-align:center;
         }
-        
-        .result.active {
-            display: block;
-        }
-        
-        .video-preview {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            background: #0a0a0a;
-        }
-        
-        .video-info {
-            margin-bottom: 20px;
-        }
-        
-        .video-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .video-meta {
-            color: #aaaaaa;
-            font-size: 13px;
-        }
-        
-        .download-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
+        .result.active { display:block; }
+        .success-icon { font-size:60px; color:#28a745; margin-bottom:15px; }
         .download-link {
-            flex: 1;
-            padding: 15px;
-            background: #28a745;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.3s;
+            display:inline-block; padding:15px 30px; background:#28a745; color:#fff;
+            text-decoration:none; border-radius:10px; font-weight:600; transition:all 0.3s; margin-top:15px;
         }
-        
-        .download-link:hover {
-            background: #218838;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
-        }
-        
-        .error {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(220, 53, 69, 0.1);
-            color: #dc3545;
-            border: 1px solid #dc3545;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .error.active {
-            display: block;
-        }
+        .download-link:hover { background:#218838; color:#fff; transform:translateY(-2px); }
         
         .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:15px; margin-top:40px;
         }
-        
         .feature {
-            text-align: center;
-            padding: 20px;
-            background: #1a1a1a;
-            border-radius: 10px;
-            border: 1px solid #2a2a2a;
+            text-align:center; padding:25px; background:#1a1a1a;
+            border-radius:15px; border:1px solid #2a2a2a;
         }
+        .feature-icon { font-size:35px; margin-bottom:15px; }
+        .feature-title { color:#fff; font-weight:600; font-size:16px; }
+        .feature-text { color:#888; font-size:13px; }
         
-        .feature-icon {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-        
-        .feature-text {
-            font-size: 13px;
-            color: #aaaaaa;
-        }
-        
-        .how-to-use {
-            margin-top: 40px;
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2a2a2a;
-        }
-        
-        .how-to-use h2 {
-            margin-bottom: 20px;
-            font-size: 20px;
-            color: #ffa500;
-        }
-        
-        .step {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            align-items: flex-start;
-        }
-        
-        .step-number {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-        
-        .step-text {
-            color: #cccccc;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .main-container {
-                margin: 30px auto;
-                padding: 15px;
-            }
-            
-            .tool-header h1 {
-                font-size: 28px;
-            }
-            
-            .platform-tabs {
-                flex-direction: column;
-            }
-            
-            .input-group {
-                flex-direction: column;
-            }
-            
-            .download-btn {
-                width: 100%;
-            }
+        @media (max-width:768px) {
+            body { padding-top:70px; }
+            .tool-header h1 { font-size:28px; }
+            .upload-area { padding:40px 20px; }
+            .converter-tabs { flex-direction:column; }
+            .file-info.active { flex-direction:column; gap:10px; }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">🎬 SamCreatives</a>
-            
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">🏠 Home</a></li>
-                
-                <li class="nav-item">
-                    <a href="#" class="nav-link">📥 Video Downloader ▾</a>
-                    <div class="dropdown-content">
-                        <div class="dropdown-header">Video Tools</div>
-                        <a href="youtube-downloader.html">▶️ YouTube Downloader</a>
-                        <a href="youtube-thumbnail.html">🖼️ YouTube Thumbnail</a>
-                        <a href="facebook-instagram-downloader.html">📸 FB & Insta Downloader</a>
-                    </div>
-                </li>
-            </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.png" alt="SAM Creatives" class="logo-icon" onerror="this.style.display='none'">
+                <span class="brand-text">
+                    <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
+                    <span class="brand-tagline">Design. Market. Grow.</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">PDF Converter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     
+    <!-- Main Content -->
     <div class="main-container">
         <div class="tool-header">
-            <h1>📥 Instagram & Facebook Downloader</h1>
-            <p>Download Instagram Reels and Facebook Videos in HD Quality - Free, Fast & Easy</p>
+            <span class="tool-badge">🛠️ Free Online Tool</span>
+            <h1>📄 <span class="text-gradient">Document Converter</span></h1>
+            <p>Convert Word to PDF and PDF to Word online - Free, Fast & Secure</p>
         </div>
         
-        <div class="platform-tabs">
-            <div class="platform-tab instagram active" onclick="selectPlatform('instagram')">
-                📸 Instagram Reels
+        <!-- Converter Tabs -->
+        <div class="converter-tabs">
+            <div class="converter-tab word-to-pdf active" onclick="switchMode('word-to-pdf')">
+                <span class="tab-icon">📝</span> Word to PDF
             </div>
-            <div class="platform-tab facebook" onclick="selectPlatform('facebook')">
-                👍 Facebook Video
-            </div>
-        </div>
-        
-        <div class="input-section">
-            <div class="input-group">
-                <input type="url" id="videoUrl" class="url-input" placeholder="Paste video URL here..." />
-                <button class="download-btn" onclick="downloadVideo()">⬇️ Download</button>
+            <div class="converter-tab pdf-to-word" onclick="switchMode('pdf-to-word')">
+                <span class="tab-icon">📄</span> PDF to Word
             </div>
         </div>
         
+        <!-- Upload Area -->
+        <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+            <span class="upload-icon" id="uploadIcon">📝</span>
+            <div class="upload-text" id="uploadText">Drop your Word file here</div>
+            <div class="upload-subtext" id="uploadSubtext">or click to browse • Supports .docx files</div>
+            <input type="file" id="fileInput" class="file-input" accept=".docx,.doc,.pdf" onchange="handleFileSelect(event)">
+        </div>
+        
+        <!-- File Info -->
+        <div class="file-info" id="fileInfo">
+            <div>
+                <div class="file-name" id="fileName"></div>
+                <div class="file-size" id="fileSize"></div>
+            </div>
+            <button class="btn btn-sm btn-outline-danger" onclick="removeFile()">
+                <i class="bi bi-x-circle me-1"></i> Remove
+            </button>
+        </div>
+        
+        <!-- Convert Button -->
+        <button class="convert-btn" id="convertBtn" onclick="convertFile()">
+            <i class="bi bi-arrow-left-right me-2"></i> <span id="convertBtnText">Convert to PDF</span>
+        </button>
+        
+        <!-- Loading -->
         <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Fetching video... Please wait</p>
+            <div class="spinner" id="spinner"></div>
+            <p id="loadingText">Converting... Please wait</p>
         </div>
         
-        <div class="error" id="error"></div>
-        
+        <!-- Result -->
         <div class="result" id="result">
-            <video class="video-preview" id="videoPreview" controls></video>
-            <div class="video-info">
-                <div class="video-title" id="videoTitle"></div>
-                <div class="video-meta" id="videoMeta"></div>
-            </div>
-            <div class="download-actions">
-                <a href="#" class="download-link" id="downloadLink" download>⬇️ Download Video</a>
-            </div>
+            <div class="success-icon">✅</div>
+            <h4>Conversion Complete!</h4>
+            <p id="resultText" style="color:#aaa;">Your file is ready to download</p>
+            <a href="#" class="download-link" id="downloadLink" download>
+                <i class="bi bi-download me-2"></i> <span id="downloadBtnText">Download File</span>
+            </a>
         </div>
         
+        <!-- Features -->
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-text">Fast Download</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🎯</div>
-                <div class="feature-text">HD Quality</div>
-            </div>
-            <div class="feature">
                 <div class="feature-icon">🔒</div>
-                <div class="feature-text">100% Free</div>
+                <div class="feature-title">100% Secure</div>
+                <div class="feature-text">Files processed locally</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Fast</div>
+                <div class="feature-text">Convert in seconds</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">📱</div>
-                <div class="feature-text">No Sign Up</div>
+                <div class="feature-title">Works Everywhere</div>
+                <div class="feature-text">Mobile & Desktop</div>
             </div>
-        </div>
-        
-        <div class="how-to-use">
-            <h2>📖 How to Download</h2>
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-text">Open Instagram or Facebook app and find the video/reel you want to download</div>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-text">Copy the video link (Share > Copy Link)</div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-text">Paste the link in the box above and click Download</div>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-text">Your video will be ready to download in HD quality!</div>
+            <div class="feature">
+                <div class="feature-icon">💯</div>
+                <div class="feature-title">No Registration</div>
+                <div class="feature-text">No sign-up required</div>
             </div>
         </div>
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        let currentPlatform = 'instagram';
+        AOS.init({ duration: 800, once: true });
         
-        function selectPlatform(platform) {
-            currentPlatform = platform;
+        let currentMode = 'word-to-pdf';
+        let selectedFile = null;
+        let outputBlob = null;
+        
+        // Set PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        // Switch mode
+        function switchMode(mode) {
+            currentMode = mode;
+            selectedFile = null;
             
-            document.querySelectorAll('.platform-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            document.querySelectorAll('.converter-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.converter-tab.${mode}`).classList.add('active');
             
-            if (platform === 'instagram') {
-                document.querySelector('.platform-tab.instagram').classList.add('active');
-                document.getElementById('videoUrl').placeholder = 'Paste Instagram Reel URL here...';
+            const uploadArea = document.getElementById('uploadArea');
+            const uploadIcon = document.getElementById('uploadIcon');
+            const uploadText = document.getElementById('uploadText');
+            const uploadSubtext = document.getElementById('uploadSubtext');
+            const fileInput = document.getElementById('fileInput');
+            const convertBtn = document.getElementById('convertBtn');
+            const convertBtnText = document.getElementById('convertBtnText');
+            const spinner = document.getElementById('spinner');
+            
+            if (mode === 'word-to-pdf') {
+                uploadArea.classList.remove('pdf-mode');
+                uploadIcon.textContent = '📝';
+                uploadText.textContent = 'Drop your Word file here';
+                uploadSubtext.textContent = 'or click to browse • Supports .docx files';
+                fileInput.accept = '.docx,.doc';
+                convertBtn.classList.remove('pdf-mode');
+                convertBtnText.textContent = 'Convert to PDF';
+                spinner.classList.remove('pdf-mode');
             } else {
-                document.querySelector('.platform-tab.facebook').classList.add('active');
-                document.getElementById('videoUrl').placeholder = 'Paste Facebook Video URL here...';
+                uploadArea.classList.add('pdf-mode');
+                uploadIcon.textContent = '📄';
+                uploadText.textContent = 'Drop your PDF file here';
+                uploadSubtext.textContent = 'or click to browse • Supports .pdf files';
+                fileInput.accept = '.pdf';
+                convertBtn.classList.add('pdf-mode');
+                convertBtnText.textContent = 'Convert to Word';
+                spinner.classList.add('pdf-mode');
             }
             
-            document.getElementById('result').classList.remove('active');
-            document.getElementById('error').classList.remove('active');
+            removeFile();
         }
         
-        async function downloadVideo() {
-            const url = document.getElementById('videoUrl').value.trim();
+        // File select
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
             
-            if (!url) {
-                showError('⚠️ Please paste a video URL first');
+            const extension = file.name.split('.').pop().toLowerCase();
+            
+            if (currentMode === 'word-to-pdf') {
+                if (extension !== 'docx') {
+                    alert('⚠️ Please select a .docx file (Word 2007+)');
+                    return;
+                }
+            } else {
+                if (extension !== 'pdf') {
+                    alert('⚠️ Please select a PDF file');
+                    return;
+                }
+            }
+            
+            selectedFile = file;
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = 'Size: ' + formatFileSize(file.size);
+            document.getElementById('fileInfo').classList.add('active');
+            document.getElementById('convertBtn').classList.add('active');
+            document.getElementById('result').classList.remove('active');
+        }
+        
+        // Format size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Remove file
+        function removeFile() {
+            selectedFile = null;
+            document.getElementById('fileInput').value = '';
+            document.getElementById('fileInfo').classList.remove('active');
+            document.getElementById('convertBtn').classList.remove('active');
+            document.getElementById('result').classList.remove('active');
+        }
+        
+        // Convert file
+        async function convertFile() {
+            if (!selectedFile) {
+                alert('⚠️ Please select a file first');
                 return;
             }
             
+            const btn = document.getElementById('convertBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i> Converting...';
+            
             document.getElementById('loading').classList.add('active');
             document.getElementById('result').classList.remove('active');
-            document.getElementById('error').classList.remove('active');
             
-            const btn = document.querySelector('.download-btn');
-            btn.disabled = true;
-            btn.textContent = '⏳ Fetching...';
+            document.getElementById('loadingText').textContent = 
+                currentMode === 'word-to-pdf' ? 'Converting Word to PDF...' : 'Converting PDF to Word...';
             
             try {
-                let videoData = null;
-                
-                if (currentPlatform === 'instagram') {
-                    videoData = await fetchInstagramVideo(url);
+                if (currentMode === 'word-to-pdf') {
+                    outputBlob = await convertWordToPDF(selectedFile);
                 } else {
-                    videoData = await fetchFacebookVideo(url);
+                    outputBlob = await convertPDFToWord(selectedFile);
                 }
                 
-                if (videoData && videoData.video_url) {
-                    showResult(videoData);
+                const outputUrl = URL.createObjectURL(outputBlob);
+                const downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = outputUrl;
+                
+                const baseName = selectedFile.name.replace(/\.(docx|doc|pdf)$/i, '');
+                
+                if (currentMode === 'word-to-pdf') {
+                    downloadLink.setAttribute('download', baseName + '.pdf');
+                    document.getElementById('downloadBtnText').textContent = 'Download PDF';
+                    document.getElementById('resultText').textContent = 'Your PDF is ready';
                 } else {
-                    showError('❌ Unable to fetch video. Please check the URL and try again.');
+                    downloadLink.setAttribute('download', baseName + '.docx');
+                    document.getElementById('downloadBtnText').textContent = 'Download Word File';
+                    document.getElementById('resultText').textContent = 'Your Word file is ready';
                 }
+                
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('result').classList.add('active');
+                document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-arrow-left-right me-2"></i> <span>' + 
+                    (currentMode === 'word-to-pdf' ? 'Convert to PDF' : 'Convert to Word') + '</span>';
+                
             } catch (error) {
                 console.error('Error:', error);
-                showError('❌ Something went wrong. Please try again.');
-            } finally {
                 document.getElementById('loading').classList.remove('active');
                 btn.disabled = false;
-                btn.textContent = '⬇️ Download';
+                btn.innerHTML = '<i class="bi bi-arrow-left-right me-2"></i> <span>' + 
+                    (currentMode === 'word-to-pdf' ? 'Convert to PDF' : 'Convert to Word') + '</span>';
+                alert('❌ Conversion failed: ' + error.message);
             }
         }
         
-        async function fetchInstagramVideo(url) {
+        // Word to PDF
+        async function convertWordToPDF(file) {
+            const arrayBuffer = await file.arrayBuffer();
+            const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
+            const htmlContent = result.value;
+            
+            const htmlWrapper = `
+                <!DOCTYPE html><html><head><style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 40px; color: #333; }
+                    h1,h2,h3 { color: #000; } table { border-collapse: collapse; width: 100%; }
+                    table,th,td { border: 1px solid #ddd; } th,td { padding: 8px; }
+                </style></head><body>${htmlContent}</body></html>
+            `;
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlWrapper;
+            document.body.appendChild(tempDiv);
+            
+            const pdf = await html2pdf().set({
+                margin: [10, 10],
+                filename: file.name.replace('.docx', '') + '.pdf',
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            }).from(tempDiv).outputPdf('blob');
+            
+            document.body.removeChild(tempDiv);
+            return pdf;
+        }
+        
+        // PDF to Word - FIXED VERSION
+        async function convertPDFToWord(file) {
             try {
-                // Method 1: Using Instagram oEmbed API
-                const oembedUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.instagram.com/oembed/?url=' + encodeURIComponent(url))}`;
-                const response = await fetch(oembedUrl);
-                const data = await response.json();
+                // Read PDF file
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
                 
-                if (data.thumbnail_url) {
-                    // For Instagram, we get thumbnail first
-                    // Try to extract video from the page
-                    const pageUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                    const pageResponse = await fetch(pageUrl);
-                    const html = await pageResponse.text();
-                    
-                    // Extract video URL from HTML
-                    const videoMatch = html.match(/"video_url":"([^"]+)"/);
-                    const videoUrl = videoMatch ? videoMatch[1].replace(/\\\//g, '/') : null;
-                    
-                    if (videoUrl) {
-                        return {
-                            video_url: videoUrl,
-                            title: data.title || 'Instagram Reel',
-                            platform: 'Instagram',
-                            thumbnail: data.thumbnail_url
-                        };
-                    }
+                let fullText = '';
+                
+                // Extract text from all pages
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const textContent = await page.getTextContent();
+                    const pageText = textContent.items.map(item => item.str).join(' ');
+                    fullText += pageText + '\n\n';
                 }
                 
-                // Method 2: Using instagram-post-downloader API
-                const shortcode = extractInstagramShortcode(url);
-                if (shortcode) {
-                    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.instagram.com/reel/' + shortcode + '/?__a=1&__d=dis')}`;
-                    const apiResponse = await fetch(apiUrl);
-                    const apiData = await apiResponse.json();
-                    
-                    if (apiData.items && apiData.items[0]) {
-                        const item = apiData.items[0];
-                        const videoUrl = item.video_versions?.[0]?.url || item.carousel_media?.[0]?.video_versions?.[0]?.url;
-                        
-                        if (videoUrl) {
-                            return {
-                                video_url: videoUrl,
-                                title: item.caption?.text || 'Instagram Reel',
-                                platform: 'Instagram',
-                                thumbnail: item.image_versions2?.candidates?.[0]?.url
-                            };
-                        }
-                    }
-                }
+                // Create a simple DOCX using JSZip directly (more reliable)
+                const zip = new JSZip();
                 
-                return null;
+                // Create document.xml content
+                const docContent = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                    <w:body>
+                        ${fullText.split('\n').map(line => 
+                            line.trim() ? `<w:p><w:r><w:t>${escapeXml(line)}</w:t></w:r></w:p>` : '<w:p/>'
+                        ).join('')}
+                    </w:body>
+                </w:document>`;
+                
+                // Create content types
+                const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+                    <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+                    <Default Extension="xml" ContentType="application/xml"/>
+                    <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+                </Types>`;
+                
+                // Create relationships
+                const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+                    <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+                </Relationships>`;
+                
+                // Add files to zip
+                zip.file('[Content_Types].xml', contentTypes);
+                zip.folder('_rels').file('.rels', rels);
+                zip.folder('word').file('document.xml', docContent);
+                
+                // Generate blob
+                const blob = await zip.generateAsync({ type: 'blob' });
+                return blob;
+                
             } catch (error) {
-                console.error('Instagram fetch error:', error);
-                return null;
+                console.error('PDF to Word error:', error);
+                throw new Error('PDF conversion failed: ' + error.message);
             }
         }
         
-        async function fetchFacebookVideo(url) {
-            try {
-                // Using AllOrigins to bypass CORS
-                const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const html = await response.text();
-                
-                // Extract video URLs
-                const hdMatch = html.match(/"browser_native_hd_url":"([^"]+)"/);
-                const sdMatch = html.match(/"browser_native_sd_url":"([^"]+)"/);
-                const playableMatch = html.match(/"playable_url":"([^"]+)"/);
-                
-                let videoUrl = null;
-                let quality = '';
-                
-                if (hdMatch && hdMatch[1]) {
-                    videoUrl = hdMatch[1].replace(/\\\//g, '/');
-                    quality = 'HD';
-                } else if (sdMatch && sdMatch[1]) {
-                    videoUrl = sdMatch[1].replace(/\\\//g, '/');
-                    quality = 'SD';
-                } else if (playableMatch && playableMatch[1]) {
-                    videoUrl = playableMatch[1].replace(/\\\//g, '/');
-                    quality = 'SD';
-                }
-                
-                if (videoUrl) {
-                    // Get video title
-                    const titleMatch = html.match(/"og:title" content="([^"]+)"/);
-                    const imageMatch = html.match(/"og:image" content="([^"]+)"/);
-                    
-                    return {
-                        video_url: videoUrl,
-                        title: titleMatch ? titleMatch[1] : 'Facebook Video',
-                        platform: 'Facebook',
-                        quality: quality,
-                        thumbnail: imageMatch ? imageMatch[1] : ''
-                    };
-                }
-                
-                return null;
-            } catch (error) {
-                console.error('Facebook fetch error:', error);
-                return null;
-            }
+        // Escape XML
+        function escapeXml(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
         }
         
-        function extractInstagramShortcode(url) {
-            const match = url.match(/reel[s]?\/([A-Za-z0-9_-]+)/) || url.match(/p\/([A-Za-z0-9_-]+)/);
-            return match ? match[1] : null;
-        }
+        // Drag and Drop
+        const uploadArea = document.getElementById('uploadArea');
         
-        function showResult(data) {
-            const result = document.getElementById('result');
-            const video = document.getElementById('videoPreview');
-            const downloadLink = document.getElementById('downloadLink');
-            const videoTitle = document.getElementById('videoTitle');
-            const videoMeta = document.getElementById('videoMeta');
-            
-            video.src = data.video_url;
-            downloadLink.href = data.video_url;
-            
-            videoTitle.textContent = data.title || 'Video Ready to Download';
-            
-            let metaText = `${data.platform || currentPlatform} Video`;
-            if (data.quality) {
-                metaText += ` • ${data.quality} Quality`;
-            }
-            videoMeta.textContent = metaText;
-            
-            const filename = `${currentPlatform}_video_${Date.now()}.mp4`;
-            downloadLink.setAttribute('download', filename);
-            
-            result.classList.add('active');
-            
-            // Scroll to result
-            result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        function showError(message) {
-            const error = document.getElementById('error');
-            error.textContent = message;
-            error.classList.add('active');
-        }
-        
-        // Event listeners
-        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                downloadVideo();
-            }
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
         });
         
-        document.getElementById('videoUrl').addEventListener('input', function() {
-            const url = this.value;
-            if (url.includes('facebook.com') || url.includes('fb.watch')) {
-                selectPlatform('facebook');
-            } else if (url.includes('instagram.com')) {
-                selectPlatform('instagram');
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                handleFileSelect({ target: { files: [file] } });
             }
         });
     </script>
