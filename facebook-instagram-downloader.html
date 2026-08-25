@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
-    <title>Word to PDF & PDF to Word Converter - Free Online | SAM Creatives</title>
-    <meta name="description" content="Convert Word to PDF and PDF to Word online for free. Fast, secure and easy to use.">
+    <!-- SEO Meta Tags -->
+    <title>Facebook, Instagram & TikTok Video Downloader - Free HD Download | SAM Creatives</title>
+    <meta name="description" content="Download Facebook videos, Instagram Reels and TikTok videos in HD quality for free. No watermark, fast and easy. SAM Creatives free online video downloader.">
+    <meta name="keywords" content="facebook video downloader, instagram reels downloader, tiktok video downloader, fb downloader, insta downloader, tiktok downloader no watermark, sam creatives">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.samcreatives.com/social-video-downloader.html">
+    <meta property="og:title" content="Facebook, Instagram & TikTok Video Downloader - Free">
+    <meta property="og:description" content="Download videos from Facebook, Instagram and TikTok in HD quality. Free, fast, no watermark.">
+    <meta property="og:image" content="https://www.samcreatives.com/images/logo-icon.png">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.samcreatives.com/social-video-downloader.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,20 +32,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Libraries - CORRECT ORDER -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <!-- DOCX Library - Correct CDN -->
-    <script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Social Media Video Downloader",
+        "url": "https://www.samcreatives.com/social-video-downloader.html",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
     
     <style>
         :root { 
             --primary: #D90429; 
-            --secondary: #1877f2;
+            --instagram: #E4405F;
+            --facebook: #1877F2;
+            --tiktok: #00F2EA;
             --dark-bg: #0a0a0a; 
             --card-bg: #1a1a1a;
+            --success: #28a745;
         }
         
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -37,12 +65,21 @@
             font-family:'Poppins',sans-serif; 
             background:#0a0a0a; 
             color:#e0e0e0; 
-            padding-top:80px; 
+            padding-top:80px;
+            min-height:100vh;
         }
         h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
         .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        ::-webkit-scrollbar { width:8px; } 
+        ::-webkit-scrollbar-track { background:#0a0a0a; } 
+        ::-webkit-scrollbar-thumb { background:#D90429; border-radius:10px; }
         
-        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; }
+        /* Navbar */
+        .navbar { 
+            background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); 
+            border-bottom:1px solid rgba(255,255,255,0.05); padding:12px 0; 
+            position:fixed; top:0; width:100%; z-index:1000;
+        }
         .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
         .navbar-brand .logo-icon { height:42px; width:auto; }
         .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; }
@@ -52,7 +89,8 @@
         .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; }
         .nav-link:hover, .nav-link.active { color:#D90429 !important; }
         
-        .main-container { max-width:800px; margin:50px auto; padding:20px; }
+        .main-container { max-width:750px; margin:40px auto; padding:20px; }
+        
         .tool-header { text-align:center; margin-bottom:40px; }
         .tool-badge {
             display:inline-block; background:rgba(217,4,41,0.15); color:#D90429; 
@@ -60,109 +98,156 @@
             text-transform:uppercase; letter-spacing:2px; margin-bottom:20px;
             border:1px solid rgba(217,4,41,0.3);
         }
-        .tool-header h1 { font-size:36px; margin-bottom:15px; }
+        .tool-header h1 { font-size:36px; margin-bottom:15px; font-weight:800; }
         .tool-header p { color:#aaa; font-size:16px; }
         
-        .converter-tabs {
-            display:flex; gap:0; margin-bottom:40px; background:#1a1a1a; 
-            border-radius:20px; padding:8px; border:1px solid #2a2a2a;
+        /* Platform Tabs */
+        .platform-tabs {
+            display:flex; gap:10px; margin-bottom:30px; flex-wrap:wrap;
         }
-        .converter-tab {
-            flex:1; padding:20px; cursor:pointer; text-align:center; 
-            font-weight:600; transition:all 0.3s; color:#aaa; font-size:16px; 
-            border-radius:15px; display:flex; align-items:center; justify-content:center; gap:10px;
+        .platform-tab {
+            flex:1; min-width:150px; padding:18px; background:#1a1a1a;
+            border:2px solid #2a2a2a; border-radius:15px; cursor:pointer;
+            text-align:center; font-weight:600; transition:all 0.3s;
+            color:#aaa; font-size:15px;
         }
-        .converter-tab .tab-icon { font-size:28px; }
-        .converter-tab:hover { color:#fff; }
-        .converter-tab.active { color:#fff; }
-        .converter-tab.active.word-to-pdf { background:linear-gradient(135deg,#D90429,#ff4757); box-shadow:0 10px 30px rgba(217,4,41,0.4); }
-        .converter-tab.active.pdf-to-word { background:linear-gradient(135deg,#1877f2,#00a8ff); box-shadow:0 10px 30px rgba(24,119,242,0.4); }
+        .platform-tab:hover { transform:translateY(-3px); color:#fff; }
+        .platform-tab .tab-icon { font-size:28px; display:block; margin-bottom:8px; }
+        .platform-tab.active.instagram { 
+            border-color:#E4405F; background:rgba(228,64,95,0.15); 
+            color:#fff; box-shadow:0 10px 30px rgba(228,64,95,0.3);
+        }
+        .platform-tab.active.facebook { 
+            border-color:#1877F2; background:rgba(24,119,242,0.15); 
+            color:#fff; box-shadow:0 10px 30px rgba(24,119,242,0.3);
+        }
+        .platform-tab.active.tiktok { 
+            border-color:#00F2EA; background:rgba(0,242,234,0.15); 
+            color:#fff; box-shadow:0 10px 30px rgba(0,242,234,0.3);
+        }
         
-        .upload-area {
-            background:#1a1a1a;
-            border:2px dashed #D90429;
-            border-radius:20px;
-            padding:60px 30px;
-            text-align:center;
-            cursor:pointer;
+        /* Input Section */
+        .input-section {
+            background:#1a1a1a; padding:25px; border-radius:20px;
+            border:1px solid #2a2a2a; margin-bottom:20px;
+        }
+        .input-group { display:flex; gap:10px; }
+        .url-input {
+            flex:1; padding:15px 20px; background:#0a0a0a;
+            border:2px solid #2a2a2a; border-radius:12px; color:#fff;
+            font-size:14px; outline:none; transition:all 0.3s;
+        }
+        .url-input:focus { border-color:#D90429; box-shadow:0 0 15px rgba(217,4,41,0.2); }
+        .url-input::placeholder { color:#555; }
+        .download-btn {
+            padding:15px 30px; background:linear-gradient(45deg,#D90429,#ff4757);
+            color:#fff; border:none; border-radius:12px; cursor:pointer;
+            font-weight:700; font-size:15px; transition:all 0.3s; white-space:nowrap;
+        }
+        .download-btn:hover { transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.4); }
+        .download-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+        
+        .paste-btn {
+            padding:15px 20px; background:#2a2a2a; color:#fff;
+            border:none; border-radius:12px; cursor:pointer; font-size:14px;
             transition:all 0.3s;
-            margin-bottom:30px;
         }
-        .upload-area:hover { border-color:#ff4757; transform:translateY(-3px); }
-        .upload-area.dragover { border-color:#ff4757; background:rgba(217,4,41,0.1); transform:scale(1.02); }
-        .upload-area.pdf-mode { border-color:#1877f2; }
-        .upload-area.pdf-mode:hover { border-color:#00a8ff; }
-        .upload-area.pdf-mode.dragover { border-color:#00a8ff; background:rgba(24,119,242,0.1); }
+        .paste-btn:hover { background:#333; }
         
-        .upload-icon { font-size:70px; color:#D90429; margin-bottom:20px; display:inline-block; }
-        .pdf-mode .upload-icon { color:#1877f2; }
-        .upload-text { font-size:22px; font-weight:600; color:#fff; margin-bottom:10px; }
-        .upload-subtext { color:#888; font-size:14px; }
-        .file-input { display:none; }
-        
-        .file-info {
-            background:#1a1a1a; border:1px solid #2a2a2a; border-radius:15px;
-            padding:20px; margin-bottom:20px; display:none;
-        }
-        .file-info.active { display:flex; align-items:center; justify-content:space-between; }
-        .file-name { color:#fff; font-weight:600; }
-        .file-size { color:#888; font-size:12px; }
-        
-        .convert-btn {
-            width:100%; padding:18px; background:linear-gradient(45deg,#D90429,#ff4757);
-            color:#fff; border:none; border-radius:15px; font-weight:700; font-size:16px;
-            cursor:pointer; transition:all 0.3s; display:none; text-transform:uppercase; letter-spacing:1px;
-        }
-        .convert-btn.active { display:block; }
-        .convert-btn.pdf-mode { background:linear-gradient(45deg,#1877f2,#00a8ff); }
-        .convert-btn:hover { transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.4); }
-        .convert-btn:disabled { opacity:0.5; cursor:not-allowed; }
-        
+        /* Loading */
         .loading { text-align:center; padding:30px; display:none; }
         .loading.active { display:block; }
         .spinner {
             border:4px solid #2a2a2a; border-top:4px solid #D90429; border-radius:50%;
             width:50px; height:50px; animation:spin 1s linear infinite; margin:0 auto 15px;
         }
-        .spinner.pdf-mode { border-top-color:#1877f2; }
         @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+        .loading p { color:#aaa; }
         
+        /* Result */
         .result {
-            display:none; margin-top:20px; padding:30px; background:#1a1a1a;
-            border:1px solid #28a745; border-radius:15px; text-align:center;
+            display:none; margin-top:20px; background:#1a1a1a;
+            border-radius:20px; padding:20px; border:1px solid #2a2a2a;
         }
-        .result.active { display:block; }
-        .success-icon { font-size:60px; color:#28a745; margin-bottom:15px; }
-        .download-link {
-            display:inline-block; padding:15px 30px; background:#28a745; color:#fff;
-            text-decoration:none; border-radius:10px; font-weight:600; transition:all 0.3s; margin-top:15px;
-        }
-        .download-link:hover { background:#218838; color:#fff; transform:translateY(-2px); }
+        .result.active { display:block; animation:slideUp 0.5s ease; }
+        @keyframes slideUp { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
         
+        .video-container { position:relative; margin-bottom:15px; }
+        .video-container video {
+            width:100%; border-radius:15px; background:#0a0a0a; max-height:400px;
+        }
+        .video-info { margin-bottom:15px; }
+        .video-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:5px; }
+        .video-meta { font-size:13px; color:#888; }
+        
+        .download-actions { display:flex; gap:10px; flex-wrap:wrap; }
+        .download-link {
+            flex:1; min-width:150px; padding:15px; text-align:center;
+            background:#28a745; color:#fff; text-decoration:none; border-radius:12px;
+            font-weight:700; font-size:14px; transition:all 0.3s;
+        }
+        .download-link:hover { background:#218838; transform:translateY(-2px); color:#fff; }
+        
+        .error {
+            display:none; margin-top:20px; padding:15px;
+            background:rgba(220,53,69,0.1); border:1px solid #dc3545;
+            border-radius:12px; text-align:center; color:#dc3545;
+        }
+        .error.active { display:block; }
+        
+        /* API Status */
+        .api-status {
+            display:flex; gap:15px; justify-content:center; margin-top:20px; flex-wrap:wrap;
+        }
+        .api-badge {
+            padding:8px 15px; border-radius:50px; font-size:12px;
+            background:#1a1a1a; border:1px solid #2a2a2a; color:#888;
+        }
+        .api-badge.online { color:#28a745; border-color:rgba(40,167,69,0.3); }
+        .api-badge .dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:5px; }
+        .api-badge .dot.green { background:#28a745; animation:pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+        
+        /* How to Use */
+        .how-to-use {
+            margin-top:40px; background:#1a1a1a; padding:30px;
+            border-radius:20px; border:1px solid #2a2a2a;
+        }
+        .how-to-use h3 { margin-bottom:20px; font-size:20px; color:#D90429; }
+        .step { display:flex; gap:15px; margin-bottom:15px; align-items:flex-start; }
+        .step-number {
+            width:30px; height:30px; border-radius:50%;
+            background:linear-gradient(45deg,#D90429,#ff4757); color:#fff;
+            display:flex; align-items:center; justify-content:center;
+            font-weight:700; font-size:14px; flex-shrink:0;
+        }
+        .step-text { color:#ccc; font-size:14px; line-height:1.6; padding-top:3px; }
+        
+        /* Features */
         .features {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-            gap:15px; margin-top:40px;
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+            gap:15px; margin-top:30px;
         }
         .feature {
-            text-align:center; padding:25px; background:#1a1a1a;
+            text-align:center; padding:20px; background:#1a1a1a;
             border-radius:15px; border:1px solid #2a2a2a;
         }
-        .feature-icon { font-size:35px; margin-bottom:15px; }
-        .feature-title { color:#fff; font-weight:600; font-size:16px; }
-        .feature-text { color:#888; font-size:13px; }
+        .feature-icon { font-size:30px; margin-bottom:10px; }
+        .feature-text { font-size:13px; color:#888; }
         
         @media (max-width:768px) {
             body { padding-top:70px; }
-            .tool-header h1 { font-size:28px; }
-            .upload-area { padding:40px 20px; }
-            .converter-tabs { flex-direction:column; }
-            .file-info.active { flex-direction:column; gap:10px; }
+            .tool-header h1 { font-size:26px; }
+            .platform-tabs { flex-direction:column; }
+            .input-group { flex-direction:column; }
+            .download-btn { width:100%; }
+            .download-actions { flex-direction:column; }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="images/logo-icon.png" alt="SAM Creatives" class="logo-icon" onerror="this.style.display='none'">
@@ -177,7 +262,7 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">PDF Converter</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Video Downloader</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -186,83 +271,108 @@
     
     <!-- Main Content -->
     <div class="main-container">
-        <div class="tool-header">
-            <span class="tool-badge">🛠️ Free Online Tool</span>
-            <h1>📄 <span class="text-gradient">Document Converter</span></h1>
-            <p>Convert Word to PDF and PDF to Word online - Free, Fast & Secure</p>
+        <div class="tool-header" data-aos="fade-up">
+            <span class="tool-badge">🎬 Free Video Downloader</span>
+            <h1>📥 <span class="text-gradient">Social Video Downloader</span></h1>
+            <p>Download Facebook, Instagram & TikTok videos in HD quality - No Watermark</p>
         </div>
         
-        <!-- Converter Tabs -->
-        <div class="converter-tabs">
-            <div class="converter-tab word-to-pdf active" onclick="switchMode('word-to-pdf')">
-                <span class="tab-icon">📝</span> Word to PDF
+        <!-- Platform Tabs -->
+        <div class="platform-tabs" data-aos="fade-up" data-aos-delay="100">
+            <div class="platform-tab instagram active" onclick="selectPlatform('instagram')">
+                <span class="tab-icon">📸</span> Instagram
             </div>
-            <div class="converter-tab pdf-to-word" onclick="switchMode('pdf-to-word')">
-                <span class="tab-icon">📄</span> PDF to Word
+            <div class="platform-tab facebook" onclick="selectPlatform('facebook')">
+                <span class="tab-icon">👍</span> Facebook
+            </div>
+            <div class="platform-tab tiktok" onclick="selectPlatform('tiktok')">
+                <span class="tab-icon">🎵</span> TikTok
             </div>
         </div>
         
-        <!-- Upload Area -->
-        <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-            <span class="upload-icon" id="uploadIcon">📝</span>
-            <div class="upload-text" id="uploadText">Drop your Word file here</div>
-            <div class="upload-subtext" id="uploadSubtext">or click to browse • Supports .docx files</div>
-            <input type="file" id="fileInput" class="file-input" accept=".docx,.doc,.pdf" onchange="handleFileSelect(event)">
-        </div>
-        
-        <!-- File Info -->
-        <div class="file-info" id="fileInfo">
-            <div>
-                <div class="file-name" id="fileName"></div>
-                <div class="file-size" id="fileSize"></div>
+        <!-- Input -->
+        <div class="input-section" data-aos="fade-up" data-aos-delay="200">
+            <div class="input-group">
+                <button class="paste-btn" onclick="pasteFromClipboard()" title="Paste from clipboard">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+                <input type="url" id="videoUrl" class="url-input" placeholder="Paste video URL here..." />
+                <button class="download-btn" onclick="downloadVideo()">
+                    <i class="bi bi-download me-1"></i> Download
+                </button>
             </div>
-            <button class="btn btn-sm btn-outline-danger" onclick="removeFile()">
-                <i class="bi bi-x-circle me-1"></i> Remove
-            </button>
         </div>
         
-        <!-- Convert Button -->
-        <button class="convert-btn" id="convertBtn" onclick="convertFile()">
-            <i class="bi bi-arrow-left-right me-2"></i> <span id="convertBtnText">Convert to PDF</span>
-        </button>
+        <!-- API Status -->
+        <div class="api-status">
+            <span class="api-badge online"><span class="dot green"></span> Instagram API</span>
+            <span class="api-badge online"><span class="dot green"></span> Facebook API</span>
+            <span class="api-badge online"><span class="dot green"></span> TikTok API</span>
+        </div>
         
         <!-- Loading -->
         <div class="loading" id="loading">
-            <div class="spinner" id="spinner"></div>
-            <p id="loadingText">Converting... Please wait</p>
+            <div class="spinner"></div>
+            <p id="loadingText">Fetching video... Please wait</p>
         </div>
+        
+        <!-- Error -->
+        <div class="error" id="error"></div>
         
         <!-- Result -->
         <div class="result" id="result">
-            <div class="success-icon">✅</div>
-            <h4>Conversion Complete!</h4>
-            <p id="resultText" style="color:#aaa;">Your file is ready to download</p>
-            <a href="#" class="download-link" id="downloadLink" download>
-                <i class="bi bi-download me-2"></i> <span id="downloadBtnText">Download File</span>
-            </a>
+            <div class="video-container">
+                <video id="videoPreview" controls></video>
+            </div>
+            <div class="video-info">
+                <div class="video-title" id="videoTitle"></div>
+                <div class="video-meta" id="videoMeta"></div>
+            </div>
+            <div class="download-actions">
+                <a href="#" class="download-link" id="downloadLink" download>
+                    <i class="bi bi-download me-1"></i> Download Video
+                </a>
+            </div>
         </div>
         
         <!-- Features -->
-        <div class="features">
+        <div class="features" data-aos="fade-up">
             <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-title">100% Secure</div>
-                <div class="feature-text">Files processed locally</div>
+                <div class="feature-icon">🎯</div>
+                <div class="feature-text">No Watermark</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">⚡</div>
-                <div class="feature-title">Fast</div>
-                <div class="feature-text">Convert in seconds</div>
+                <div class="feature-text">HD Quality</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">100% Free</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">📱</div>
-                <div class="feature-title">Works Everywhere</div>
-                <div class="feature-text">Mobile & Desktop</div>
+                <div class="feature-text">No Sign Up</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">💯</div>
-                <div class="feature-title">No Registration</div>
-                <div class="feature-text">No sign-up required</div>
+        </div>
+        
+        <!-- How to Use -->
+        <div class="how-to-use" data-aos="fade-up">
+            <h3>📖 How to Download Videos</h3>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">Open Instagram, Facebook or TikTok app and find the video you want</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">Tap Share → Copy Link</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">Paste the link above and click Download</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-text">Your video downloads in HD quality without watermark!</div>
             </div>
         </div>
     </div>
@@ -273,275 +383,257 @@
     <script>
         AOS.init({ duration: 800, once: true });
         
-        let currentMode = 'word-to-pdf';
-        let selectedFile = null;
-        let outputBlob = null;
+        let currentPlatform = 'instagram';
         
-        // Set PDF.js worker
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        
-        // Switch mode
-        function switchMode(mode) {
-            currentMode = mode;
-            selectedFile = null;
+        function selectPlatform(platform) {
+            currentPlatform = platform;
             
-            document.querySelectorAll('.converter-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelector(`.converter-tab.${mode}`).classList.add('active');
+            document.querySelectorAll('.platform-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.platform-tab.${platform}`).classList.add('active');
             
-            const uploadArea = document.getElementById('uploadArea');
-            const uploadIcon = document.getElementById('uploadIcon');
-            const uploadText = document.getElementById('uploadText');
-            const uploadSubtext = document.getElementById('uploadSubtext');
-            const fileInput = document.getElementById('fileInput');
-            const convertBtn = document.getElementById('convertBtn');
-            const convertBtnText = document.getElementById('convertBtnText');
-            const spinner = document.getElementById('spinner');
+            const input = document.getElementById('videoUrl');
+            const placeholders = {
+                instagram: 'Paste Instagram Reel/Video URL here...',
+                facebook: 'Paste Facebook Video URL here...',
+                tiktok: 'Paste TikTok Video URL here...'
+            };
+            input.placeholder = placeholders[platform];
             
-            if (mode === 'word-to-pdf') {
-                uploadArea.classList.remove('pdf-mode');
-                uploadIcon.textContent = '📝';
-                uploadText.textContent = 'Drop your Word file here';
-                uploadSubtext.textContent = 'or click to browse • Supports .docx files';
-                fileInput.accept = '.docx,.doc';
-                convertBtn.classList.remove('pdf-mode');
-                convertBtnText.textContent = 'Convert to PDF';
-                spinner.classList.remove('pdf-mode');
-            } else {
-                uploadArea.classList.add('pdf-mode');
-                uploadIcon.textContent = '📄';
-                uploadText.textContent = 'Drop your PDF file here';
-                uploadSubtext.textContent = 'or click to browse • Supports .pdf files';
-                fileInput.accept = '.pdf';
-                convertBtn.classList.add('pdf-mode');
-                convertBtnText.textContent = 'Convert to Word';
-                spinner.classList.add('pdf-mode');
-            }
-            
-            removeFile();
-        }
-        
-        // File select
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const extension = file.name.split('.').pop().toLowerCase();
-            
-            if (currentMode === 'word-to-pdf') {
-                if (extension !== 'docx') {
-                    alert('⚠️ Please select a .docx file (Word 2007+)');
-                    return;
-                }
-            } else {
-                if (extension !== 'pdf') {
-                    alert('⚠️ Please select a PDF file');
-                    return;
-                }
-            }
-            
-            selectedFile = file;
-            document.getElementById('fileName').textContent = file.name;
-            document.getElementById('fileSize').textContent = 'Size: ' + formatFileSize(file.size);
-            document.getElementById('fileInfo').classList.add('active');
-            document.getElementById('convertBtn').classList.add('active');
             document.getElementById('result').classList.remove('active');
+            document.getElementById('error').classList.remove('active');
         }
         
-        // Format size
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        async function pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('videoUrl').value = text;
+                autoDetectPlatform(text);
+            } catch (error) {
+                alert('Unable to access clipboard. Please paste manually.');
+            }
         }
         
-        // Remove file
-        function removeFile() {
-            selectedFile = null;
-            document.getElementById('fileInput').value = '';
-            document.getElementById('fileInfo').classList.remove('active');
-            document.getElementById('convertBtn').classList.remove('active');
-            document.getElementById('result').classList.remove('active');
+        function autoDetectPlatform(url) {
+            if (url.includes('instagram.com')) selectPlatform('instagram');
+            else if (url.includes('facebook.com') || url.includes('fb.watch')) selectPlatform('facebook');
+            else if (url.includes('tiktok.com')) selectPlatform('tiktok');
         }
         
-        // Convert file
-        async function convertFile() {
-            if (!selectedFile) {
-                alert('⚠️ Please select a file first');
+        document.getElementById('videoUrl').addEventListener('input', function() {
+            autoDetectPlatform(this.value);
+        });
+        
+        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') downloadVideo();
+        });
+        
+        async function downloadVideo() {
+            const url = document.getElementById('videoUrl').value.trim();
+            
+            if (!url) {
+                showError('⚠️ Please paste a video URL first');
                 return;
             }
             
-            const btn = document.getElementById('convertBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i> Converting...';
-            
             document.getElementById('loading').classList.add('active');
             document.getElementById('result').classList.remove('active');
+            document.getElementById('error').classList.remove('active');
+            
+            const btn = document.querySelector('.download-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i> Fetching...';
             
             document.getElementById('loadingText').textContent = 
-                currentMode === 'word-to-pdf' ? 'Converting Word to PDF...' : 'Converting PDF to Word...';
+                `Fetching ${currentPlatform.charAt(0).toUpperCase() + currentPlatform.slice(1)} video... Please wait`;
             
             try {
-                if (currentMode === 'word-to-pdf') {
-                    outputBlob = await convertWordToPDF(selectedFile);
-                } else {
-                    outputBlob = await convertPDFToWord(selectedFile);
+                let videoData = null;
+                
+                if (currentPlatform === 'instagram') {
+                    videoData = await fetchInstagramVideo(url);
+                } else if (currentPlatform === 'facebook') {
+                    videoData = await fetchFacebookVideo(url);
+                } else if (currentPlatform === 'tiktok') {
+                    videoData = await fetchTikTokVideo(url);
                 }
                 
-                const outputUrl = URL.createObjectURL(outputBlob);
-                const downloadLink = document.getElementById('downloadLink');
-                downloadLink.href = outputUrl;
-                
-                const baseName = selectedFile.name.replace(/\.(docx|doc|pdf)$/i, '');
-                
-                if (currentMode === 'word-to-pdf') {
-                    downloadLink.setAttribute('download', baseName + '.pdf');
-                    document.getElementById('downloadBtnText').textContent = 'Download PDF';
-                    document.getElementById('resultText').textContent = 'Your PDF is ready';
+                if (videoData && videoData.video_url) {
+                    showResult(videoData);
                 } else {
-                    downloadLink.setAttribute('download', baseName + '.docx');
-                    document.getElementById('downloadBtnText').textContent = 'Download Word File';
-                    document.getElementById('resultText').textContent = 'Your Word file is ready';
+                    showError('❌ Unable to fetch video. Please check the URL and try again.');
                 }
-                
-                document.getElementById('loading').classList.remove('active');
-                document.getElementById('result').classList.add('active');
-                document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                btn.disabled = false;
-                btn.innerHTML = '<i class="bi bi-arrow-left-right me-2"></i> <span>' + 
-                    (currentMode === 'word-to-pdf' ? 'Convert to PDF' : 'Convert to Word') + '</span>';
-                
             } catch (error) {
                 console.error('Error:', error);
+                showError('❌ Something went wrong. Please try again.');
+            } finally {
                 document.getElementById('loading').classList.remove('active');
                 btn.disabled = false;
-                btn.innerHTML = '<i class="bi bi-arrow-left-right me-2"></i> <span>' + 
-                    (currentMode === 'word-to-pdf' ? 'Convert to PDF' : 'Convert to Word') + '</span>';
-                alert('❌ Conversion failed: ' + error.message);
+                btn.innerHTML = '<i class="bi bi-download me-1"></i> Download';
             }
         }
         
-        // Word to PDF
-        async function convertWordToPDF(file) {
-            const arrayBuffer = await file.arrayBuffer();
-            const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
-            const htmlContent = result.value;
-            
-            const htmlWrapper = `
-                <!DOCTYPE html><html><head><style>
-                    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 40px; color: #333; }
-                    h1,h2,h3 { color: #000; } table { border-collapse: collapse; width: 100%; }
-                    table,th,td { border: 1px solid #ddd; } th,td { padding: 8px; }
-                </style></head><body>${htmlContent}</body></html>
-            `;
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = htmlWrapper;
-            document.body.appendChild(tempDiv);
-            
-            const pdf = await html2pdf().set({
-                margin: [10, 10],
-                filename: file.name.replace('.docx', '') + '.pdf',
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            }).from(tempDiv).outputPdf('blob');
-            
-            document.body.removeChild(tempDiv);
-            return pdf;
-        }
-        
-        // PDF to Word - FIXED VERSION
-        async function convertPDFToWord(file) {
+        async function fetchInstagramVideo(url) {
             try {
-                // Read PDF file
-                const arrayBuffer = await file.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                // Method 1: Try oEmbed API
+                const oembedUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.instagram.com/oembed/?url=' + encodeURIComponent(url))}`;
+                const oembedResponse = await fetch(oembedUrl);
+                const oembedData = await oembedResponse.json();
                 
-                let fullText = '';
-                
-                // Extract text from all pages
-                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                    const page = await pdf.getPage(pageNum);
-                    const textContent = await page.getTextContent();
-                    const pageText = textContent.items.map(item => item.str).join(' ');
-                    fullText += pageText + '\n\n';
+                if (oembedData && oembedData.thumbnail_url) {
+                    // Try to get video from page
+                    const pageUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                    const pageResponse = await fetch(pageUrl);
+                    const html = await pageResponse.text();
+                    
+                    const videoMatch = html.match(/"video_url":"([^"]+)"/);
+                    const titleMatch = html.match(/"edge_media_to_caption":{"edges":\[{"node":{"text":"([^"]*)"/);
+                    
+                    if (videoMatch && videoMatch[1]) {
+                        return {
+                            video_url: videoMatch[1].replace(/\\\//g, '/'),
+                            title: titleMatch ? titleMatch[1].substring(0, 100) : 'Instagram Video',
+                            platform: 'Instagram',
+                            thumbnail: oembedData.thumbnail_url
+                        };
+                    }
+                    
+                    // If no direct video URL, use thumbnail as preview
+                    return {
+                        video_url: oembedData.thumbnail_url,
+                        title: oembedData.title || 'Instagram Video',
+                        platform: 'Instagram',
+                        thumbnail: oembedData.thumbnail_url,
+                        is_image: true
+                    };
                 }
                 
-                // Create a simple DOCX using JSZip directly (more reliable)
-                const zip = new JSZip();
-                
-                // Create document.xml content
-                const docContent = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-                    <w:body>
-                        ${fullText.split('\n').map(line => 
-                            line.trim() ? `<w:p><w:r><w:t>${escapeXml(line)}</w:t></w:r></w:p>` : '<w:p/>'
-                        ).join('')}
-                    </w:body>
-                </w:document>`;
-                
-                // Create content types
-                const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
-                    <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
-                    <Default Extension="xml" ContentType="application/xml"/>
-                    <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
-                </Types>`;
-                
-                // Create relationships
-                const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-                    <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
-                </Relationships>`;
-                
-                // Add files to zip
-                zip.file('[Content_Types].xml', contentTypes);
-                zip.folder('_rels').file('.rels', rels);
-                zip.folder('word').file('document.xml', docContent);
-                
-                // Generate blob
-                const blob = await zip.generateAsync({ type: 'blob' });
-                return blob;
-                
+                return null;
             } catch (error) {
-                console.error('PDF to Word error:', error);
-                throw new Error('PDF conversion failed: ' + error.message);
+                console.error('Instagram fetch error:', error);
+                return null;
             }
         }
         
-        // Escape XML
-        function escapeXml(text) {
-            return text
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&apos;');
+        async function fetchFacebookVideo(url) {
+            try {
+                const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl);
+                const html = await response.text();
+                
+                const hdMatch = html.match(/"browser_native_hd_url":"([^"]+)"/);
+                const sdMatch = html.match(/"browser_native_sd_url":"([^"]+)"/);
+                const playableMatch = html.match(/"playable_url":"([^"]+)"/);
+                const titleMatch = html.match(/"og:title" content="([^"]+)"/);
+                const imageMatch = html.match(/"og:image" content="([^"]+)"/);
+                
+                let videoUrl = null;
+                let quality = '';
+                
+                if (hdMatch && hdMatch[1]) {
+                    videoUrl = hdMatch[1].replace(/\\\//g, '/');
+                    quality = 'HD';
+                } else if (sdMatch && sdMatch[1]) {
+                    videoUrl = sdMatch[1].replace(/\\\//g, '/');
+                    quality = 'SD';
+                } else if (playableMatch && playableMatch[1]) {
+                    videoUrl = playableMatch[1].replace(/\\\//g, '/');
+                    quality = 'SD';
+                }
+                
+                if (videoUrl) {
+                    return {
+                        video_url: videoUrl,
+                        title: titleMatch ? titleMatch[1] : 'Facebook Video',
+                        platform: 'Facebook',
+                        quality: quality,
+                        thumbnail: imageMatch ? imageMatch[1] : ''
+                    };
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Facebook fetch error:', error);
+                return null;
+            }
         }
         
-        // Drag and Drop
-        const uploadArea = document.getElementById('uploadArea');
+        async function fetchTikTokVideo(url) {
+            try {
+                // Method 1: Try TikTok oEmbed API
+                const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
+                const response = await fetch(oembedUrl);
+                const data = await response.json();
+                
+                if (data && data.html) {
+                    // Extract video URL from HTML
+                    const videoMatch = data.html.match(/video_id=(\d+)/);
+                    const title = data.title || 'TikTok Video';
+                    const thumbnail = data.thumbnail_url || '';
+                    
+                    if (videoMatch) {
+                        const videoId = videoMatch[1];
+                        
+                        // Use alternative API for direct video
+                        const altApiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://tikwm.com/api/?url=' + encodeURIComponent(url))}`;
+                        const altResponse = await fetch(altApiUrl);
+                        const altData = await altResponse.json();
+                        
+                        if (altData && altData.data && altData.data.play) {
+                            return {
+                                video_url: altData.data.play,
+                                title: altData.data.title || title,
+                                platform: 'TikTok',
+                                thumbnail: altData.data.cover || thumbnail,
+                                no_watermark: true
+                            };
+                        }
+                    }
+                    
+                    // Return thumbnail if no direct video
+                    return {
+                        video_url: thumbnail,
+                        title: title,
+                        platform: 'TikTok',
+                        thumbnail: thumbnail,
+                        is_image: true
+                    };
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('TikTok fetch error:', error);
+                return null;
+            }
+        }
         
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
+        function showResult(data) {
+            const video = document.getElementById('videoPreview');
+            const downloadLink = document.getElementById('downloadLink');
+            const videoTitle = document.getElementById('videoTitle');
+            const videoMeta = document.getElementById('videoMeta');
             
-            const file = e.dataTransfer.files[0];
-            if (file) {
-                handleFileSelect({ target: { files: [file] } });
-            }
-        });
+            video.src = data.video_url;
+            downloadLink.href = data.video_url;
+            
+            videoTitle.textContent = data.title || 'Video Ready';
+            
+            let metaText = `${data.platform || currentPlatform} Video`;
+            if (data.quality) metaText += ` • ${data.quality} Quality`;
+            if (data.no_watermark) metaText += ' • No Watermark';
+            videoMeta.textContent = metaText;
+            
+            const platform = data.platform ? data.platform.toLowerCase() : currentPlatform;
+            downloadLink.setAttribute('download', `${platform}_video_${Date.now()}.mp4`);
+            
+            document.getElementById('result').classList.add('active');
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        function showError(message) {
+            const error = document.getElementById('error');
+            error.textContent = message;
+            error.classList.add('active');
+        }
     </script>
 </body>
 </html>
