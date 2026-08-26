@@ -2,255 +2,212 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>Facebook, Instagram & TikTok Video Downloader - Free HD Download | SAM Creatives</title>
-    <meta name="description" content="Download Facebook videos, Instagram Reels and TikTok videos in HD quality for free. No watermark, fast and easy. SAM Creatives free online video downloader.">
-    <meta name="keywords" content="facebook video downloader, instagram reels downloader, tiktok video downloader, fb downloader, insta downloader, tiktok downloader no watermark, sam creatives">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.samcreatives.com/social-video-downloader.html">
-    <meta property="og:title" content="Facebook, Instagram & TikTok Video Downloader - Free">
-    <meta property="og:description" content="Download videos from Facebook, Instagram and TikTok in HD quality. Free, fast, no watermark.">
-    <meta property="og:image" content="https://www.samcreatives.com/images/logo-icon.png">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.samcreatives.com/social-video-downloader.html">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FB, Instagram & TikTok Video Downloader - SAM Creatives</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Social Media Video Downloader",
-        "url": "https://www.samcreatives.com/social-video-downloader.html",
-        "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "Web",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        }
-    }
-    </script>
-    
     <style>
-        :root { 
-            --primary: #D90429; 
-            --instagram: #E4405F;
-            --facebook: #1877F2;
-            --tiktok: #00F2EA;
-            --dark-bg: #0a0a0a; 
-            --card-bg: #1a1a1a;
-            --success: #28a745;
-        }
-        
+        :root { --primary: #D90429; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { 
-            font-family:'Poppins',sans-serif; 
-            background:#0a0a0a; 
-            color:#e0e0e0; 
-            padding-top:80px;
-            min-height:100vh;
-        }
+        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#e0e0e0; padding-top:80px; min-height:100vh; }
         h1,h2,h3,h4,h5,h6 { font-family:'Montserrat',sans-serif; font-weight:700; color:#fff; }
         .text-gradient { background:linear-gradient(135deg,#D90429,#ff4757); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        ::-webkit-scrollbar { width:8px; } 
-        ::-webkit-scrollbar-track { background:#0a0a0a; } 
-        ::-webkit-scrollbar-thumb { background:#D90429; border-radius:10px; }
         
-        /* Navbar */
-        .navbar { 
-            background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); 
-            border-bottom:1px solid rgba(255,255,255,0.05); padding:12px 0; 
-            position:fixed; top:0; width:100%; z-index:1000;
-        }
+        .navbar { background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.05); padding:10px 0; }
         .navbar-brand { display:flex; align-items:center; text-decoration:none; gap:10px; }
         .navbar-brand .logo-icon { height:42px; width:auto; }
-        .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; }
-        .brand-name .sam { font-weight:800; color:#D90429; }
-        .brand-name .creatives { font-weight:300; color:#888; }
-        .brand-tagline { font-size:0.7rem; color:#666; letter-spacing:1px; text-transform:uppercase; }
-        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; }
+        .navbar-brand .brand-text { display:flex; flex-direction:column; line-height:1.2; }
+        .navbar-brand .brand-name { font-size:1.6rem; font-family:'Montserrat',sans-serif; letter-spacing:-0.5px; }
+        .navbar-brand .brand-name .sam { font-weight:800; color:#D90429; }
+        .navbar-brand .brand-name .creatives { font-weight:300; color:#888; }
+        .navbar-brand .brand-tagline { font-size:0.7rem; color:#666; letter-spacing:1px; text-transform:uppercase; }
+        .nav-link { color:#ccc !important; font-weight:500; font-size:0.85rem; padding:8px 12px !important; transition:0.3s; }
         .nav-link:hover, .nav-link.active { color:#D90429 !important; }
         
-        .main-container { max-width:750px; margin:40px auto; padding:20px; }
-        
-        .tool-header { text-align:center; margin-bottom:40px; }
-        .tool-badge {
-            display:inline-block; background:rgba(217,4,41,0.15); color:#D90429; 
-            padding:8px 20px; border-radius:50px; font-size:0.8rem; font-weight:600; 
-            text-transform:uppercase; letter-spacing:2px; margin-bottom:20px;
-            border:1px solid rgba(217,4,41,0.3);
+        .tool-card {
+            background:#1a1a1a;
+            border:1px solid rgba(255,255,255,0.1);
+            border-radius:20px;
+            padding:30px;
+            margin-top:30px;
         }
-        .tool-header h1 { font-size:36px; margin-bottom:15px; font-weight:800; }
-        .tool-header p { color:#aaa; font-size:16px; }
+        .form-control {
+            background:#0a0a0a;
+            border:1px solid #333;
+            color:#fff;
+            padding:14px 20px;
+            border-radius:12px;
+        }
+        .form-control:focus {
+            background:#0a0a0a;
+            border-color:#D90429;
+            box-shadow:0 0 0 3px rgba(217,4,41,0.2);
+            color:#fff;
+        }
+        .btn-primary-red {
+            background:#D90429;
+            border:2px solid #D90429;
+            color:#fff;
+            padding:12px 28px;
+            border-radius:50px;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            font-size:0.8rem;
+            transition:0.3s;
+        }
+        .btn-primary-red:hover {
+            background:transparent;
+            color:#D90429;
+            transform:translateY(-3px);
+            box-shadow:0 15px 30px rgba(217,4,41,0.3);
+        }
+        .btn-success {
+            background:#28a745;
+            border:2px solid #28a745;
+            color:#fff;
+            padding:12px 25px;
+            border-radius:50px;
+            font-weight:600;
+            transition:0.3s;
+            text-decoration:none;
+            display:inline-block;
+        }
+        .btn-success:hover {
+            background:transparent;
+            color:#28a745;
+            transform:translateY(-3px);
+            box-shadow:0 15px 30px rgba(40,167,69,0.3);
+        }
+        .btn-warning {
+            background:#ffc107;
+            border:2px solid #ffc107;
+            color:#000;
+            padding:12px 25px;
+            border-radius:50px;
+            font-weight:600;
+            transition:0.3s;
+            text-decoration:none;
+            display:inline-block;
+        }
+        .btn-warning:hover {
+            background:transparent;
+            color:#ffc107;
+            transform:translateY(-3px);
+        }
+        .btn-info {
+            background:#00F2EA;
+            border:2px solid #00F2EA;
+            color:#000;
+            padding:12px 25px;
+            border-radius:50px;
+            font-weight:600;
+            transition:0.3s;
+            text-decoration:none;
+            display:inline-block;
+        }
+        .btn-info:hover {
+            background:transparent;
+            color:#00F2EA;
+            transform:translateY(-3px);
+        }
+        .btn-facebook {
+            background:#1877F2;
+            border:2px solid #1877F2;
+            color:#fff;
+            padding:12px 25px;
+            border-radius:50px;
+            font-weight:600;
+            transition:0.3s;
+            text-decoration:none;
+            display:inline-block;
+        }
+        .btn-facebook:hover {
+            background:transparent;
+            color:#1877F2;
+            transform:translateY(-3px);
+        }
+        .btn-instagram {
+            background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border:2px solid #E4405F;
+            color:#fff;
+            padding:12px 25px;
+            border-radius:50px;
+            font-weight:600;
+            transition:0.3s;
+            text-decoration:none;
+            display:inline-block;
+        }
+        .btn-instagram:hover {
+            background:transparent;
+            color:#E4405F;
+            transform:translateY(-3px);
+        }
         
-        /* Platform Tabs */
         .platform-tabs {
-            display:flex; gap:10px; margin-bottom:30px; flex-wrap:wrap;
+            display:flex;
+            gap:10px;
+            margin-bottom:20px;
+            flex-wrap:wrap;
         }
         .platform-tab {
-            flex:1; min-width:150px; padding:18px; background:#1a1a1a;
-            border:2px solid #2a2a2a; border-radius:15px; cursor:pointer;
-            text-align:center; font-weight:600; transition:all 0.3s;
-            color:#aaa; font-size:15px;
-        }
-        .platform-tab:hover { transform:translateY(-3px); color:#fff; }
-        .platform-tab .tab-icon { font-size:28px; display:block; margin-bottom:8px; }
-        .platform-tab.active.instagram { 
-            border-color:#E4405F; background:rgba(228,64,95,0.15); 
-            color:#fff; box-shadow:0 10px 30px rgba(228,64,95,0.3);
-        }
-        .platform-tab.active.facebook { 
-            border-color:#1877F2; background:rgba(24,119,242,0.15); 
-            color:#fff; box-shadow:0 10px 30px rgba(24,119,242,0.3);
-        }
-        .platform-tab.active.tiktok { 
-            border-color:#00F2EA; background:rgba(0,242,234,0.15); 
-            color:#fff; box-shadow:0 10px 30px rgba(0,242,234,0.3);
-        }
-        
-        /* Input Section */
-        .input-section {
-            background:#1a1a1a; padding:25px; border-radius:20px;
-            border:1px solid #2a2a2a; margin-bottom:20px;
-        }
-        .input-group { display:flex; gap:10px; }
-        .url-input {
-            flex:1; padding:15px 20px; background:#0a0a0a;
-            border:2px solid #2a2a2a; border-radius:12px; color:#fff;
-            font-size:14px; outline:none; transition:all 0.3s;
-        }
-        .url-input:focus { border-color:#D90429; box-shadow:0 0 15px rgba(217,4,41,0.2); }
-        .url-input::placeholder { color:#555; }
-        .download-btn {
-            padding:15px 30px; background:linear-gradient(45deg,#D90429,#ff4757);
-            color:#fff; border:none; border-radius:12px; cursor:pointer;
-            font-weight:700; font-size:15px; transition:all 0.3s; white-space:nowrap;
-        }
-        .download-btn:hover { transform:translateY(-3px); box-shadow:0 15px 30px rgba(217,4,41,0.4); }
-        .download-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
-        
-        .paste-btn {
-            padding:15px 20px; background:#2a2a2a; color:#fff;
-            border:none; border-radius:12px; cursor:pointer; font-size:14px;
+            flex:1;
+            min-width:120px;
+            padding:15px;
+            background:#0a0a0a;
+            border:2px solid #333;
+            border-radius:15px;
+            cursor:pointer;
+            text-align:center;
+            font-weight:600;
             transition:all 0.3s;
+            color:#aaa;
+            font-size:14px;
         }
-        .paste-btn:hover { background:#333; }
+        .platform-tab:hover {
+            border-color:#D90429;
+            color:#fff;
+        }
+        .platform-tab.active {
+            border-color:#D90429;
+            background:rgba(217,4,41,0.1);
+            color:#fff;
+        }
+        .platform-tab .tab-icon { font-size:28px; display:block; margin-bottom:8px; }
         
-        /* Loading */
-        .loading { text-align:center; padding:30px; display:none; }
-        .loading.active { display:block; }
-        .spinner {
-            border:4px solid #2a2a2a; border-top:4px solid #D90429; border-radius:50%;
-            width:50px; height:50px; animation:spin 1s linear infinite; margin:0 auto 15px;
+        .video-card {
+            background:#0a0a0a;
+            border-radius:15px;
+            padding:20px;
+            margin-top:20px;
         }
-        @keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
-        .loading p { color:#aaa; }
-        
-        /* Result */
-        .result {
-            display:none; margin-top:20px; background:#1a1a1a;
-            border-radius:20px; padding:20px; border:1px solid #2a2a2a;
+        .download-buttons {
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            margin-top:15px;
         }
-        .result.active { display:block; animation:slideUp 0.5s ease; }
-        @keyframes slideUp { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
-        
-        .video-container { position:relative; margin-bottom:15px; }
-        .video-container video {
-            width:100%; border-radius:15px; background:#0a0a0a; max-height:400px;
+        .loading-spinner {
+            display:none;
+            text-align:center;
+            padding:30px;
         }
-        .video-info { margin-bottom:15px; }
-        .video-title { font-size:16px; font-weight:600; color:#fff; margin-bottom:5px; }
-        .video-meta { font-size:13px; color:#888; }
-        
-        .download-actions { display:flex; gap:10px; flex-wrap:wrap; }
-        .download-link {
-            flex:1; min-width:150px; padding:15px; text-align:center;
-            background:#28a745; color:#fff; text-decoration:none; border-radius:12px;
-            font-weight:700; font-size:14px; transition:all 0.3s;
-        }
-        .download-link:hover { background:#218838; transform:translateY(-2px); color:#fff; }
-        
-        .error {
-            display:none; margin-top:20px; padding:15px;
-            background:rgba(220,53,69,0.1); border:1px solid #dc3545;
-            border-radius:12px; text-align:center; color:#dc3545;
-        }
-        .error.active { display:block; }
-        
-        /* API Status */
-        .api-status {
-            display:flex; gap:15px; justify-content:center; margin-top:20px; flex-wrap:wrap;
-        }
-        .api-badge {
-            padding:8px 15px; border-radius:50px; font-size:12px;
-            background:#1a1a1a; border:1px solid #2a2a2a; color:#888;
-        }
-        .api-badge.online { color:#28a745; border-color:rgba(40,167,69,0.3); }
-        .api-badge .dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:5px; }
-        .api-badge .dot.green { background:#28a745; animation:pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-        
-        /* How to Use */
-        .how-to-use {
-            margin-top:40px; background:#1a1a1a; padding:30px;
-            border-radius:20px; border:1px solid #2a2a2a;
-        }
-        .how-to-use h3 { margin-bottom:20px; font-size:20px; color:#D90429; }
-        .step { display:flex; gap:15px; margin-bottom:15px; align-items:flex-start; }
-        .step-number {
-            width:30px; height:30px; border-radius:50%;
-            background:linear-gradient(45deg,#D90429,#ff4757); color:#fff;
-            display:flex; align-items:center; justify-content:center;
-            font-weight:700; font-size:14px; flex-shrink:0;
-        }
-        .step-text { color:#ccc; font-size:14px; line-height:1.6; padding-top:3px; }
-        
-        /* Features */
-        .features {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-            gap:15px; margin-top:30px;
-        }
-        .feature {
-            text-align:center; padding:20px; background:#1a1a1a;
-            border-radius:15px; border:1px solid #2a2a2a;
-        }
-        .feature-icon { font-size:30px; margin-bottom:10px; }
-        .feature-text { font-size:13px; color:#888; }
-        
-        @media (max-width:768px) {
-            body { padding-top:70px; }
-            .tool-header h1 { font-size:26px; }
-            .platform-tabs { flex-direction:column; }
-            .input-group { flex-direction:column; }
-            .download-btn { width:100%; }
-            .download-actions { flex-direction:column; }
+        .spinner-border { color:#D90429; width:3rem; height:3rem; }
+        .info-box {
+            background:rgba(217,4,41,0.1);
+            border:1px solid #D90429;
+            border-radius:10px;
+            padding:15px;
+            margin-top:15px;
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="images/logo-icon.png" alt="SAM Creatives" class="logo-icon" onerror="this.style.display='none'">
+                <img src="images/logo-icon.png" alt="SAM" class="logo-icon" onerror="this.style.display='none'">
                 <span class="brand-text">
                     <span class="brand-name"><span class="sam">SAM</span><span class="creatives">Creatives</span></span>
                     <span class="brand-tagline">Design. Market. Grow.</span>
@@ -262,378 +219,234 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Video Downloader</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="ai-tools.html">AI Tools</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
-    <!-- Main Content -->
-    <div class="main-container">
-        <div class="tool-header" data-aos="fade-up">
-            <span class="tool-badge">🎬 Free Video Downloader</span>
-            <h1>📥 <span class="text-gradient">Social Video Downloader</span></h1>
-            <p>Download Facebook, Instagram & TikTok videos in HD quality - No Watermark</p>
+
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4 fw-bold">📥 Social <span class="text-gradient">Video Downloader</span></h1>
+            <p class="lead" style="color:#aaa;">Download TikTok, Instagram & Facebook videos - Fast & Free!</p>
         </div>
-        
-        <!-- Platform Tabs -->
-        <div class="platform-tabs" data-aos="fade-up" data-aos-delay="100">
-            <div class="platform-tab instagram active" onclick="selectPlatform('instagram')">
-                <span class="tab-icon">📸</span> Instagram
-            </div>
-            <div class="platform-tab facebook" onclick="selectPlatform('facebook')">
-                <span class="tab-icon">👍</span> Facebook
-            </div>
-            <div class="platform-tab tiktok" onclick="selectPlatform('tiktok')">
-                <span class="tab-icon">🎵</span> TikTok
-            </div>
-        </div>
-        
-        <!-- Input -->
-        <div class="input-section" data-aos="fade-up" data-aos-delay="200">
-            <div class="input-group">
-                <button class="paste-btn" onclick="pasteFromClipboard()" title="Paste from clipboard">
-                    <i class="bi bi-clipboard"></i>
-                </button>
-                <input type="url" id="videoUrl" class="url-input" placeholder="Paste video URL here..." />
-                <button class="download-btn" onclick="downloadVideo()">
-                    <i class="bi bi-download me-1"></i> Download
-                </button>
-            </div>
-        </div>
-        
-        <!-- API Status -->
-        <div class="api-status">
-            <span class="api-badge online"><span class="dot green"></span> Instagram API</span>
-            <span class="api-badge online"><span class="dot green"></span> Facebook API</span>
-            <span class="api-badge online"><span class="dot green"></span> TikTok API</span>
-        </div>
-        
-        <!-- Loading -->
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p id="loadingText">Fetching video... Please wait</p>
-        </div>
-        
-        <!-- Error -->
-        <div class="error" id="error"></div>
-        
-        <!-- Result -->
-        <div class="result" id="result">
-            <div class="video-container">
-                <video id="videoPreview" controls></video>
-            </div>
-            <div class="video-info">
-                <div class="video-title" id="videoTitle"></div>
-                <div class="video-meta" id="videoMeta"></div>
-            </div>
-            <div class="download-actions">
-                <a href="#" class="download-link" id="downloadLink" download>
-                    <i class="bi bi-download me-1"></i> Download Video
-                </a>
-            </div>
-        </div>
-        
-        <!-- Features -->
-        <div class="features" data-aos="fade-up">
-            <div class="feature">
-                <div class="feature-icon">🎯</div>
-                <div class="feature-text">No Watermark</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-text">HD Quality</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-text">100% Free</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📱</div>
-                <div class="feature-text">No Sign Up</div>
-            </div>
-        </div>
-        
-        <!-- How to Use -->
-        <div class="how-to-use" data-aos="fade-up">
-            <h3>📖 How to Download Videos</h3>
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-text">Open Instagram, Facebook or TikTok app and find the video you want</div>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-text">Tap Share → Copy Link</div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-text">Paste the link above and click Download</div>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-text">Your video downloads in HD quality without watermark!</div>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Platform Tabs -->
+                <div class="platform-tabs">
+                    <div class="platform-tab active" id="tabTikTok" onclick="selectPlatform('tiktok')">
+                        <span class="tab-icon">🎵</span> TikTok
+                    </div>
+                    <div class="platform-tab" id="tabInstagram" onclick="selectPlatform('instagram')">
+                        <span class="tab-icon">📸</span> Instagram
+                    </div>
+                    <div class="platform-tab" id="tabFacebook" onclick="selectPlatform('facebook')">
+                        <span class="tab-icon">👍</span> Facebook
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <form id="downloadForm">
+                        <div class="mb-3">
+                            <label class="form-label text-white fw-bold" id="urlLabel">Paste TikTok Video URL:</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="background:#0a0a0a; border:1px solid #333; color:#D90429;" id="urlIcon">
+                                    🎵
+                                </span>
+                                <input type="url" class="form-control" id="videoUrl" placeholder="https://www.tiktok.com/@user/video/..." required>
+                            </div>
+                            <small class="text-muted" id="urlHint">Supported: tiktok.com/@user/video/...</small>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary-red w-100 btn-lg">
+                            <i class="bi bi-search me-2"></i>Get Download Links
+                        </button>
+                    </form>
+
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner-border mb-3" role="status"></div>
+                        <p class="text-white">🔍 Fetching video information...</p>
+                        <p class="text-muted small">Please wait...</p>
+                    </div>
+
+                    <div id="videoResult" style="display:none;">
+                        <div class="video-card">
+                            <div class="text-center">
+                                <h5 class="text-white mb-3" id="videoTitle">Video Found!</h5>
+                                <p class="text-muted">Click any download button below to download your video</p>
+                            </div>
+                            
+                            <div class="download-buttons justify-content-center" id="downloadButtons">
+                                <!-- Dynamic buttons will be added here -->
+                            </div>
+                            
+                            <div class="info-box mt-3">
+                                <small class="text-white">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <strong>Note:</strong> Agar pehla link kaam na kare toh dusra try karein. Sabhi links free hain.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alternative Services -->
+                <div class="mt-4 p-4 rounded" style="background:#1a1a1a; border:1px solid #333;">
+                    <h5 class="text-gradient mb-3">🔄 Alternative Download Services:</h5>
+                    <p class="text-muted">Agar upar wala kaam na kare, toh in services ko try karein:</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="https://snaptik.app" target="_blank" class="btn btn-outline-light btn-sm">SnapTik (TikTok)</a>
+                        <a href="https://ssstik.io" target="_blank" class="btn btn-outline-light btn-sm">SSSTik (TikTok)</a>
+                        <a href="https://saveinsta.app" target="_blank" class="btn btn-outline-light btn-sm">SaveInsta (Instagram)</a>
+                        <a href="https://snapinsta.app" target="_blank" class="btn btn-outline-light btn-sm">SnapInsta (Instagram)</a>
+                        <a href="https://fdown.net" target="_blank" class="btn btn-outline-light btn-sm">FDown (Facebook)</a>
+                        <a href="https://snapsave.app" target="_blank" class="btn btn-outline-light btn-sm">SnapSave (FB)</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script>
-        AOS.init({ duration: 800, once: true });
-        
-        let currentPlatform = 'instagram';
+        let currentPlatform = 'tiktok';
         
         function selectPlatform(platform) {
             currentPlatform = platform;
             
+            // Update tabs
             document.querySelectorAll('.platform-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelector(`.platform-tab.${platform}`).classList.add('active');
+            document.getElementById('tab' + platform.charAt(0).toUpperCase() + platform.slice(1)).classList.add('active');
             
-            const input = document.getElementById('videoUrl');
-            const placeholders = {
-                instagram: 'Paste Instagram Reel/Video URL here...',
-                facebook: 'Paste Facebook Video URL here...',
-                tiktok: 'Paste TikTok Video URL here...'
+            // Update form
+            const labels = {
+                tiktok: 'Paste TikTok Video URL:',
+                instagram: 'Paste Instagram Reel URL:',
+                facebook: 'Paste Facebook Video URL:'
             };
-            input.placeholder = placeholders[platform];
+            const placeholders = {
+                tiktok: 'https://www.tiktok.com/@user/video/...',
+                instagram: 'https://www.instagram.com/reel/...',
+                facebook: 'https://www.facebook.com/watch/?v=...'
+            };
+            const hints = {
+                tiktok: 'Supported: tiktok.com/@user/video/ID',
+                instagram: 'Supported: instagram.com/reel/ID, instagram.com/p/ID',
+                facebook: 'Supported: facebook.com/watch/?v=ID, fb.watch/...'
+            };
+            const icons = {
+                tiktok: '🎵',
+                instagram: '📸',
+                facebook: '👍'
+            };
             
-            document.getElementById('result').classList.remove('active');
-            document.getElementById('error').classList.remove('active');
-        }
-        
-        async function pasteFromClipboard() {
-            try {
-                const text = await navigator.clipboard.readText();
-                document.getElementById('videoUrl').value = text;
-                autoDetectPlatform(text);
-            } catch (error) {
-                alert('Unable to access clipboard. Please paste manually.');
-            }
-        }
-        
-        function autoDetectPlatform(url) {
-            if (url.includes('instagram.com')) selectPlatform('instagram');
-            else if (url.includes('facebook.com') || url.includes('fb.watch')) selectPlatform('facebook');
-            else if (url.includes('tiktok.com')) selectPlatform('tiktok');
-        }
-        
-        document.getElementById('videoUrl').addEventListener('input', function() {
-            autoDetectPlatform(this.value);
-        });
-        
-        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') downloadVideo();
-        });
-        
-        async function downloadVideo() {
-            const url = document.getElementById('videoUrl').value.trim();
+            document.getElementById('urlLabel').textContent = labels[platform];
+            document.getElementById('videoUrl').placeholder = placeholders[platform];
+            document.getElementById('urlHint').textContent = hints[platform];
+            document.getElementById('urlIcon').textContent = icons[platform];
             
-            if (!url) {
-                showError('⚠️ Please paste a video URL first');
+            // Hide previous results
+            document.getElementById('videoResult').style.display = 'none';
+        }
+        
+        document.getElementById('downloadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const videoUrl = document.getElementById('videoUrl').value.trim();
+            
+            if (!videoUrl) {
+                alert('❌ Please paste a video URL first.');
                 return;
             }
             
-            document.getElementById('loading').classList.add('active');
-            document.getElementById('result').classList.remove('active');
-            document.getElementById('error').classList.remove('active');
-            
-            const btn = document.querySelector('.download-btn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i> Fetching...';
-            
-            document.getElementById('loadingText').textContent = 
-                `Fetching ${currentPlatform.charAt(0).toUpperCase() + currentPlatform.slice(1)} video... Please wait`;
-            
-            try {
-                let videoData = null;
-                
-                if (currentPlatform === 'instagram') {
-                    videoData = await fetchInstagramVideo(url);
-                } else if (currentPlatform === 'facebook') {
-                    videoData = await fetchFacebookVideo(url);
-                } else if (currentPlatform === 'tiktok') {
-                    videoData = await fetchTikTokVideo(url);
-                }
-                
-                if (videoData && videoData.video_url) {
-                    showResult(videoData);
-                } else {
-                    showError('❌ Unable to fetch video. Please check the URL and try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showError('❌ Something went wrong. Please try again.');
-            } finally {
-                document.getElementById('loading').classList.remove('active');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="bi bi-download me-1"></i> Download';
+            // Validate URL based on platform
+            if (currentPlatform === 'tiktok' && !videoUrl.includes('tiktok.com')) {
+                alert('❌ Please enter a valid TikTok URL');
+                return;
             }
-        }
-        
-        async function fetchInstagramVideo(url) {
-            try {
-                // Method 1: Try oEmbed API
-                const oembedUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.instagram.com/oembed/?url=' + encodeURIComponent(url))}`;
-                const oembedResponse = await fetch(oembedUrl);
-                const oembedData = await oembedResponse.json();
-                
-                if (oembedData && oembedData.thumbnail_url) {
-                    // Try to get video from page
-                    const pageUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                    const pageResponse = await fetch(pageUrl);
-                    const html = await pageResponse.text();
-                    
-                    const videoMatch = html.match(/"video_url":"([^"]+)"/);
-                    const titleMatch = html.match(/"edge_media_to_caption":{"edges":\[{"node":{"text":"([^"]*)"/);
-                    
-                    if (videoMatch && videoMatch[1]) {
-                        return {
-                            video_url: videoMatch[1].replace(/\\\//g, '/'),
-                            title: titleMatch ? titleMatch[1].substring(0, 100) : 'Instagram Video',
-                            platform: 'Instagram',
-                            thumbnail: oembedData.thumbnail_url
-                        };
-                    }
-                    
-                    // If no direct video URL, use thumbnail as preview
-                    return {
-                        video_url: oembedData.thumbnail_url,
-                        title: oembedData.title || 'Instagram Video',
-                        platform: 'Instagram',
-                        thumbnail: oembedData.thumbnail_url,
-                        is_image: true
-                    };
-                }
-                
-                return null;
-            } catch (error) {
-                console.error('Instagram fetch error:', error);
-                return null;
+            if (currentPlatform === 'instagram' && !videoUrl.includes('instagram.com')) {
+                alert('❌ Please enter a valid Instagram URL');
+                return;
             }
-        }
-        
-        async function fetchFacebookVideo(url) {
-            try {
-                const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const html = await response.text();
-                
-                const hdMatch = html.match(/"browser_native_hd_url":"([^"]+)"/);
-                const sdMatch = html.match(/"browser_native_sd_url":"([^"]+)"/);
-                const playableMatch = html.match(/"playable_url":"([^"]+)"/);
-                const titleMatch = html.match(/"og:title" content="([^"]+)"/);
-                const imageMatch = html.match(/"og:image" content="([^"]+)"/);
-                
-                let videoUrl = null;
-                let quality = '';
-                
-                if (hdMatch && hdMatch[1]) {
-                    videoUrl = hdMatch[1].replace(/\\\//g, '/');
-                    quality = 'HD';
-                } else if (sdMatch && sdMatch[1]) {
-                    videoUrl = sdMatch[1].replace(/\\\//g, '/');
-                    quality = 'SD';
-                } else if (playableMatch && playableMatch[1]) {
-                    videoUrl = playableMatch[1].replace(/\\\//g, '/');
-                    quality = 'SD';
-                }
-                
-                if (videoUrl) {
-                    return {
-                        video_url: videoUrl,
-                        title: titleMatch ? titleMatch[1] : 'Facebook Video',
-                        platform: 'Facebook',
-                        quality: quality,
-                        thumbnail: imageMatch ? imageMatch[1] : ''
-                    };
-                }
-                
-                return null;
-            } catch (error) {
-                console.error('Facebook fetch error:', error);
-                return null;
+            if (currentPlatform === 'facebook' && !videoUrl.includes('facebook.com') && !videoUrl.includes('fb.watch')) {
+                alert('❌ Please enter a valid Facebook URL');
+                return;
             }
-        }
+            
+            // Show loading
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('videoResult').style.display = 'none';
+            
+            // Small delay for UX
+            setTimeout(() => {
+                document.getElementById('loadingSpinner').style.display = 'none';
+                showDownloadLinks(videoUrl);
+            }, 1500);
+        });
         
-        async function fetchTikTokVideo(url) {
-            try {
-                // Method 1: Try TikTok oEmbed API
-                const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
-                const response = await fetch(oembedUrl);
-                const data = await response.json();
-                
-                if (data && data.html) {
-                    // Extract video URL from HTML
-                    const videoMatch = data.html.match(/video_id=(\d+)/);
-                    const title = data.title || 'TikTok Video';
-                    const thumbnail = data.thumbnail_url || '';
-                    
-                    if (videoMatch) {
-                        const videoId = videoMatch[1];
-                        
-                        // Use alternative API for direct video
-                        const altApiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://tikwm.com/api/?url=' + encodeURIComponent(url))}`;
-                        const altResponse = await fetch(altApiUrl);
-                        const altData = await altResponse.json();
-                        
-                        if (altData && altData.data && altData.data.play) {
-                            return {
-                                video_url: altData.data.play,
-                                title: altData.data.title || title,
-                                platform: 'TikTok',
-                                thumbnail: altData.data.cover || thumbnail,
-                                no_watermark: true
-                            };
-                        }
-                    }
-                    
-                    // Return thumbnail if no direct video
-                    return {
-                        video_url: thumbnail,
-                        title: title,
-                        platform: 'TikTok',
-                        thumbnail: thumbnail,
-                        is_image: true
-                    };
-                }
-                
-                return null;
-            } catch (error) {
-                console.error('TikTok fetch error:', error);
-                return null;
+        function showDownloadLinks(url) {
+            const buttonsContainer = document.getElementById('downloadButtons');
+            const titleElement = document.getElementById('videoTitle');
+            
+            let buttonsHTML = '';
+            let title = '';
+            
+            if (currentPlatform === 'tiktok') {
+                title = '🎵 TikTok Video Ready!';
+                buttonsHTML = `
+                    <a href="https://snaptik.app/en?url=${encodeURIComponent(url)}" target="_blank" class="btn btn-info">
+                        <i class="bi bi-download me-2"></i>SnapTik Download
+                    </a>
+                    <a href="https://ssstik.io/en?url=${encodeURIComponent(url)}" target="_blank" class="btn btn-success">
+                        <i class="bi bi-download me-2"></i>SSSTik Download
+                    </a>
+                    <a href="https://www.tikwm.com/api/?url=${encodeURIComponent(url)}" target="_blank" class="btn btn-warning">
+                        <i class="bi bi-download me-2"></i>TikWM API
+                    </a>
+                `;
+            } else if (currentPlatform === 'instagram') {
+                title = '📸 Instagram Video Ready!';
+                buttonsHTML = `
+                    <a href="https://saveinsta.app/en?url=${encodeURIComponent(url)}" target="_blank" class="btn btn-instagram">
+                        <i class="bi bi-download me-2"></i>SaveInsta Download
+                    </a>
+                    <a href="https://snapinsta.app/en?url=${encodeURIComponent(url)}" target="_blank" class="btn btn-danger">
+                        <i class="bi bi-download me-2"></i>SnapInsta Download
+                    </a>
+                    <a href="https://en.savefrom.net/#url=${encodeURIComponent(url)}" target="_blank" class="btn btn-warning">
+                        <i class="bi bi-download me-2"></i>SaveFrom
+                    </a>
+                `;
+            } else if (currentPlatform === 'facebook') {
+                title = '👍 Facebook Video Ready!';
+                buttonsHTML = `
+                    <a href="https://fdown.net/en?url=${encodeURIComponent(url)}" target="_blank" class="btn btn-facebook">
+                        <i class="bi bi-download me-2"></i>FDown Download
+                    </a>
+                    <a href="https://snapsave.app/en?url=${encodeURIComponent(url)}" target="_blank" class="btn btn-primary">
+                        <i class="bi bi-download me-2"></i>SnapSave Download
+                    </a>
+                    <a href="https://en.savefrom.net/#url=${encodeURIComponent(url)}" target="_blank" class="btn btn-warning">
+                        <i class="bi bi-download me-2"></i>SaveFrom
+                    </a>
+                `;
             }
+            
+            titleElement.textContent = title;
+            buttonsContainer.innerHTML = buttonsHTML;
+            
+            document.getElementById('videoResult').style.display = 'block';
         }
         
-        function showResult(data) {
-            const video = document.getElementById('videoPreview');
-            const downloadLink = document.getElementById('downloadLink');
-            const videoTitle = document.getElementById('videoTitle');
-            const videoMeta = document.getElementById('videoMeta');
-            
-            video.src = data.video_url;
-            downloadLink.href = data.video_url;
-            
-            videoTitle.textContent = data.title || 'Video Ready';
-            
-            let metaText = `${data.platform || currentPlatform} Video`;
-            if (data.quality) metaText += ` • ${data.quality} Quality`;
-            if (data.no_watermark) metaText += ' • No Watermark';
-            videoMeta.textContent = metaText;
-            
-            const platform = data.platform ? data.platform.toLowerCase() : currentPlatform;
-            downloadLink.setAttribute('download', `${platform}_video_${Date.now()}.mp4`);
-            
-            document.getElementById('result').classList.add('active');
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        function showError(message) {
-            const error = document.getElementById('error');
-            error.textContent = message;
-            error.classList.add('active');
-        }
+        // Auto-detect platform from URL
+        document.getElementById('videoUrl').addEventListener('input', function() {
+            const url = this.value;
+            if (url.includes('tiktok.com')) selectPlatform('tiktok');
+            else if (url.includes('instagram.com')) selectPlatform('instagram');
+            else if (url.includes('facebook.com') || url.includes('fb.watch')) selectPlatform('facebook');
+        });
     </script>
 </body>
 </html>
